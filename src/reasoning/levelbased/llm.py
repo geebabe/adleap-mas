@@ -1,0 +1,249 @@
+import os
+import json
+import numpy as np
+from dotenv import load_dotenv
+
+from src.reasoning.a_star import a_star_planning
+from src.reasoning.levelbased.l1 import build_state, distance
+
+# Load environment variables from .env
+load_dotenv()
+
+DEFAULT_POLICY = "Always collect the lightest box first (lowest level). If levels are equal, choose the closest one."
+
+DIRECTION_NAMES = {
+    0: "East",
+    np.pi: "West",
+    np.pi / 2: "North",
+    3 * np.pi / 2: "South"
+}
+
+
+def get_direction_name(direction):
+    for dir_val, name in DIRECTION_NAMES.items():
+        if np.isclose(direction, dir_val):
+            return name
+    return f"{direction:.2f} rad"
+
+
+def is_facing_target(agent_pos, agent_direction, target_pos):
+    """Check if agent is adjacent to target_pos and facing towards it."""
+    if np.isclose(agent_direction, np.pi / 2):      # North
+        facing = (agent_pos[0], agent_pos[1] + 1)
+    elif np.isclose(agent_direction, 3 * np.pi / 2):  # South
+        facing = (agent_pos[0], agent_pos[1] - 1)
+    elif np.isclose(agent_direction, 0) or np.isclose(agent_direction, 2 * np.pi):  # East
+        facing = (agent_pos[0] + 1, agent_pos[1])
+    elif np.isclose(agent_direction, np.pi):       # West
+        facing = (agent_pos[0] - 1, agent_pos[1])
+    else:
+        facing = None
+    return facing == tuple(target_pos)
+
+
+def call_gpt4o_mini_controller(policy_text, agent_info, tasks_info, grid_shape):
+    """
+    Calls OpenAI gpt-4o-mini to act as Semantic Policy Controller.
+    Selects the next target box from available tasks based on the natural language policy.
+    """
+    api_key = os.getenv("OPENAI_API_KEY", "").strip()
+    
+    # Check if a valid API key exists
+    if not api_key or api_key == "your_openai_api_key_here":
+        print("\n[LLM Controller] Note: OPENAI_API_KEY not found or using placeholder in .env.")
+        print("[LLM Controller] Running offline semantic rule fallback to simulate LLM decision.")
+        return fallback_semantic_target(policy_text, agent_info, tasks_info)
+
+    try:
+        from openai import OpenAI
+        client = OpenAI(api_key=api_key)
+
+        system_prompt = (
+            "You are a Semantic Policy Controller for an autonomous robot agent in a 2D Level-Based Foraging (LBF) grid world.\n"
+            "Your job is to read the user-defined Natural Language Policy, examine the available boxes (tasks), "
+            "and choose which box the robot should forage next in strict accordance with the policy.\n"
+            "Return your decision in valid JSON format only."
+        )
+
+        user_content = {
+            "grid_size": list(grid_shape),
+            "natural_language_policy": policy_text,
+            "agent_state": agent_info,
+            "available_tasks": tasks_info,
+            "instructions": (
+                "1. Analyze the policy requirements carefully.\n"
+                "2. Evaluate all candidate tasks based on the policy criteria (e.g., box level/weight, position, distance).\n"
+                "3. Select exactly one task from the available tasks list.\n"
+                "4. Check if selecting this task complies with the policy.\n"
+                "5. Provide the output as JSON with keys: reasoning, selected_task_id, target_position, policy_compliance, compliance_note."
+            )
+        }
+
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": json.dumps(user_content, indent=2)}
+            ],
+            response_format={"type": "json_object"},
+            temperature=0.0
+        )
+
+        result = json.loads(response.choices[0].message.content)
+        
+        # Ensure target_position is a tuple of ints
+        if "target_position" in result and isinstance(result["target_position"], list):
+            result["target_position"] = tuple(result["target_position"])
+            
+        return result
+
+    except Exception as e:
+        print(f"\n[LLM Controller Error] Failed to call OpenAI API: {e}")
+        print("[LLM Controller] Falling back to offline semantic rule matching.")
+        return fallback_semantic_target(policy_text, agent_info, tasks_info)
+
+
+def fallback_semantic_target(policy_text, agent_info, tasks_info):
+    """
+    Deterministic rule-based fallback when OpenAI API key is not yet provided,
+    supporting common policy templates (lightest, heaviest, closest, northern).
+    """
+    if not tasks_info:
+        return None
+
+    policy_lower = policy_text.lower()
+    
+    # 1. Lightest first (lowest level)
+    if "lightest" in policy_lower or "lowest level" in policy_lower or "nhẹ nhất" in policy_lower or "level thấp nhất" in policy_lower:
+        chosen = min(tasks_info, key=lambda t: (t["level"], t["distance"]))
+        rule_name = "lightest task (lowest level)"
+    # 2. Heaviest first (highest level)
+    elif "heaviest" in policy_lower or "highest level" in policy_lower or "nặng nhất" in policy_lower:
+        chosen = max(tasks_info, key=lambda t: (t["level"], -t["distance"]))
+        rule_name = "heaviest task (highest level)"
+    # 3. Northern half first
+    elif "north" in policy_lower or "northern" in policy_lower or "phía bắc" in policy_lower:
+        north_tasks = [t for t in tasks_info if t["position"][1] >= 5]
+        if north_tasks:
+            chosen = min(north_tasks, key=lambda t: t["distance"])
+            rule_name = "northern task (y >= 5)"
+        else:
+            chosen = min(tasks_info, key=lambda t: t["distance"])
+            rule_name = "closest remaining task"
+    # 4. Closest first (default)
+    else:
+        chosen = min(tasks_info, key=lambda t: t["distance"])
+        rule_name = "closest task by distance"
+
+    return {
+        "reasoning": f"[Fallback Engine] Selected {chosen['task_id']} as it satisfies the rule '{rule_name}' under policy: '{policy_text}'.",
+        "selected_task_id": chosen["task_id"],
+        "target_position": tuple(chosen["position"]),
+        "policy_compliance": True,
+        "compliance_note": f"Matches rule '{rule_name}'."
+    }
+
+
+def llm_choose_target(env, agent):
+    """
+    Extracts the current state and invokes the LLM Semantic Policy Controller
+    to choose a target task for the agent.
+    """
+    # 1. Identify active (uncompleted) tasks
+    active_tasks = [t for t in env.components['tasks'] if not t.completed]
+    if not active_tasks:
+        return None, None
+
+    # 2. Extract policy text
+    policy = agent.smart_parameters.get('policy', getattr(env, 'policy', DEFAULT_POLICY))
+
+    # 3. Format state for LLM
+    agent_info = {
+        "agent_id": agent.index,
+        "position": list(agent.position),
+        "direction": get_direction_name(agent.direction),
+        "level": float(agent.level)
+    }
+
+    tasks_info = []
+    for t in active_tasks:
+        d = abs(t.position[0] - agent.position[0]) + abs(t.position[1] - agent.position[1])
+        tasks_info.append({
+            "task_id": str(t.index),
+            "position": list(t.position),
+            "level": round(float(t.level), 2),
+            "distance": d
+        })
+
+    # 4. Query LLM Semantic Controller
+    decision = call_gpt4o_mini_controller(policy, agent_info, tasks_info, env.shape)
+
+    if decision and "target_position" in decision:
+        target_pos = tuple(decision["target_position"])
+        # Validate target position belongs to an active task
+        matching_task = next((t for t in active_tasks if t.position == target_pos), None)
+        if matching_task is None:
+            # Fallback by matching selected_task_id
+            matching_task = next((t for t in active_tasks if str(t.index) == str(decision.get("selected_task_id"))), None)
+            if matching_task:
+                target_pos = matching_task.position
+            else:
+                target_pos = active_tasks[0].position
+
+        agent.smart_parameters['last_llm_decision'] = decision
+        return target_pos, decision
+
+    return None, None
+
+
+def llm_planning(env, agent):
+    """
+    Hybrid LLM Planning Method for Level-Based Foraging (LBF):
+    1. High-level (LLM Semantic Policy Controller):
+       - If no target is set or the current target task is completed,
+         prompts gpt-4o-mini with the natural language policy and active tasks.
+       - LLM selects the target task and validates policy compliance.
+    2. Low-level (A* Motion Planner):
+       - Uses A* to compute the optimal path toward the target.
+       - Returns action 4 (Load) when adjacent and facing the target.
+    """
+    # 1. Build the grid state for pathfinding
+    state = build_state(env.shape, env.components)
+
+    # 2. Check current target validity
+    if agent.target is not None:
+        # Check if task at target is still uncompleted
+        active_task = next((t for t in env.components['tasks'] if t.position == agent.target and not t.completed), None)
+        if active_task is None:
+            agent.target = None
+
+    # 3. If no target, consult the LLM Semantic Policy Controller
+    if agent.target is None:
+        target_pos, decision = llm_choose_target(env, agent)
+        agent.target = target_pos
+        if decision:
+            print("\n" + "=" * 65)
+            print("🤖 [LLM Semantic Policy Controller - gpt-4o-mini]")
+            print(f"📋 Policy: \"{agent.smart_parameters.get('policy', getattr(env, 'policy', DEFAULT_POLICY))}\"")
+            print(f"🎯 Selected Task: {decision.get('selected_task_id')} at {decision.get('target_position')}")
+            print(f"💡 Reasoning: {decision.get('reasoning')}")
+            print(f"✅ Compliance: {decision.get('policy_compliance')} ({decision.get('compliance_note', '')})")
+            print("=" * 65 + "\n")
+
+    # 4. Check if adjacent and facing target -> execute Load (Action 4)
+    if agent.target is not None and is_facing_target(agent.position, agent.direction, agent.target):
+        return 4, agent.target
+
+    # 5. Otherwise, use A* pathfinding to step toward target
+    if agent.target is not None:
+        next_action = a_star_planning(state, env.shape[0], env.shape[1],
+                                      env.action_space, agent.position, agent.target)
+    else:
+        # No tasks remaining, take random sample
+        next_action = env.action_space.sample()
+
+    return next_action, agent.target
+
+
+# Alias for compatibility with import_method when agent.type is 'llm_policy'
+llm_policy_planning = llm_planning
