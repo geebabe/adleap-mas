@@ -41,10 +41,11 @@ def is_facing_target(agent_pos, agent_direction, target_pos):
     return facing == tuple(target_pos)
 
 
-def call_gpt4o_mini_controller(policy_text, agent_info, tasks_info, grid_shape):
+def call_gpt4o_mini_controller(policy_text, agent_info, tasks_info, inter_task_distances, grid_shape):
     """
-    Calls OpenAI gpt-4o-mini to act as Semantic Policy Controller.
-    Selects the next target box from available tasks based on the natural language policy.
+    Calls OpenAI gpt-4o-mini to act as Semantic Policy Controller & Route Optimizer.
+    Selects the next target box from available tasks based on the natural language policy,
+    evaluating both semantic constraints and tour path efficiency.
     """
     api_key = os.getenv("OPENAI_API_KEY", "").strip()
     
@@ -59,9 +60,12 @@ def call_gpt4o_mini_controller(policy_text, agent_info, tasks_info, grid_shape):
         client = OpenAI(api_key=api_key)
 
         system_prompt = (
-            "You are a Semantic Policy Controller for an autonomous robot agent in a 2D Level-Based Foraging (LBF) grid world.\n"
-            "Your job is to read the user-defined Natural Language Policy, examine the available boxes (tasks), "
-            "and choose which box the robot should forage next in strict accordance with the policy.\n"
+            "You are an intelligent Semantic Policy Controller and Route Optimizer for an autonomous robot agent "
+            "in a 2D Level-Based Foraging (LBF) grid world.\n"
+            "Your job is to read the user's Natural Language Policy, examine the available boxes (tasks), "
+            "and decide which box to target next in accordance with the policy.\n"
+            "When the policy demands path optimization, shortest route, or efficiency (or does not strictly forbid it), "
+            "evaluate candidate multi-stop routes (tours) to minimize total travel steps and avoid wasteful back-and-forth detours.\n"
             "Return your decision in valid JSON format only."
         )
 
@@ -70,12 +74,20 @@ def call_gpt4o_mini_controller(policy_text, agent_info, tasks_info, grid_shape):
             "natural_language_policy": policy_text,
             "agent_state": agent_info,
             "available_tasks": tasks_info,
+            "inter_task_distances": inter_task_distances,
             "instructions": (
-                "1. Analyze the policy requirements carefully.\n"
-                "2. Evaluate all candidate tasks based on the policy criteria (e.g., box level/weight, position, distance).\n"
-                "3. Select exactly one task from the available tasks list.\n"
-                "4. Check if selecting this task complies with the policy.\n"
-                "5. Provide the output as JSON with keys: reasoning, selected_task_id, target_position, policy_compliance, compliance_note."
+                "1. Analyze the natural language policy requirements carefully.\n"
+                "2. If the policy specifies strict attribute priorities (e.g., 'heaviest first'), adhere to it and note the detour cost.\n"
+                "3. If the policy specifies 'shortest path', 'optimal route', or efficiency, evaluate the overall multi-stop tour cost "
+                "(agent -> task1 -> task2 -> ...) and choose the sequence that minimizes total travel distance.\n"
+                "4. Provide the output as JSON with keys:\n"
+                "   - 'reasoning': Step-by-step rationale comparing route options and policy compliance\n"
+                "   - 'planned_sequence': List of task IDs in visiting order\n"
+                "   - 'selected_task_id': The immediate next task ID to visit\n"
+                "   - 'target_position': [x, y] coordinates of the selected task\n"
+                "   - 'estimated_total_tour_cost': Estimated total steps for the entire remaining tour\n"
+                "   - 'policy_compliance': boolean\n"
+                "   - 'compliance_note': brief note"
             )
         }
 
@@ -105,23 +117,50 @@ def call_gpt4o_mini_controller(policy_text, agent_info, tasks_info, grid_shape):
 
 def fallback_semantic_target(policy_text, agent_info, tasks_info):
     """
-    Deterministic rule-based fallback when OpenAI API key is not yet provided,
-    supporting common policy templates (lightest, heaviest, closest, northern).
+    Deterministic rule-based fallback supporting common policy templates:
+    optimal path (TSP), lightest, heaviest, closest, northern.
     """
     if not tasks_info:
         return None
 
     policy_lower = policy_text.lower()
-    
-    # 1. Lightest first (lowest level)
-    if "lightest" in policy_lower or "lowest level" in policy_lower or "nhẹ nhất" in policy_lower or "level thấp nhất" in policy_lower:
+    import itertools
+
+    # 1. Optimal path / Shortest total route
+    if any(k in policy_lower for k in ["optimal", "shortest", "ngắn nhất", "tối ưu", "efficiency", "minimum distance"]):
+        best_cost = float('inf')
+        best_perm = list(tasks_info)
+        agent_pos = tuple(agent_info["position"])
+        for perm in itertools.permutations(tasks_info):
+            curr = agent_pos
+            cost = 0
+            for t in perm:
+                cost += abs(t["position"][0] - curr[0]) + abs(t["position"][1] - curr[1])
+                curr = tuple(t["position"])
+            if cost < best_cost:
+                best_cost = cost
+                best_perm = perm
+        chosen = best_perm[0]
+        seq = [t["task_id"] for t in best_perm]
+        return {
+            "reasoning": f"[Fallback Engine] Planned optimal tour {seq} with total cost of {best_cost} steps to minimize distance.",
+            "planned_sequence": seq,
+            "selected_task_id": chosen["task_id"],
+            "target_position": tuple(chosen["position"]),
+            "estimated_total_tour_cost": best_cost,
+            "policy_compliance": True,
+            "compliance_note": f"Shortest tour sequence: {seq}"
+        }
+
+    # 2. Lightest first (lowest level)
+    elif "lightest" in policy_lower or "lowest level" in policy_lower or "nhẹ nhất" in policy_lower or "level thấp nhất" in policy_lower:
         chosen = min(tasks_info, key=lambda t: (t["level"], t["distance"]))
         rule_name = "lightest task (lowest level)"
-    # 2. Heaviest first (highest level)
+    # 3. Heaviest first (highest level)
     elif "heaviest" in policy_lower or "highest level" in policy_lower or "nặng nhất" in policy_lower:
         chosen = max(tasks_info, key=lambda t: (t["level"], -t["distance"]))
         rule_name = "heaviest task (highest level)"
-    # 3. Northern half first
+    # 4. Northern half first
     elif "north" in policy_lower or "northern" in policy_lower or "phía bắc" in policy_lower:
         north_tasks = [t for t in tasks_info if t["position"][1] >= 5]
         if north_tasks:
@@ -130,13 +169,14 @@ def fallback_semantic_target(policy_text, agent_info, tasks_info):
         else:
             chosen = min(tasks_info, key=lambda t: t["distance"])
             rule_name = "closest remaining task"
-    # 4. Closest first (default)
+    # 5. Closest first (default)
     else:
         chosen = min(tasks_info, key=lambda t: t["distance"])
         rule_name = "closest task by distance"
 
     return {
         "reasoning": f"[Fallback Engine] Selected {chosen['task_id']} as it satisfies the rule '{rule_name}' under policy: '{policy_text}'.",
+        "planned_sequence": [chosen["task_id"]],
         "selected_task_id": chosen["task_id"],
         "target_position": tuple(chosen["position"]),
         "policy_compliance": True,
@@ -145,6 +185,7 @@ def fallback_semantic_target(policy_text, agent_info, tasks_info):
 
 
 def llm_choose_target(env, agent):
+
     """
     Extracts the current state and invokes the LLM Semantic Policy Controller
     to choose a target task for the agent.
@@ -172,11 +213,20 @@ def llm_choose_target(env, agent):
             "task_id": str(t.index),
             "position": list(t.position),
             "level": round(float(t.level), 2),
-            "distance": d
+            "distance_from_agent": d
         })
 
+    # Pairwise Manhattan distances between tasks
+    inter_task_distances = {}
+    for i in range(len(active_tasks)):
+        for j in range(i + 1, len(active_tasks)):
+            t1, t2 = active_tasks[i], active_tasks[j]
+            dist_12 = abs(t1.position[0] - t2.position[0]) + abs(t1.position[1] - t2.position[1])
+            inter_task_distances[f"Task_{t1.index}_to_Task_{t2.index}"] = dist_12
+
     # 4. Query LLM Semantic Controller
-    decision = call_gpt4o_mini_controller(policy, agent_info, tasks_info, env.shape)
+    decision = call_gpt4o_mini_controller(policy, agent_info, tasks_info, inter_task_distances, env.shape)
+
 
     if decision and "target_position" in decision:
         target_pos = tuple(decision["target_position"])

@@ -15,11 +15,14 @@ from src.envs.LevelForagingEnv import LevelForagingEnv, Agent, Task
 from src.reasoning.levelbased.llm import DEFAULT_POLICY, get_direction_name
 
 PRESET_POLICIES = {
+    "optimal": "Collect all boxes using the most optimal overall route (shortest total path / minimum steps). Plan the sequence of tasks to minimize total travel distance.",
+    "balanced": "Collect all boxes while minimizing travel distance. Prefer heavier boxes when the detour cost is small (less than 4 steps).",
     "lightest": "Always collect the lightest box first (lowest level). If levels are equal, choose the closest one.",
     "heaviest": "Always collect the heaviest box first (highest level) that the agent can lift.",
     "north_first": "Only forage boxes located in the northern half of the grid (y >= 5) before any other boxes.",
     "vietnamese": "Hãy ưu tiên nhặt hộp có trọng lượng nhẹ nhất (level nhỏ nhất) trước. Nếu cùng level, chọn hộp gần nhất."
 }
+
 
 
 def print_grid(shape, agent, tasks):
