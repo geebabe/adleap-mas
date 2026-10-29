@@ -1199,13 +1199,14 @@ class LevelForagingEnv(AdhocReasoningEnv):
         if self.screen is None:
             self.screen_size = (dim[0]*800/max_dim,dim[1]*800/max_dim)
             pygame.init()
+            pygame.display.init()
             if mode == "human":
-                pygame.display.init()
                 self.screen = pygame.display.set_mode(
                     self.screen_size
                 )
             else:  # mode in {"rgb_array", "single_rgb_array"}
-                self.screen = pygame.Surface(self.screen_size)
+                self.screen = pygame.display.set_mode(self.screen_size, pygame.HIDDEN)
+
         if self.clock is None:
             self.clock = pygame.time.Clock()
         ##
@@ -1356,32 +1357,41 @@ class LevelForagingEnv(AdhocReasoningEnv):
                 else:
                     self.grid_surf.blit(task_img,task_ret)
         
-        # fog
+        # Fog and Vision rendering
+        is_full_vision = (adhoc_agent.radius >= 1.0 and adhoc_agent.angle >= 1.0)
+
         self.fog_surf = pygame.Surface((grid_width, grid_height), pygame.SRCALPHA, 32)
-        self.fog_surf = self.fog_surf.convert_alpha()
-        self.fog_surf.fill((self.colors['darkgrey'][0],self.colors['darkgrey'][1],self.colors['darkgrey'][2],100))
-        self.fog_surf = pygame.transform.flip(self.fog_surf, False, True)
-
-        # vision
-        x = int(adhoc_agent.position[0]*(grid_width/dim[0]) + 0.5*(grid_width/dim[0]))
-        y = int(adhoc_agent.position[1]*(grid_height/dim[1]) + 0.5*(grid_height/dim[1]))
-        r = int(adhoc_agent.radius*np.sqrt((grid_width)**2+(grid_height)**2))
         self.vision_surf = pygame.Surface((grid_width, grid_height), pygame.SRCALPHA, 32)
-        self.vision_surf = self.vision_surf.convert_alpha()
-        gfxdraw.pie(self.vision_surf,x,y,r,
-            int(np.rad2deg(adhoc_agent.direction-(np.pi*adhoc_agent.angle))),
-            int(np.rad2deg(adhoc_agent.direction+(np.pi*adhoc_agent.angle))),
-            (self.colors['black'][0],self.colors['black'][1],self.colors['black'][2],200))
-        
-        start_angle = adhoc_agent.direction-(np.pi*adhoc_agent.angle)
-        stop_angle = adhoc_agent.direction+(np.pi*adhoc_agent.angle)
-        theta = start_angle
-        while theta <= stop_angle:
-            pygame.draw.line(self.vision_surf,
-                (self.colors['white'][0],self.colors['white'][1],self.colors['white'][2],100),
-                    (x,y), (x+r*np.cos(theta),y+r*np.sin(theta)),10)
-            theta += (stop_angle-start_angle)/100
 
+        if not is_full_vision:
+            # Atmospheric dark slate fog of war
+            fog_alpha = 140
+            self.fog_surf.fill((45, 50, 62, fog_alpha))
+
+            x = int(adhoc_agent.position[0]*(grid_width/dim[0]) + 0.5*(grid_width/dim[0]))
+            y = int(adhoc_agent.position[1]*(grid_height/dim[1]) + 0.5*(grid_height/dim[1]))
+            r = int(adhoc_agent.radius*np.sqrt((grid_width)**2+(grid_height)**2))
+
+            start_angle = adhoc_agent.direction - (np.pi * adhoc_agent.angle)
+            stop_angle = adhoc_agent.direction + (np.pi * adhoc_agent.angle)
+
+            # Generate smooth arc vertices for the solid cone of light (120 segments)
+            arc_points = [(x, y)]
+            for theta in np.linspace(start_angle, stop_angle, 120):
+                px = x + r * np.cos(theta)
+                py = y + r * np.sin(theta)
+                arc_points.append((int(px), int(py)))
+
+            # 1. Carve clear vision cone through the fog of war
+            hole_surf = pygame.Surface((grid_width, grid_height), pygame.SRCALPHA)
+            pygame.draw.polygon(hole_surf, (255, 255, 255, fog_alpha), arc_points)
+            self.fog_surf.blit(hole_surf, (0, 0), special_flags=pygame.BLEND_RGBA_SUB)
+
+            # 2. Add subtle light radiance and crisp illuminated perimeter boundary
+            pygame.draw.polygon(self.vision_surf, (255, 255, 240, 35), arc_points)
+            pygame.draw.lines(self.vision_surf, (255, 255, 255, 210), True, arc_points, 2)
+
+        self.fog_surf = pygame.transform.flip(self.fog_surf, False, True)
         self.vision_surf = pygame.transform.flip(self.vision_surf, False, True)
 
         ##
@@ -1390,19 +1400,25 @@ class LevelForagingEnv(AdhocReasoningEnv):
         self.grid_surf = pygame.transform.flip(self.grid_surf, False, True)
         self.components_surf = pygame.transform.flip(self.components_surf, False, True)
         self.screen.blit(self.grid_surf, (0.1*self.screen_size[0], 0.1*self.screen_size[1]))
-        self.screen.blit(self.fog_surf, (0.1*self.screen_size[0], 0.1*self.screen_size[1]))
-        self.screen.blit(self.vision_surf, (0.1*self.screen_size[0], 0.1*self.screen_size[1]))
+        if not is_full_vision:
+            self.screen.blit(self.fog_surf, (0.1*self.screen_size[0], 0.1*self.screen_size[1]))
+            self.screen.blit(self.vision_surf, (0.1*self.screen_size[0], 0.1*self.screen_size[1]))
         self.screen.blit(self.components_surf, (0.1*self.screen_size[0], 0.1*self.screen_size[1]))
 
         ##
-        # Text
+        # Top HUD Bar
         ##
+        hud_bar = pygame.Surface((int(self.screen_size[0]), int(0.08 * self.screen_size[1])), pygame.SRCALPHA)
+        hud_bar.fill((30, 35, 48, 245))
+        self.screen.blit(hud_bar, (0, 0))
+
         act = self.action_dict[adhoc_agent.next_action] \
-            if adhoc_agent.next_action is not None else None
-        myfont = pygame.font.SysFont("Ariel", 35)
-        label = myfont.render("Episode "+str(self.episode) + \
-            " | Action: "+str(act), True, self.colors['black'])
-        self.screen.blit(label, (10, 10))
+            if adhoc_agent.next_action is not None else "None"
+        target_info = f" | Target: {adhoc_agent.target}" if adhoc_agent.target is not None else ""
+        myfont = pygame.font.SysFont("Arial", 24, bold=True)
+        label = myfont.render(f"Episode {self.episode} | Action: {act}{target_info}", True, (245, 245, 250))
+        self.screen.blit(label, (20, 18))
+
         
         if mode == "human":
             pygame.event.pump()

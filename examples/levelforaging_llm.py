@@ -41,7 +41,8 @@ def print_grid(shape, agent, tasks):
     print()
 
 
-def run_experiment(policy_text=None, display=False, max_episodes=100, step_delay=0.3):
+def run_experiment(policy_text=None, display=False, max_episodes=100, step_delay=0.25,
+                   vision_angle=0.35, vision_radius=0.85):
     if policy_text is None:
         policy_text = PRESET_POLICIES["lightest"]
 
@@ -50,7 +51,7 @@ def run_experiment(policy_text=None, display=False, max_episodes=100, step_delay
     print(f"🤖 Controller: LLM Semantic Policy Controller (gpt-4o-mini + A* Planner)")
     print(f"📜 Natural Language Policy:\n   \"{policy_text}\"")
     if display:
-        print(f"🖥️  Pygame GUI Display: ENABLED (Step delay: {step_delay}s)")
+        print(f"🖥️  Pygame GUI Display: ENABLED (Step delay: {step_delay}s, Cone: {vision_angle*180:.0f} deg)")
     print("=" * 70)
 
     # 1. Setting up 10x10 environment with 1 agent and 3 tasks
@@ -60,12 +61,13 @@ def run_experiment(policy_text=None, display=False, max_episodes=100, step_delay
         atype='llm',
         position=(1, 1),
         direction=np.pi / 2,  # North
-        radius=1.0,           # Full vision
-        angle=1.0,
+        radius=vision_radius, # Smooth atmospheric flashlight cone
+        angle=vision_angle,
         level=1.0
     )
     # Store policy text in agent smart_parameters
     agent.smart_parameters['policy'] = policy_text
+
 
     tasks = [
         Task(index='0', position=(2, 7), level=0.3),  # Lightest
@@ -179,6 +181,10 @@ if __name__ == "__main__":
                         help="Enable pygame graphical window")
     parser.add_argument("--step_delay", type=float, default=0.25,
                         help="Delay in seconds between steps when display is enabled (default: 0.25)")
+    parser.add_argument("--vision_angle", type=float, default=0.35,
+                        help="Vision cone half-angle in fractions of pi (default: 0.35 = 126 deg cone)")
+    parser.add_argument("--vision_radius", type=float, default=0.85,
+                        help="Vision radius in fractions of map diagonal (default: 0.85)")
     parser.add_argument("--max_steps", type=int, default=100,
                         help="Maximum episodes/steps")
     args = parser.parse_args()
@@ -193,6 +199,9 @@ if __name__ == "__main__":
         policy_text=selected_policy,
         display=args.display,
         max_episodes=args.max_steps,
-        step_delay=args.step_delay
+        step_delay=args.step_delay,
+        vision_angle=args.vision_angle,
+        vision_radius=args.vision_radius
     )
+
 
