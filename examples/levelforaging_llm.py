@@ -15,6 +15,7 @@ from src.envs.LevelForagingEnv import LevelForagingEnv, Agent, Task
 from src.reasoning.levelbased.llm import DEFAULT_POLICY, get_direction_name
 
 PRESET_POLICIES = {
+    "corner": "Navigate across the 10x10 grid from the bottom-left corner to the top-right corner and collect the box using the shortest path.",
     "optimal": "Collect all boxes using the most optimal overall route (shortest total path / minimum steps). Plan the sequence of tasks to minimize total travel distance.",
     "balanced": "Collect all boxes while minimizing travel distance. Prefer heavier boxes when the detour cost is small (less than 4 steps).",
     "lightest": "Always collect the lightest box first (lowest level). If levels are equal, choose the closest one.",
@@ -22,6 +23,7 @@ PRESET_POLICIES = {
     "north_first": "Only forage boxes located in the northern half of the grid (y >= 5) before any other boxes.",
     "vietnamese": "Hãy ưu tiên nhặt hộp có trọng lượng nhẹ nhất (level nhỏ nhất) trước. Nếu cùng level, chọn hộp gần nhất."
 }
+
 
 
 
@@ -45,38 +47,53 @@ def print_grid(shape, agent, tasks):
 
 
 def run_experiment(policy_text=None, display=False, max_episodes=100, step_delay=0.25,
-                   vision_angle=0.35, vision_radius=0.85):
+                   vision_angle=0.35, vision_radius=0.85, scenario="corner",
+                   custom_agent_pos=None, custom_box_pos=None):
     if policy_text is None:
-        policy_text = PRESET_POLICIES["lightest"]
+        policy_text = PRESET_POLICIES["corner"] if scenario == "corner" else PRESET_POLICIES["optimal"]
+
+    # 1. Setting up 10x10 environment
+    dim = (10, 10)
+
+    # Determine positions based on scenario
+    if custom_agent_pos is not None:
+        start_agent_pos = tuple(custom_agent_pos)
+    elif scenario == "corner":
+        start_agent_pos = (0, 0)  # Bottom-left corner
+    else:
+        start_agent_pos = (1, 1)
+
+    if custom_box_pos is not None:
+        tasks = [Task(index='0', position=tuple(custom_box_pos), level=1.0)]
+    elif scenario == "corner":
+        tasks = [Task(index='0', position=(9, 9), level=1.0)]  # Top-right corner
+    else:
+        tasks = [
+            Task(index='0', position=(2, 7), level=0.3),  # Lightest
+            Task(index='1', position=(8, 2), level=0.6),  # Medium
+            Task(index='2', position=(7, 8), level=0.9),  # Heaviest
+        ]
 
     print("=" * 70)
-    print("🚀 Level-Based Foraging (LBF) - 10x10 Proof of Concept")
+    print("🚀 Level-Based Foraging (LBF) - 10x10 Benchmark")
     print(f"🤖 Controller: LLM Semantic Policy Controller (gpt-4o-mini + A* Planner)")
+    print(f"📍 Agent: {start_agent_pos} (Bottom-Left) | 📦 Box: {tasks[0].position} (Top-Right)")
     print(f"📜 Natural Language Policy:\n   \"{policy_text}\"")
     if display:
         print(f"🖥️  Pygame GUI Display: ENABLED (Step delay: {step_delay}s, Cone: {vision_angle*180:.0f} deg)")
     print("=" * 70)
 
-    # 1. Setting up 10x10 environment with 1 agent and 3 tasks
-    dim = (10, 10)
     agent = Agent(
         index='A',
         atype='llm',
-        position=(1, 1),
-        direction=np.pi / 2,  # North
-        radius=vision_radius, # Smooth atmospheric flashlight cone
+        position=start_agent_pos,
+        direction=np.pi / 2,  # Facing North
+        radius=vision_radius, # Atmospheric flashlight cone
         angle=vision_angle,
         level=1.0
     )
     # Store policy text in agent smart_parameters
     agent.smart_parameters['policy'] = policy_text
-
-
-    tasks = [
-        Task(index='0', position=(2, 7), level=0.3),  # Lightest
-        Task(index='1', position=(8, 2), level=0.6),  # Medium
-        Task(index='2', position=(7, 8), level=0.9),  # Heaviest
-    ]
 
     components = {
         'agents': [agent],
@@ -87,6 +104,7 @@ def run_experiment(policy_text=None, display=False, max_episodes=100, step_delay
 
     env = LevelForagingEnv(shape=dim, components=components, display=display)
     env.policy = policy_text
+
 
     # 2. Reset Environment
     state = env.reset()
@@ -190,13 +208,19 @@ if __name__ == "__main__":
                         help="Vision radius in fractions of map diagonal (default: 0.85)")
     parser.add_argument("--max_steps", type=int, default=100,
                         help="Maximum episodes/steps")
+    parser.add_argument("--scenario", type=str, default="corner", choices=["corner", "multi"],
+                        help="Scenario setup: 'corner' (agent at (0,0), box at (9,9)) or 'multi' (3 boxes)")
+    parser.add_argument("--agent_pos", type=int, nargs=2, default=None,
+                        help="Custom agent starting position: e.g. --agent_pos 0 0")
+    parser.add_argument("--box_pos", type=int, nargs=2, default=None,
+                        help="Custom box position: e.g. --box_pos 9 9")
     args = parser.parse_args()
 
     selected_policy = args.policy
     if selected_policy in PRESET_POLICIES:
         selected_policy = PRESET_POLICIES[selected_policy]
     elif selected_policy is None:
-        selected_policy = PRESET_POLICIES["lightest"]
+        selected_policy = PRESET_POLICIES["corner"] if args.scenario == "corner" else PRESET_POLICIES["optimal"]
 
     run_experiment(
         policy_text=selected_policy,
@@ -204,7 +228,11 @@ if __name__ == "__main__":
         max_episodes=args.max_steps,
         step_delay=args.step_delay,
         vision_angle=args.vision_angle,
-        vision_radius=args.vision_radius
+        vision_radius=args.vision_radius,
+        scenario=args.scenario,
+        custom_agent_pos=args.agent_pos,
+        custom_box_pos=args.box_pos
     )
+
 
 
