@@ -468,7 +468,8 @@ def do_action(env):
 
     if not env.simulation:
         for ag in env.components['agents']:
-            ag.smart_parameters['ntasks'] -= len(info['just_finished_tasks'])
+            if ag.smart_parameters.get('ntasks') is not None:
+                ag.smart_parameters['ntasks'] -= len(info['just_finished_tasks'])
 
     adhoc_agent = env.get_adhoc_agent()
     env.state = (adhoc_agent.position[0],adhoc_agent.position[1])
@@ -875,9 +876,9 @@ class LevelForagingEnv(AdhocReasoningEnv):
         copied_env.simulation = self.simulation
         copied_env.screen = self.screen
         copied_env.episode = self.episode
-        copied_env.sample_index = self.sample_index
-        copied_env.reasoning_turn = self.reasoning_turn
-        copied_env.name = self.name
+        copied_env.sample_index = getattr(self, 'sample_index', None)
+        copied_env.reasoning_turn = getattr(self, 'reasoning_turn', 'adhoc')
+        copied_env.name = getattr(self, 'name', 'LevelForagingEnv')
 
         # Setting the initial state
         copied_env.state = (self.state[0],self.state[1])
@@ -1283,15 +1284,15 @@ class LevelForagingEnv(AdhocReasoningEnv):
             y = int(agent.position[1]*(grid_height/dim[1]) + 0.5*(grid_height/dim[1]))
             r = int(0.3*np.sqrt((grid_width/dim[0])*(grid_height/dim[1])))
             x, y = my_rotation(ox,oy,x,y,direction)
-            if agent.type in self.agents_color:
+            if getattr(agent, 'index', '') == 'B' or getattr(agent, 'index', '') == '1':
+                color = pygame.color.THECOLORS.get('coral', (255, 127, 80))
+            elif agent.type in self.agents_color:
                 color = pygame.color.THECOLORS[self.agents_color[agent.type]]
-                gfxdraw.filled_circle(self.components_surf,x,y,r,color)
             elif agent.index == 'X':
                 color = pygame.color.THECOLORS[self.agents_color['adversary']]
-                gfxdraw.filled_circle(self.components_surf,x,y,r,color)
             else:
                 color = pygame.color.THECOLORS['lightgrey']
-                gfxdraw.filled_circle(self.components_surf,x,y,r,color)
+            gfxdraw.filled_circle(self.components_surf,x,y,r,color)
             #eyes
             x = int(agent.position[0]*(grid_width/dim[0]) + 0.4*(grid_width/dim[0]))
             y = int(agent.position[1]*(grid_height/dim[1]) + 0.8*(grid_height/dim[1]))
@@ -1325,7 +1326,7 @@ class LevelForagingEnv(AdhocReasoningEnv):
             gfxdraw.filled_circle(self.components_surf,x,y,r,self.colors['black'])
             # index
             agent_idx = str(agent.index)
-            myfont = pygame.font.SysFont("Ariel", int(0.6*np.sqrt((grid_width/dim[0])*(grid_height/dim[1]))))
+            myfont = pygame.font.SysFont("Arial", int(0.6*np.sqrt((grid_width/dim[0])*(grid_height/dim[1]))))
             label = myfont.render(agent_idx, True, self.colors['black'])
             x = int(agent.position[0]*(grid_width/dim[0]) + 0.35*(grid_width/dim[0]))
             y = int(agent.position[1]*(grid_height/dim[1]) + 0.3*(grid_height/dim[1]))
@@ -1357,39 +1358,42 @@ class LevelForagingEnv(AdhocReasoningEnv):
                 else:
                     self.grid_surf.blit(task_img,task_ret)
         
-        # Fog and Vision rendering
-        is_full_vision = (adhoc_agent.radius >= 1.0 and adhoc_agent.angle >= 1.0)
+        # Fog and Vision rendering for all agents
+        any_restricted_vision = any(ag.radius < 1.0 or ag.angle < 1.0 for ag in self.components['agents'])
 
         self.fog_surf = pygame.Surface((grid_width, grid_height), pygame.SRCALPHA, 32)
         self.vision_surf = pygame.Surface((grid_width, grid_height), pygame.SRCALPHA, 32)
 
-        if not is_full_vision:
+        if any_restricted_vision:
             # Atmospheric dark slate fog of war
             fog_alpha = 140
             self.fog_surf.fill((45, 50, 62, fog_alpha))
 
-            x = int(adhoc_agent.position[0]*(grid_width/dim[0]) + 0.5*(grid_width/dim[0]))
-            y = int(adhoc_agent.position[1]*(grid_height/dim[1]) + 0.5*(grid_height/dim[1]))
-            r = int(adhoc_agent.radius*np.sqrt((grid_width)**2+(grid_height)**2))
+            for ag in self.components['agents']:
+                if ag.radius >= 1.0 and ag.angle >= 1.0:
+                    continue
+                x = int(ag.position[0]*(grid_width/dim[0]) + 0.5*(grid_width/dim[0]))
+                y = int(ag.position[1]*(grid_height/dim[1]) + 0.5*(grid_height/dim[1]))
+                r = int(ag.radius*np.sqrt((grid_width)**2+(grid_height)**2))
 
-            start_angle = adhoc_agent.direction - (np.pi * adhoc_agent.angle)
-            stop_angle = adhoc_agent.direction + (np.pi * adhoc_agent.angle)
+                start_angle = ag.direction - (np.pi * ag.angle)
+                stop_angle = ag.direction + (np.pi * ag.angle)
 
-            # Generate smooth arc vertices for the solid cone of light (120 segments)
-            arc_points = [(x, y)]
-            for theta in np.linspace(start_angle, stop_angle, 120):
-                px = x + r * np.cos(theta)
-                py = y + r * np.sin(theta)
-                arc_points.append((int(px), int(py)))
+                # Generate smooth arc vertices for the solid cone of light (120 segments)
+                arc_points = [(x, y)]
+                for theta in np.linspace(start_angle, stop_angle, 120):
+                    px = x + r * np.cos(theta)
+                    py = y + r * np.sin(theta)
+                    arc_points.append((int(px), int(py)))
 
-            # 1. Carve clear vision cone through the fog of war
-            hole_surf = pygame.Surface((grid_width, grid_height), pygame.SRCALPHA)
-            pygame.draw.polygon(hole_surf, (255, 255, 255, fog_alpha), arc_points)
-            self.fog_surf.blit(hole_surf, (0, 0), special_flags=pygame.BLEND_RGBA_SUB)
+                # 1. Carve clear vision cone through the fog of war
+                hole_surf = pygame.Surface((grid_width, grid_height), pygame.SRCALPHA)
+                pygame.draw.polygon(hole_surf, (255, 255, 255, fog_alpha), arc_points)
+                self.fog_surf.blit(hole_surf, (0, 0), special_flags=pygame.BLEND_RGBA_SUB)
 
-            # 2. Add subtle light radiance and crisp illuminated perimeter boundary
-            pygame.draw.polygon(self.vision_surf, (255, 255, 240, 35), arc_points)
-            pygame.draw.lines(self.vision_surf, (255, 255, 255, 210), True, arc_points, 2)
+                # 2. Add subtle light radiance and crisp illuminated perimeter boundary
+                pygame.draw.polygon(self.vision_surf, (255, 255, 240, 35), arc_points)
+                pygame.draw.lines(self.vision_surf, (255, 255, 255, 210), True, arc_points, 2)
 
         self.fog_surf = pygame.transform.flip(self.fog_surf, False, True)
         self.vision_surf = pygame.transform.flip(self.vision_surf, False, True)
@@ -1400,7 +1404,7 @@ class LevelForagingEnv(AdhocReasoningEnv):
         self.grid_surf = pygame.transform.flip(self.grid_surf, False, True)
         self.components_surf = pygame.transform.flip(self.components_surf, False, True)
         self.screen.blit(self.grid_surf, (0.1*self.screen_size[0], 0.1*self.screen_size[1]))
-        if not is_full_vision:
+        if any_restricted_vision:
             self.screen.blit(self.fog_surf, (0.1*self.screen_size[0], 0.1*self.screen_size[1]))
             self.screen.blit(self.vision_surf, (0.1*self.screen_size[0], 0.1*self.screen_size[1]))
         self.screen.blit(self.components_surf, (0.1*self.screen_size[0], 0.1*self.screen_size[1]))
@@ -1412,11 +1416,15 @@ class LevelForagingEnv(AdhocReasoningEnv):
         hud_bar.fill((30, 35, 48, 245))
         self.screen.blit(hud_bar, (0, 0))
 
-        act = self.action_dict[adhoc_agent.next_action] \
-            if adhoc_agent.next_action is not None else "None"
-        target_info = f" | Target: {adhoc_agent.target}" if adhoc_agent.target is not None else ""
-        myfont = pygame.font.SysFont("Arial", 24, bold=True)
-        label = myfont.render(f"Episode {self.episode} | Action: {act}{target_info}", True, (245, 245, 250))
+        agents_info = []
+        for ag in self.components['agents']:
+            act = self.action_dict.get(ag.next_action, "None") if ag.next_action is not None else "None"
+            tgt = f"->{ag.target}" if ag.target is not None else ""
+            agents_info.append(f"[{ag.index}]: {act}{tgt}")
+        agents_str = " | ".join(agents_info)
+
+        myfont = pygame.font.SysFont("Arial", 22, bold=True)
+        label = myfont.render(f"Episode {self.episode} | {agents_str}", True, (245, 245, 250))
         self.screen.blit(label, (20, 18))
 
         

@@ -54,38 +54,62 @@ We evaluated 5 diverse natural-language policy profiles on a standardized 10x10 
 
 ---
 
-## 4. Visual Simulation & Simulator Overhaul
+## 4. Multi-Agent Collaboration Benchmark (2-Agent Coordination)
 
-In addition to the planning algorithm, we modernized `src/envs/LevelForagingEnv.py` Pygame visualizer:
-- **Atmospheric Fog of War**: Replaced coarse 100-ray lines with a smooth 120-segment filled field-of-view cone using sub-surface alpha blending (`BLEND_RGBA_SUB`).
-- **HUD & Status Telemetry**: Integrated real-time policy display, active target indicator, and agent level telemetry.
-- **Headless & Display Modes**: Verified across macOS Pygame windows and headless rendering pipelines.
+To directly realize the multi-agent cooperative vision from Prof. Leandro's emails, we formulated a 2-agent cooperative environment:
+- **Robots**: Agent A (level 1.0, initial pos `(1, 1)`) and Agent B (level 1.0, initial pos `(8, 1)`).
+- **Boxes**: 
+  - Light Box T0 at `(2, 7)` (Level 0.6) — Liftable by either robot alone.
+  - Light Box T1 at `(8, 7)` (Level 0.8) — Liftable by either robot alone.
+  - **Heavy Box T2 at `(5, 5)` (Level 1.6)** — **Exceeds individual capacity (1.6 > 1.0)**; requires synchronized joint loading from adjacent cells by BOTH robots simultaneously.
+
+| # | Policy Profile | Policy Type | Tasks Completed | Coop Tasks | Policy Compliance | Total Steps | Latency |
+|---|:---|:---|:---:|:---:|:---:|:---:|:---:|
+| **1** | **Cooperative Priority** | Cooperative Priority | **3/3** | **1 Heavy Lift** | **100%** | **13** | 8.49s |
+| **2** | **Independent (Light Only)** | Non-Cooperative | **2/3** | **0 Heavy Lifts** | **100%** | **9** | 9.83s |
+| **3** | **Parallel Optimization** | Optimization | **3/3** | **1 Heavy Lift** | **100%** | **19** | 7.62s |
+| **4** | **Multilingual (Vietnamese)** | Cross-Lingual Coop | **3/3** | **1 Heavy Lift** | **100%** | **13** | 7.04s |
+
+*Data logged from `results/multiagent_preliminary_benchmark.csv` on 2026-10-29.*
+
+### Key Multi-Agent Insights:
+1. **Dynamic Rendezvous & Synchronized Loading**: Under `"Cooperative Priority"`, both agents converge on Heavy Box T2 from distinct non-overlapping adjacent cells (Agent A approaches West `(4, 5)`, Agent B approaches East `(6, 5)`). If one robot arrives earlier, it holds position until its teammate arrives, at which point **both execute Action 4 (Load) in the identical time step (Step 8)** to lift the box (`info['coop'] = 1`).
+2. **Parallel Division of Labor**: Once the heavy box is cleared, the controller shifts from cooperative to parallel mode, dispatching Agent A to Task 0 and Agent B to Task 1 simultaneously, clearing the remaining grid in only 5 additional steps.
+3. **Strict Compliance vs. Task Completion**: Under `"Independent (Light Only)"`, the agents forage both light boxes in 8 steps, and then **strictly stop** at Step 9 without attempting the heavy box, achieving 100% policy compliance (demonstrating that the LLM controller does not cheat when rules restrict collaboration).
 
 ---
 
-## 5. Agenda & Concrete Discussion Points for Meeting with Prof. Leandro
+## 5. Visual Simulation & Simulator Overhaul
 
-1. **Confirm Scope & Direction**:
-   - Present the Hybrid Architecture (LLM high-level controller + A\* planner) and benchmark results demonstrating the compliance vs. detour cost curve.
-2. **Next Milestone: Multi-Agent Collaboration (`MAS_DUO`)**:
-   - Introduce heavy boxes (e.g. weight $1.5$) that require two level $1.0$ agents to rendezvous and lift simultaneously.
-   - Test policies such as: *"Agent 1 must always assist Agent 2 with heavy boxes before foraging solo"* vs. non-cooperative solo policies.
-3. **Testing "Policy Cheating" & Dilemma Scenarios**:
+In addition to the planning algorithm, we modernized `src/envs/LevelForagingEnv.py` Pygame visualizer:
+- **Multi-Agent Shared Fog of War**: Smooth 120-segment cone carving for all agents simultaneously, illuminating the fog dynamically as robots move.
+- **Differentiated Agent Aesthetics**: Agent A rendered in DeepSkyBlue, Agent B rendered in Coral, with clear direction orientation and index labels.
+- **Unified Multi-Agent HUD**: Real-time telemetry displaying actions and targets for both agents simultaneously (`[A]: East->(5,5) | [B]: West->(5,5)`).
+
+---
+
+## 6. Agenda & Concrete Discussion Points for Meeting with Prof. Leandro
+
+1. **Demonstrate 1-Agent and 2-Agent Benchmarks**:
+   - Present the Hybrid Architecture (LLM high-level controller + A\* planner) and empirical results across both single-agent path trade-offs and 2-agent cooperative synchronization.
+2. **Testing "Policy Cheating" & Dilemma Scenarios**:
    - Construct deliberate scenarios where strictly following the policy causes a $2\times$ detour penalty, and measure the threshold where agents or prompting strategies succumb to "cheating" to maximize task reward.
-4. **Color / Connector Constraints**:
+3. **Color / Connector Constraints**:
    - Add box and robot color tags as suggested in the initial email discussions (modeling handle/connector compatibilities in real robotic systems).
 
 ---
 
-## 6. How to Reproduce
+## 7. How to Reproduce
 
 ```bash
 # 1. Activate conda environment
 conda activate policy2action
 
-# 2. Run the interactive Pygame demonstration
-python examples/levelforaging_llm.py --display --policy optimal
+# 2. Interactive Pygame demonstrations
+python examples/levelforaging_llm.py --display --policy optimal              # 1-Agent
+python examples/levelforaging_multiagent_llm.py --display --policy cooperative # 2-Agent
 
-# 3. Run the complete 5-policy benchmark suite
-python examples/run_benchmark.py
+# 3. Run complete benchmark suites
+python examples/run_benchmark.py             # Single-Agent Benchmark
+python examples/run_multiagent_benchmark.py  # 2-Agent Collaboration Benchmark
 ```
