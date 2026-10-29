@@ -1,6 +1,6 @@
-# Policy2Action: Preliminary Progress Report for Supervisor
-**Project**: Policy2Action — Semantic Policy Execution in AdLeap-MAS  
-**Domain**: Level-Based Foraging (LBF) 10x10 Grid World  
+# Policy2Action: Research Progress Report
+**Project**: Policy2Action — Natural Language Policy Execution in Multi-Agent Systems  
+**Simulator**: AdLeap-MAS (Level-Based Foraging Domain)  
 **Supervisor**: Prof. Leandro Soriano Marcolino  
 **Student**: Nguyen Minh Chi  
 **Date**: October 29, 2026  
@@ -10,106 +10,198 @@
 
 ## 1. Executive Summary
 
-The primary objective of **Policy2Action** is to enable autonomous agents to interpret, reason about, and strictly adhere to natural language policies within the `adleap-mas` multi-agent simulator. 
+The goal of **Policy2Action** is to enable autonomous robotic agents in the `adleap-mas` simulator to interpret, reason about, and strictly adhere to policies expressed in natural human language.
 
-Rather than treating the Large Language Model (LLM) as a simple step-by-step pathfinder—which classical algorithms (A\*, BFS, MCTS) already solve in milliseconds—we formulated and implemented a **Hybrid Semantic Architecture**:
-1. **High-Level Semantic Policy Controller (`gpt-4o-mini`)**: Interprets free-form natural language policies (attribute priorities, spatial boundaries, multilingual instructions), resolves global multi-stop tour sequences (TSP), and verifies policy compliance.
-2. **Low-Level Motion Planner (A\* in AdLeap-MAS)**: Executes collision-free grid navigation to the target designated by the controller.
+Rather than relying on an LLM to blindly generate low-level grid movements (which classical algorithms already solve in sub-milliseconds), we developed and validated a **Hierarchical Hybrid Architecture**:
+1. **High-Level Semantic Controller (`gpt-4o-mini`)**: Interprets free-form natural language policies, evaluates semantic priorities (weight attributes, spatial boundaries, cooperative rules, multilingual constraints), and allocates target tasks.
+2. **Low-Level Motion Planner ($A^*$ in `adleap-mas`)**: Computes collision-free, optimal grid navigation and handles actuator timing.
 
-We have successfully executed an empirical 5-policy benchmark on a 10x10 LBF environment with 100% task completion and 100% policy compliance, numerically demonstrating the **trade-off between Policy Compliance and Travel Efficiency**.
-
----
-
-## 2. Theoretical Framing: Why LLM + Classical Planner?
-
-| Capability | Classical Planners (A\*, MCTS) | Pure LLM Action-Generation | **Hybrid Policy2Action (Our Method)** |
-| :--- | :--- | :--- | :--- |
-| **Grid Navigation (10x10)** | ✅ Optimal (< 1 ms) | ❌ Inefficient, hallucination risk | ✅ **Optimal (A\* low-level)** |
-| **Semantic Policy Parsing** | ❌ Cannot parse human language | ✅ Strong reasoning capability | ✅ **Full NLP reasoning (`gpt-4o-mini`)** |
-| **Multi-stop Tour Optimization**| ⚠️ Requires hardcoded TSP solver | ⚠️ Prone to back-and-forth detours | ✅ **Pairwise distance matrix + LLM sequencing** |
-| **Cross-Lingual Generalization**| ❌ Impossible | ✅ Multilingual out-of-the-box | ✅ **Zero-shot English/Vietnamese/Mixed** |
-
-> **Scientific Thesis**: The value of LLMs in multi-agent environments is not in navigating 2D coordinates, but in **translating unstructured semantic constraints into high-level task allocations and resolving compliance-versus-efficiency trade-offs**.
+We have successfully implemented and benchmarked this system across both **single-agent** and **two-agent collaborative** scenarios, empirically proving:
+- **The Policy Cost Trade-off**: Quantitative measurement of travel overhead imposed by semantic constraints (up to $+34.8\%$ detour overhead).
+- **Synchronized Multi-Agent Coordination**: Two robots dynamically rendezvousing at a heavy box and executing simultaneous joint lifting.
+- **Strict Compliance vs. Cheating**: The controller cleanly terminates when remaining tasks violate policy constraints, rather than cheating to inflate completion scores.
 
 ---
 
-## 3. Empirical Benchmark Results
+## 2. Research Motivation: Why LLM + Classical Planning?
 
-We evaluated 5 diverse natural-language policy profiles on a standardized 10x10 LBF scenario with 3 foraging tasks of varying weights (levels $0.3, 0.6, 0.9$) and spatial distributions:
+A central question in our lab discussion was: *Why use an LLM when classical planners like MCTS or $A^*$ already exist in `adleap-mas`?*
 
-| # | Policy Profile | Policy Type | Tasks Completed | Policy Compliance | Total Steps | Detour Overhead | Decision Latency |
+| Capability | Classical Planners ($A^*$, MCTS) | Pure LLM Action Generation | **Hybrid Policy2Action (Our Method)** |
+| :--- | :---: | :---: | :---: |
+| **Grid Navigation ($10 \times 10$)** | **Optimal ($< 1$ ms)** | Inefficient, hallucination risk | **Optimal ($A^*$ low-level)** |
+| **Semantic Policy Comprehension** | Cannot parse human language | Strong reasoning capability | **Full NLP reasoning (`gpt-4o-mini`)** |
+| **Multi-Agent Task Allocation** | Requires rigid heuristic rules | Flexible context-aware matching | **Dynamic semantic assignment** |
+| **Multi-Stop Tour Optimization** | Requires hardcoded TSP solver | Evaluates candidate sequences | **Pairwise distance matrix + LLM** |
+| **Cross-Lingual Zero-Shot** | Impossible | Multilingual out-of-the-box | **Zero-shot English / Vietnamese** |
+
+> **Scientific Thesis**: The core value of LLMs in multi-agent environments is not in navigating 2D grid coordinates, but in **interpreting unstructured human rules into high-level task allocations and resolving compliance-versus-efficiency trade-offs**.
+
+---
+
+## 3. System Architecture & Workflow
+
+The controller operates on an **event-triggered hierarchical workflow**:
+
+```
+[Environment State (Agents & Boxes)] + [Natural Language Policy]
+                           │
+                           ▼
+          ┌───────────────────────────────────┐
+          │ High-Level LLM Semantic Controller│
+          │          (gpt-4o-mini)            │
+          └───────────────────────────────────┘
+                           │
+       Outputs: Task Allocation & Cooperation Flag (JSON)
+                           │
+                           ▼
+          ┌───────────────────────────────────┐
+          │  Low-Level Motion Coordinator     │
+          │    - Slot Matching (East/West)    │
+          │    - A* Pathfinding               │
+          │    - Rendezvous & Handshake       │
+          └───────────────────────────────────┘
+                           │
+                           ▼
+            Simultaneous Execution in AdLeap-MAS
+```
+
+### Input Payload (Sent to LLM)
+When replanning is needed, the current world state is serialized into clean JSON:
+```json
+{
+  "grid_size": [10, 10],
+  "natural_language_policy": "Robots must always collaborate to lift heavy boxes (level > 1.0) first. Only after all heavy boxes are cleared should they forage light boxes.",
+  "agents": [
+    {"id": "A", "position": [1, 1], "direction": "North", "level": 1.0},
+    {"id": "B", "position": [8, 1], "direction": "North", "level": 1.0}
+  ],
+  "available_tasks": [
+    {"task_id": "0", "position": [2, 7], "level": 0.6, "requires_coop": false},
+    {"task_id": "1", "position": [8, 7], "level": 0.8, "requires_coop": false},
+    {"task_id": "2", "position": [5, 5], "level": 1.6, "requires_coop": true}
+  ],
+  "completed_tasks": []
+}
+```
+
+### Output Decision (Returned by LLM)
+The LLM returns structured JSON specifying task assignments and strategic reasoning:
+```json
+{
+  "reasoning": "Policy mandates collaborative lifting of heavy boxes first. Task 2 (level 1.6) requires both agents. Both Agent A and Agent B are assigned to Task 2.",
+  "cooperating_on_heavy": true,
+  "agent_A_target_task_id": "2",
+  "agent_B_target_task_id": "2",
+  "policy_compliance": true,
+  "compliance_note": "Cooperating on heavy box as prioritized."
+}
+```
+
+---
+
+## 4. Two-Agent Collaboration & Synchronized Rendezvous
+
+To test multi-agent collaboration, we formulated a 2-agent scenario on a $10 \times 10$ grid:
+- **Agent A**: Position `(1, 1)`, Level `1.0` (Lifting Capacity)
+- **Agent B**: Position `(8, 1)`, Level `1.0` (Lifting Capacity)
+- **Light Boxes**: Task 0 at `(2, 7)` (Lv 0.6) and Task 1 at `(8, 7)` (Lv 0.8) — liftable by one robot.
+- **Heavy Box**: Task 2 at `(5, 5)` (Level `1.6`) — **Exceeds individual capacity** ($1.0 < 1.6$). Both robots must be adjacent and execute `Load` simultaneously ($1.0 + 1.0 = 2.0 \ge 1.6$).
+
+### Low-Level Synchronization Mechanism:
+1. **Collision-Free Slot Matching**: The system calculates valid adjacent cells around the box (West, East, South, North) and pairs them to minimize total Manhattan travel:
+   $$\min \Big( \text{dist}(\text{Agent A}, \text{Slot}_A) + \text{dist}(\text{Agent B}, \text{Slot}_B) \Big) \quad \text{where } \text{Slot}_A \neq \text{Slot}_B$$
+   Agent A approaches West `(4, 5)`, while Agent B approaches East `(6, 5)`.
+2. **The Handshake / Rendezvous**:
+   - If Agent A arrives earlier, it turns to face the box and **holds position (Action 0 / Stay)**.
+   - When Agent B also reaches its slot and turns to face the box, the coordinator detects that both are ready.
+   - **Simultaneous Action**: Both robots execute Action 4 (`Load`) at the exact same time-step, lifting the heavy box together (`info['coop'] = 1`).
+3. **Transition to Parallel Foraging**: Once the heavy box is cleared, the LLM switches modes, dispatching Agent A to Task 0 and Agent B to Task 1 in parallel.
+
+---
+
+## 5. Empirical Benchmark Results
+
+### Benchmark 1: Single-Agent Policy Trade-Offs (10x10 Grid)
+*Baseline scenario: Agent at `(1, 1)`, 3 boxes of weights 0.3, 0.6, 0.9.*
+
+| # | Policy Profile | Constraint Type | Tasks Completed | Policy Compliance | Total Steps | Detour Overhead | Decision Latency |
 |---|:---|:---|:---:|:---:|:---:|:---:|:---:|
-| **1** | **Unconstrained Optimal** | Global Optimization | **3/3 (100%)** | **100%** | **23** | **0.0% (Baseline)** | 12.06s |
+| **1** | **Unconstrained Optimal** | Path Optimization | **3/3 (100%)** | **100%** | **23** | **0.0% (Baseline)** | 12.06s |
 | **2** | **Lightest First** | Attribute Priority | **3/3 (100%)** | **100%** | **26** | **+13.0%** | 7.87s |
 | **3** | **Heaviest First** | Attribute Priority | **3/3 (100%)** | **100%** | **31** | **+34.8%** | 8.50s |
-| **4** | **Spatial (North First)** | Regional Constraint | **3/3 (100%)** | **100%** | **23** | **+0.0%** | 9.21s |
+| **4** | **Spatial (North First)** | Regional Boundary | **3/3 (100%)** | **100%** | **23** | **+0.0%** | 9.21s |
 | **5** | **Multilingual (Vietnamese)**| Cross-Lingual | **3/3 (100%)** | **100%** | **23** | **+0.0%** | 8.82s |
 
-*Data logged from `results/preliminary_benchmark.csv` on 2026-10-29.*
-
-### Key Quantitative Findings:
-1. **The Cost of Policy Compliance**: Under `"Heaviest First"`, the agent intentionally bypasses nearby lighter boxes (dist 7) to collect the heaviest box first (dist 13), resulting in **31 steps (+34.8% detour overhead)** relative to the unconstrained optimal tour (23 steps). This directly provides the numerical metric Prof. Leandro requested.
-2. **Global Tour Optimization**: When fed pairwise inter-task distance matrices, `gpt-4o-mini` consistently selects optimal multi-stop sequences (`T0 -> T2 -> T1`) rather than myopic greedy choices, eliminating back-and-forth oscillation.
-3. **Multilingual Robustness**: Zero-shot prompt understanding in Vietnamese (`"Hãy ưu tiên nhặt hộp có trọng lượng nhẹ nhất..."`) achieved identical task execution and compliance without translation pre-processing.
+*Data logged from `results/preliminary_benchmark.csv`.*
 
 ---
 
-## 4. Multi-Agent Collaboration Benchmark (2-Agent Coordination)
+### Benchmark 2: Two-Agent Collaboration (`MAS_DUO`)
+*Scenario: 2 Agents at `(1, 1)` and `(8, 1)`, 2 light boxes and 1 heavy box (Level 1.6).*
 
-To directly realize the multi-agent cooperative vision from Prof. Leandro's emails, we formulated a 2-agent cooperative environment:
-- **Robots**: Agent A (level 1.0, initial pos `(1, 1)`) and Agent B (level 1.0, initial pos `(8, 1)`).
-- **Boxes**: 
-  - Light Box T0 at `(2, 7)` (Level 0.6) — Liftable by either robot alone.
-  - Light Box T1 at `(8, 7)` (Level 0.8) — Liftable by either robot alone.
-  - **Heavy Box T2 at `(5, 5)` (Level 1.6)** — **Exceeds individual capacity (1.6 > 1.0)**; requires synchronized joint loading from adjacent cells by BOTH robots simultaneously.
-
-| # | Policy Profile | Policy Type | Tasks Completed | Coop Tasks | Policy Compliance | Total Steps | Latency |
+| # | Policy Profile | Policy Type | Tasks Completed | Coop Heavy Lifts | Policy Compliance | Total Steps | Execution Time |
 |---|:---|:---|:---:|:---:|:---:|:---:|:---:|
-| **1** | **Cooperative Priority** | Cooperative Priority | **3/3** | **1 Heavy Lift** | **100%** | **13** | 8.49s |
-| **2** | **Independent (Light Only)** | Non-Cooperative | **2/3** | **0 Heavy Lifts** | **100%** | **9** | 9.83s |
-| **3** | **Parallel Optimization** | Optimization | **3/3** | **1 Heavy Lift** | **100%** | **19** | 7.62s |
-| **4** | **Multilingual (Vietnamese)** | Cross-Lingual Coop | **3/3** | **1 Heavy Lift** | **100%** | **13** | 7.04s |
+| **1** | **Cooperative Priority** | Collaborative First | **3/3** | **1 Lift** | **100%** | **13** | 8.49s |
+| **2** | **Independent (Light Only)** | Non-Cooperative | **2/3** | **0 Lifts** | **100%** | **9** | 9.83s |
+| **3** | **Parallel Optimization** | Throughput Optimal | **3/3** | **1 Lift** | **100%** | **19** | 7.62s |
+| **4** | **Multilingual (Vietnamese)** | Cross-Lingual Coop | **3/3** | **1 Lift** | **100%** | **13** | 7.04s |
 
-*Data logged from `results/multiagent_preliminary_benchmark.csv` on 2026-10-29.*
-
-### Key Multi-Agent Insights:
-1. **Dynamic Rendezvous & Synchronized Loading**: Under `"Cooperative Priority"`, both agents converge on Heavy Box T2 from distinct non-overlapping adjacent cells (Agent A approaches West `(4, 5)`, Agent B approaches East `(6, 5)`). If one robot arrives earlier, it holds position until its teammate arrives, at which point **both execute Action 4 (Load) in the identical time step (Step 8)** to lift the box (`info['coop'] = 1`).
-2. **Parallel Division of Labor**: Once the heavy box is cleared, the controller shifts from cooperative to parallel mode, dispatching Agent A to Task 0 and Agent B to Task 1 simultaneously, clearing the remaining grid in only 5 additional steps.
-3. **Strict Compliance vs. Task Completion**: Under `"Independent (Light Only)"`, the agents forage both light boxes in 8 steps, and then **strictly stop** at Step 9 without attempting the heavy box, achieving 100% policy compliance (demonstrating that the LLM controller does not cheat when rules restrict collaboration).
+*Data logged from `results/multiagent_preliminary_benchmark.csv`.*
 
 ---
 
-## 5. Visual Simulation & Simulator Overhaul
+## 6. Key Scientific Insights
 
-In addition to the planning algorithm, we modernized `src/envs/LevelForagingEnv.py` Pygame visualizer:
-- **Multi-Agent Shared Fog of War**: Smooth 120-segment cone carving for all agents simultaneously, illuminating the fog dynamically as robots move.
-- **Differentiated Agent Aesthetics**: Agent A rendered in DeepSkyBlue, Agent B rendered in Coral, with clear direction orientation and index labels.
-- **Unified Multi-Agent HUD**: Real-time telemetry displaying actions and targets for both agents simultaneously (`[A]: East->(5,5) | [B]: West->(5,5)`).
+1. **Quantifying the "Policy Compliance vs. Efficiency" Trade-off**:
+   - In Single-Agent testing, enforcing `"Heaviest First"` caused the agent to intentionally bypass a box at distance 7 to reach a box at distance 13, incurring **$+34.8\%$ travel overhead** relative to the optimal tour.
+   - This provides the exact empirical metric Prof. Leandro requested: measuring the numerical penalty of human policy adherence.
+
+2. **Compliance vs. Cheating (The Non-Cooperative Test)**:
+   - Under `"Independent (Light Only)"`, the agents collected the two light boxes in 8 steps.
+   - At Step 9, with only the heavy box remaining, the LLM controller recognized that lifting it would violate the non-cooperative constraint and **cleanly halted execution**.
+   - Result: Completion rate $2/3$, but **Policy Compliance $100\%$**. The agent refused to "cheat" to maximize task reward.
+
+3. **Multi-Agent Efficiency Through Division of Labor**:
+   - Clearing all 3 boxes took only **13 steps** with two agents, compared to 23 steps with one agent, demonstrating effective parallel foraging after cooperative rendezvous.
+
+4. **Zero-Shot Cross-Lingual Robustness**:
+   - Prompts given in Vietnamese (`"Hai robot phải cùng nhau hợp tác..."`) achieved identical coordination without requiring translation layers.
 
 ---
 
-## 6. Agenda & Concrete Discussion Points for Meeting with Prof. Leandro
+## 7. Simulator & Visual Upgrades in AdLeap-MAS
 
-1. **Demonstrate 1-Agent and 2-Agent Benchmarks**:
-   - Present the Hybrid Architecture (LLM high-level controller + A\* planner) and empirical results across both single-agent path trade-offs and 2-agent cooperative synchronization.
-2. **Testing "Policy Cheating" & Dilemma Scenarios**:
-   - Construct deliberate scenarios where strictly following the policy causes a $2\times$ detour penalty, and measure the threshold where agents or prompting strategies succumb to "cheating" to maximize task reward.
-3. **Color / Connector Constraints**:
-   - Add box and robot color tags as suggested in the initial email discussions (modeling handle/connector compatibilities in real robotic systems).
+We enhanced the Pygame visualization engine in `src/envs/LevelForagingEnv.py`:
+- **Smooth 120-Segment Fog-of-War**: Atmospheric lighting cone carved with sub-surface alpha blending (`BLEND_RGBA_SUB`).
+- **Multi-Agent Dual Vision**: Simultaneous vision cone rendering for all active agents.
+- **Differentiated Robot Styling**: Agent A in DeepSkyBlue, Agent B in Coral, with clear orientation arrows and numeric levels.
+- **Unified Telemetry HUD**: Displays real-time status and targets for all agents (`[A]: East->(5,5) | [B]: West->(5,5)`).
 
 ---
 
-## 7. How to Reproduce
+## 8. Proposed Discussion Points for Supervisor Meeting
+
+1. **Review Preliminary Empirical Findings**:
+   - Present the single-agent and 2-agent benchmark results demonstrating the compliance vs. detour trade-off curve.
+2. **Formalizing "Strategic Dilemma" / Cheating Experiments**:
+   - Construct benchmark scenarios where violating the policy offers a massive efficiency gain (e.g., $3\times$ faster completion), and test whether prompting modifications or temperature settings induce the agent to cheat.
+3. **Adding Connector / Color Attributes**:
+   - Extend robot and box metadata with connector types or colors (as suggested in early emails), requiring specific agent-box compatibility.
+
+---
+
+## 9. Quick Reproduction Commands
 
 ```bash
 # 1. Activate conda environment
 conda activate policy2action
 
-# 2. Interactive Pygame demonstrations
+# 2. Interactive Pygame visual demonstrations
 python examples/levelforaging_llm.py --display --policy optimal              # 1-Agent
 python examples/levelforaging_multiagent_llm.py --display --policy cooperative # 2-Agent
 
-# 3. Run complete benchmark suites
+# 3. Automated benchmark suites (generates CSV & Markdown summaries)
 python examples/run_benchmark.py             # Single-Agent Benchmark
 python examples/run_multiagent_benchmark.py  # 2-Agent Collaboration Benchmark
 ```
