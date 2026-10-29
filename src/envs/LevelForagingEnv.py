@@ -744,8 +744,11 @@ class LevelForagingEnv(AdhocReasoningEnv):
         'l1': 'darkred',
         'l2': 'darkgreen',
         'l3': 'darkcyan',
+        'llm': 'deepskyblue',
+        'llm_policy': 'deepskyblue',
         'adversary':'darkblue'
     }
+
 
     def __init__(self, shape, components, display=False, \
      type_knowledge=True, parameter_knowledge=True, vision_block=True):

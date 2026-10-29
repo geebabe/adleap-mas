@@ -41,7 +41,7 @@ def print_grid(shape, agent, tasks):
     print()
 
 
-def run_experiment(policy_text=None, display=False, max_episodes=100):
+def run_experiment(policy_text=None, display=False, max_episodes=100, step_delay=0.3):
     if policy_text is None:
         policy_text = PRESET_POLICIES["lightest"]
 
@@ -49,6 +49,8 @@ def run_experiment(policy_text=None, display=False, max_episodes=100):
     print("🚀 Level-Based Foraging (LBF) - 10x10 Proof of Concept")
     print(f"🤖 Controller: LLM Semantic Policy Controller (gpt-4o-mini + A* Planner)")
     print(f"📜 Natural Language Policy:\n   \"{policy_text}\"")
+    if display:
+        print(f"🖥️  Pygame GUI Display: ENABLED (Step delay: {step_delay}s)")
     print("=" * 70)
 
     # 1. Setting up 10x10 environment with 1 agent and 3 tasks
@@ -103,6 +105,17 @@ def run_experiment(policy_text=None, display=False, max_episodes=100):
     print("-" * 70)
 
     while not done and env.episode < max_episodes:
+        # Handle Pygame window events so it doesn't freeze on macOS
+        if display:
+            import pygame
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    print("\n[Pygame] Window closed by user.")
+                    done = True
+                    break
+            if done:
+                break
+
         step_num = env.episode + 1
         pos_before = adhoc_agent.position
         dir_before = adhoc_agent.direction
@@ -134,7 +147,13 @@ def run_experiment(policy_text=None, display=False, max_episodes=100):
             "pos": pos_after
         })
 
+        if display and step_delay > 0:
+            time.sleep(step_delay)
+
     elapsed_time = time.time() - start_time
+    if display:
+        print("\nDisplaying final state for 2 seconds before closing window...")
+        time.sleep(2.0)
     env.close()
 
     # 4. Summary & Verification
@@ -158,6 +177,8 @@ if __name__ == "__main__":
                         help="Natural language policy string or preset (lightest, heaviest, north_first, vietnamese)")
     parser.add_argument("--display", action="store_true", default=False,
                         help="Enable pygame graphical window")
+    parser.add_argument("--step_delay", type=float, default=0.25,
+                        help="Delay in seconds between steps when display is enabled (default: 0.25)")
     parser.add_argument("--max_steps", type=int, default=100,
                         help="Maximum episodes/steps")
     args = parser.parse_args()
@@ -168,4 +189,10 @@ if __name__ == "__main__":
     elif selected_policy is None:
         selected_policy = PRESET_POLICIES["lightest"]
 
-    run_experiment(policy_text=selected_policy, display=args.display, max_episodes=args.max_steps)
+    run_experiment(
+        policy_text=selected_policy,
+        display=args.display,
+        max_episodes=args.max_steps,
+        step_delay=args.step_delay
+    )
+
