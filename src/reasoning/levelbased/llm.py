@@ -41,12 +41,15 @@ def is_facing_target(agent_pos, agent_direction, target_pos):
     return facing == tuple(target_pos)
 
 
-def call_gpt4o_mini_controller(policy_text, agent_info, tasks_info, inter_task_distances, grid_shape):
+def call_gpt4o_mini_controller(policy_text, agent_info, tasks_info, inter_task_distances, grid_shape, completed_tasks=None):
     """
     Calls OpenAI gpt-4o-mini to act as Semantic Policy Controller & Route Optimizer.
     Selects the next target box from available tasks based on the natural language policy,
     evaluating both semantic constraints and tour path efficiency.
     """
+    if completed_tasks is None:
+        completed_tasks = []
+
     api_key = os.getenv("OPENAI_API_KEY", "").strip()
     
     # Check if a valid API key exists
@@ -64,6 +67,8 @@ def call_gpt4o_mini_controller(policy_text, agent_info, tasks_info, inter_task_d
             "in a 2D Level-Based Foraging (LBF) grid world.\n"
             "Your job is to read the user's Natural Language Policy, examine the available boxes (tasks), "
             "and decide which box to target next in accordance with the policy.\n"
+            "If prioritized tasks matching a condition have already been collected (see completed_tasks), "
+            "and remaining available tasks are not explicitly forbidden, select the next available task to continue foraging.\n"
             "When the policy demands path optimization, shortest route, or efficiency (or does not strictly forbid it), "
             "evaluate candidate multi-stop routes (tours) to minimize total travel steps and avoid wasteful back-and-forth detours.\n"
             "Return your decision in valid JSON format only."
@@ -74,17 +79,20 @@ def call_gpt4o_mini_controller(policy_text, agent_info, tasks_info, inter_task_d
             "natural_language_policy": policy_text,
             "agent_state": agent_info,
             "available_tasks": tasks_info,
+            "completed_tasks": completed_tasks,
             "inter_task_distances": inter_task_distances,
             "instructions": (
                 "1. Analyze the natural language policy requirements carefully.\n"
                 "2. If the policy specifies strict attribute priorities (e.g., 'heaviest first'), adhere to it and note the detour cost.\n"
-                "3. If the policy specifies 'shortest path', 'optimal route', or efficiency, evaluate the overall multi-stop tour cost "
+                "3. If the policy specifies priority or ordering (e.g. 'prioritize X first before Y'), check completed_tasks: "
+                "if all X tasks are completed or none remain, proceed to collect the remaining available tasks.\n"
+                "4. If the policy specifies 'shortest path', 'optimal route', or efficiency, evaluate the overall multi-stop tour cost "
                 "(agent -> task1 -> task2 -> ...) and choose the sequence that minimizes total travel distance.\n"
-                "4. Provide the output as JSON with keys:\n"
+                "5. Provide the output as JSON with keys:\n"
                 "   - 'reasoning': Step-by-step rationale comparing route options and policy compliance\n"
                 "   - 'planned_sequence': List of task IDs in visiting order\n"
-                "   - 'selected_task_id': The immediate next task ID to visit\n"
-                "   - 'target_position': [x, y] coordinates of the selected task\n"
+                "   - 'selected_task_id': The immediate next task ID to visit (or null if strictly forbidden)\n"
+                "   - 'target_position': [x, y] coordinates of the selected task (or null if no task selected)\n"
                 "   - 'estimated_total_tour_cost': Estimated total steps for the entire remaining tour\n"
                 "   - 'policy_compliance': boolean\n"
                 "   - 'compliance_note': brief note"
@@ -103,9 +111,14 @@ def call_gpt4o_mini_controller(policy_text, agent_info, tasks_info, inter_task_d
 
         result = json.loads(response.choices[0].message.content)
         
-        # Ensure target_position is a tuple of ints
-        if "target_position" in result and isinstance(result["target_position"], list):
+        # Ensure target_position is a tuple of ints if present and valid
+        if result.get("target_position") is not None and isinstance(result["target_position"], (list, tuple)):
             result["target_position"] = tuple(result["target_position"])
+        elif result.get("selected_task_id") is not None:
+            # Match position from tasks_info
+            matched = next((t for t in tasks_info if str(t["task_id"]) == str(result["selected_task_id"])), None)
+            if matched:
+                result["target_position"] = tuple(matched["position"])
             
         return result
 
@@ -216,6 +229,12 @@ def llm_choose_target(env, agent):
             "distance_from_agent": d
         })
 
+    # Track completed tasks for temporal reasoning
+    completed_tasks = [
+        {"task_id": str(t.index), "position": list(t.position), "level": round(float(t.level), 2)}
+        for t in env.components.get('tasks', []) if t.completed
+    ]
+
     # Pairwise Manhattan distances between tasks
     inter_task_distances = {}
     for i in range(len(active_tasks)):
@@ -225,20 +244,28 @@ def llm_choose_target(env, agent):
             inter_task_distances[f"Task_{t1.index}_to_Task_{t2.index}"] = dist_12
 
     # 4. Query LLM Semantic Controller
-    decision = call_gpt4o_mini_controller(policy, agent_info, tasks_info, inter_task_distances, env.shape)
+    decision = call_gpt4o_mini_controller(
+        policy, agent_info, tasks_info, inter_task_distances, env.shape, completed_tasks=completed_tasks
+    )
 
-
-    if decision and "target_position" in decision:
-        target_pos = tuple(decision["target_position"])
-        # Validate target position belongs to an active task
-        matching_task = next((t for t in active_tasks if t.position == target_pos), None)
-        if matching_task is None:
-            # Fallback by matching selected_task_id
+    if decision:
+        target_pos = None
+        raw_pos = decision.get("target_position")
+        if raw_pos is not None:
+            target_pos = tuple(raw_pos)
+            # Validate target position belongs to an active task
+            matching_task = next((t for t in active_tasks if t.position == target_pos), None)
+            if matching_task is None:
+                # Fallback by matching selected_task_id
+                matching_task = next((t for t in active_tasks if str(t.index) == str(decision.get("selected_task_id"))), None)
+                if matching_task:
+                    target_pos = matching_task.position
+                else:
+                    target_pos = active_tasks[0].position
+        elif decision.get("selected_task_id") is not None:
             matching_task = next((t for t in active_tasks if str(t.index) == str(decision.get("selected_task_id"))), None)
             if matching_task:
                 target_pos = matching_task.position
-            else:
-                target_pos = active_tasks[0].position
 
         agent.smart_parameters['last_llm_decision'] = decision
         return target_pos, decision
@@ -289,8 +316,8 @@ def llm_planning(env, agent):
         next_action = a_star_planning(state, env.shape[0], env.shape[1],
                                       env.action_space, agent.position, agent.target)
     else:
-        # No tasks remaining, take random sample
-        next_action = env.action_space.sample()
+        # No target selected (policy complete or restricted) -> Stay in place
+        next_action = 0
 
     return next_action, agent.target
 
