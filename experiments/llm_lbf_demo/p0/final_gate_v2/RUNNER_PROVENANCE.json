@@ -1,0 +1,5 @@
+{
+  "original_runner_sha256": "09807ab704f719f4c2c843c4cb156970b9fa9e07474d9dc1048dd847351a550a",
+  "original_workflow_sha256": "0852cd8f851b6446cc8eddc9b94343a5f13575b8b7cc40863a0ed361a4b94811",
+  "adaptation": "Versioned copy preserving original files. Corrected adapter import, corrected source hashes, explicit P0/smoke-only guard, and no held-out CLI. Native transition, grader, parser, retry limit and replay handling unchanged."
+}

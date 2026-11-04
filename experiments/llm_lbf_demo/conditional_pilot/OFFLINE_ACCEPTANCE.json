@@ -1,0 +1,487 @@
+{
+  "status": "OFFLINE_COMPLETE_AWAITING_NEW_POLICY_AND_SPENDING_APPROVAL",
+  "tests_passed": 62,
+  "eligible_development_worlds": 12,
+  "independent_worlds_per_branch": 6,
+  "calls_proposed": 72,
+  "calls_per_branch_language": 18,
+  "fresh_context": true,
+  "repetitions": 3,
+  "conditional_witnesses": 78,
+  "conditional_witness_successes": 78,
+  "conditional_witness_worlds": 12,
+  "fixture_summaries": [
+    {
+      "mode": "oracle",
+      "requests": 72,
+      "api_requests": 0,
+      "statuses": {
+        "GOOD": 72
+      },
+      "infrastructure_validation": true,
+      "by_branch_language": [
+        {
+          "branch": "solo_required",
+          "language": "EN",
+          "scheduled_calls": 18,
+          "independent_worlds": 6,
+          "strict_good": 18,
+          "strict_goodness_rate": 1.0,
+          "format_valid": 18,
+          "capacity_valid": 18,
+          "geometry_valid": 18,
+          "policy_compliant": 18,
+          "failure_flags_nonexclusive": {
+            "format": 0,
+            "capacity": 0,
+            "geometry": 0,
+            "progress": 0,
+            "policy": 0,
+            "specification": 0
+          },
+          "statuses": {
+            "GOOD": 18
+          },
+          "executor_pickups": 18,
+          "conditional_pickup_violations": 0,
+          "observed_token_cost_usd": null
+        },
+        {
+          "branch": "solo_required",
+          "language": "VI",
+          "scheduled_calls": 18,
+          "independent_worlds": 6,
+          "strict_good": 18,
+          "strict_goodness_rate": 1.0,
+          "format_valid": 18,
+          "capacity_valid": 18,
+          "geometry_valid": 18,
+          "policy_compliant": 18,
+          "failure_flags_nonexclusive": {
+            "format": 0,
+            "capacity": 0,
+            "geometry": 0,
+            "progress": 0,
+            "policy": 0,
+            "specification": 0
+          },
+          "statuses": {
+            "GOOD": 18
+          },
+          "executor_pickups": 18,
+          "conditional_pickup_violations": 0,
+          "observed_token_cost_usd": null
+        },
+        {
+          "branch": "joint_required",
+          "language": "EN",
+          "scheduled_calls": 18,
+          "independent_worlds": 6,
+          "strict_good": 18,
+          "strict_goodness_rate": 1.0,
+          "format_valid": 18,
+          "capacity_valid": 18,
+          "geometry_valid": 18,
+          "policy_compliant": 18,
+          "failure_flags_nonexclusive": {
+            "format": 0,
+            "capacity": 0,
+            "geometry": 0,
+            "progress": 0,
+            "policy": 0,
+            "specification": 0
+          },
+          "statuses": {
+            "GOOD": 18
+          },
+          "executor_pickups": 18,
+          "conditional_pickup_violations": 0,
+          "observed_token_cost_usd": null
+        },
+        {
+          "branch": "joint_required",
+          "language": "VI",
+          "scheduled_calls": 18,
+          "independent_worlds": 6,
+          "strict_good": 18,
+          "strict_goodness_rate": 1.0,
+          "format_valid": 18,
+          "capacity_valid": 18,
+          "geometry_valid": 18,
+          "policy_compliant": 18,
+          "failure_flags_nonexclusive": {
+            "format": 0,
+            "capacity": 0,
+            "geometry": 0,
+            "progress": 0,
+            "policy": 0,
+            "specification": 0
+          },
+          "statuses": {
+            "GOOD": 18
+          },
+          "executor_pickups": 18,
+          "conditional_pickup_violations": 0,
+          "observed_token_cost_usd": null
+        }
+      ]
+    },
+    {
+      "mode": "wrong_branch",
+      "requests": 72,
+      "api_requests": 0,
+      "statuses": {
+        "POLICY": 72
+      },
+      "infrastructure_validation": true,
+      "by_branch_language": [
+        {
+          "branch": "solo_required",
+          "language": "EN",
+          "scheduled_calls": 18,
+          "independent_worlds": 6,
+          "strict_good": 0,
+          "strict_goodness_rate": 0.0,
+          "format_valid": 18,
+          "capacity_valid": 18,
+          "geometry_valid": 18,
+          "policy_compliant": 0,
+          "failure_flags_nonexclusive": {
+            "format": 0,
+            "capacity": 0,
+            "geometry": 0,
+            "progress": 0,
+            "policy": 18,
+            "specification": 0
+          },
+          "statuses": {
+            "POLICY": 18
+          },
+          "executor_pickups": 18,
+          "conditional_pickup_violations": 18,
+          "observed_token_cost_usd": null
+        },
+        {
+          "branch": "solo_required",
+          "language": "VI",
+          "scheduled_calls": 18,
+          "independent_worlds": 6,
+          "strict_good": 0,
+          "strict_goodness_rate": 0.0,
+          "format_valid": 18,
+          "capacity_valid": 18,
+          "geometry_valid": 18,
+          "policy_compliant": 0,
+          "failure_flags_nonexclusive": {
+            "format": 0,
+            "capacity": 0,
+            "geometry": 0,
+            "progress": 0,
+            "policy": 18,
+            "specification": 0
+          },
+          "statuses": {
+            "POLICY": 18
+          },
+          "executor_pickups": 18,
+          "conditional_pickup_violations": 18,
+          "observed_token_cost_usd": null
+        },
+        {
+          "branch": "joint_required",
+          "language": "EN",
+          "scheduled_calls": 18,
+          "independent_worlds": 6,
+          "strict_good": 0,
+          "strict_goodness_rate": 0.0,
+          "format_valid": 18,
+          "capacity_valid": 18,
+          "geometry_valid": 18,
+          "policy_compliant": 0,
+          "failure_flags_nonexclusive": {
+            "format": 0,
+            "capacity": 0,
+            "geometry": 0,
+            "progress": 0,
+            "policy": 18,
+            "specification": 0
+          },
+          "statuses": {
+            "POLICY": 18
+          },
+          "executor_pickups": 18,
+          "conditional_pickup_violations": 18,
+          "observed_token_cost_usd": null
+        },
+        {
+          "branch": "joint_required",
+          "language": "VI",
+          "scheduled_calls": 18,
+          "independent_worlds": 6,
+          "strict_good": 0,
+          "strict_goodness_rate": 0.0,
+          "format_valid": 18,
+          "capacity_valid": 18,
+          "geometry_valid": 18,
+          "policy_compliant": 0,
+          "failure_flags_nonexclusive": {
+            "format": 0,
+            "capacity": 0,
+            "geometry": 0,
+            "progress": 0,
+            "policy": 18,
+            "specification": 0
+          },
+          "statuses": {
+            "POLICY": 18
+          },
+          "executor_pickups": 18,
+          "conditional_pickup_violations": 18,
+          "observed_token_cost_usd": null
+        }
+      ]
+    },
+    {
+      "mode": "idle",
+      "requests": 72,
+      "api_requests": 0,
+      "statuses": {
+        "VACUOUS": 72
+      },
+      "infrastructure_validation": true,
+      "by_branch_language": [
+        {
+          "branch": "solo_required",
+          "language": "EN",
+          "scheduled_calls": 18,
+          "independent_worlds": 6,
+          "strict_good": 0,
+          "strict_goodness_rate": 0.0,
+          "format_valid": 18,
+          "capacity_valid": 18,
+          "geometry_valid": 18,
+          "policy_compliant": 0,
+          "failure_flags_nonexclusive": {
+            "format": 0,
+            "capacity": 0,
+            "geometry": 0,
+            "progress": 18,
+            "policy": 18,
+            "specification": 0
+          },
+          "statuses": {
+            "VACUOUS": 18
+          },
+          "executor_pickups": 0,
+          "conditional_pickup_violations": 0,
+          "observed_token_cost_usd": null
+        },
+        {
+          "branch": "solo_required",
+          "language": "VI",
+          "scheduled_calls": 18,
+          "independent_worlds": 6,
+          "strict_good": 0,
+          "strict_goodness_rate": 0.0,
+          "format_valid": 18,
+          "capacity_valid": 18,
+          "geometry_valid": 18,
+          "policy_compliant": 0,
+          "failure_flags_nonexclusive": {
+            "format": 0,
+            "capacity": 0,
+            "geometry": 0,
+            "progress": 18,
+            "policy": 18,
+            "specification": 0
+          },
+          "statuses": {
+            "VACUOUS": 18
+          },
+          "executor_pickups": 0,
+          "conditional_pickup_violations": 0,
+          "observed_token_cost_usd": null
+        },
+        {
+          "branch": "joint_required",
+          "language": "EN",
+          "scheduled_calls": 18,
+          "independent_worlds": 6,
+          "strict_good": 0,
+          "strict_goodness_rate": 0.0,
+          "format_valid": 18,
+          "capacity_valid": 18,
+          "geometry_valid": 18,
+          "policy_compliant": 0,
+          "failure_flags_nonexclusive": {
+            "format": 0,
+            "capacity": 0,
+            "geometry": 0,
+            "progress": 18,
+            "policy": 18,
+            "specification": 0
+          },
+          "statuses": {
+            "VACUOUS": 18
+          },
+          "executor_pickups": 0,
+          "conditional_pickup_violations": 0,
+          "observed_token_cost_usd": null
+        },
+        {
+          "branch": "joint_required",
+          "language": "VI",
+          "scheduled_calls": 18,
+          "independent_worlds": 6,
+          "strict_good": 0,
+          "strict_goodness_rate": 0.0,
+          "format_valid": 18,
+          "capacity_valid": 18,
+          "geometry_valid": 18,
+          "policy_compliant": 0,
+          "failure_flags_nonexclusive": {
+            "format": 0,
+            "capacity": 0,
+            "geometry": 0,
+            "progress": 18,
+            "policy": 18,
+            "specification": 0
+          },
+          "statuses": {
+            "VACUOUS": 18
+          },
+          "executor_pickups": 0,
+          "conditional_pickup_violations": 0,
+          "observed_token_cost_usd": null
+        }
+      ]
+    },
+    {
+      "mode": "malformed",
+      "requests": 72,
+      "api_requests": 0,
+      "statuses": {
+        "FORMAT": 72
+      },
+      "infrastructure_validation": true,
+      "by_branch_language": [
+        {
+          "branch": "solo_required",
+          "language": "EN",
+          "scheduled_calls": 18,
+          "independent_worlds": 6,
+          "strict_good": 0,
+          "strict_goodness_rate": 0.0,
+          "format_valid": 0,
+          "capacity_valid": 0,
+          "geometry_valid": 0,
+          "policy_compliant": 0,
+          "failure_flags_nonexclusive": {
+            "format": 18,
+            "capacity": 0,
+            "geometry": 0,
+            "progress": 0,
+            "policy": 0,
+            "specification": 0
+          },
+          "statuses": {
+            "FORMAT": 18
+          },
+          "executor_pickups": 0,
+          "conditional_pickup_violations": 0,
+          "observed_token_cost_usd": null
+        },
+        {
+          "branch": "solo_required",
+          "language": "VI",
+          "scheduled_calls": 18,
+          "independent_worlds": 6,
+          "strict_good": 0,
+          "strict_goodness_rate": 0.0,
+          "format_valid": 0,
+          "capacity_valid": 0,
+          "geometry_valid": 0,
+          "policy_compliant": 0,
+          "failure_flags_nonexclusive": {
+            "format": 18,
+            "capacity": 0,
+            "geometry": 0,
+            "progress": 0,
+            "policy": 0,
+            "specification": 0
+          },
+          "statuses": {
+            "FORMAT": 18
+          },
+          "executor_pickups": 0,
+          "conditional_pickup_violations": 0,
+          "observed_token_cost_usd": null
+        },
+        {
+          "branch": "joint_required",
+          "language": "EN",
+          "scheduled_calls": 18,
+          "independent_worlds": 6,
+          "strict_good": 0,
+          "strict_goodness_rate": 0.0,
+          "format_valid": 0,
+          "capacity_valid": 0,
+          "geometry_valid": 0,
+          "policy_compliant": 0,
+          "failure_flags_nonexclusive": {
+            "format": 18,
+            "capacity": 0,
+            "geometry": 0,
+            "progress": 0,
+            "policy": 0,
+            "specification": 0
+          },
+          "statuses": {
+            "FORMAT": 18
+          },
+          "executor_pickups": 0,
+          "conditional_pickup_violations": 0,
+          "observed_token_cost_usd": null
+        },
+        {
+          "branch": "joint_required",
+          "language": "VI",
+          "scheduled_calls": 18,
+          "independent_worlds": 6,
+          "strict_good": 0,
+          "strict_goodness_rate": 0.0,
+          "format_valid": 0,
+          "capacity_valid": 0,
+          "geometry_valid": 0,
+          "policy_compliant": 0,
+          "failure_flags_nonexclusive": {
+            "format": 18,
+            "capacity": 0,
+            "geometry": 0,
+            "progress": 0,
+            "policy": 0,
+            "specification": 0
+          },
+          "statuses": {
+            "FORMAT": 18
+          },
+          "executor_pickups": 0,
+          "conditional_pickup_violations": 0,
+          "observed_token_cost_usd": null
+        }
+      ]
+    }
+  ],
+  "historical_files_hash_verified_unchanged": 1141,
+  "protocol_hash": "7ec1a673f6354746fc8d5e506ef5a2b6ed2289bef2a9a8d603a4ac8f94d4324d",
+  "policy_hash": "588c320df574cdbdf26f4beccf95bfd15115a54c5bee5b2e2c154c3e48318a75",
+  "new_real_LLM_calls": 0,
+  "held_out_calls": 0,
+  "worlds_changed_or_generated": 0,
+  "model_improvement_or_conditional_ability": "UNVERIFIED_UNTIL_REAL_PILOT",
+  "required_semantic_approval": "This new EN/VI conditional policy; earlier R/F/P0 approval does not apply.",
+  "required_spending_approval": "This new 72-call pilot; all earlier phase approvals are preserved and not reused.",
+  "hard_cap_usd": 0.15,
+  "worst_case_reservation_usd": "0.1190592",
+  "automatic_retries": 0
+}

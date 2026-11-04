@@ -1,0 +1,47 @@
+{
+  "after": {
+    "status": "SUCCESS",
+    "ticks": 7,
+    "trace_hash": "1f82699a24a746a46996bbfc3375bb9df4b87dbaf365d4d84795613c151f514c"
+  },
+  "api_calls": 0,
+  "before": {
+    "status": "EXECUTOR",
+    "ticks": 40,
+    "trace_hash": "f097096f889d14f565515419151a432f8416b83080654e461349e606a7eb5069"
+  },
+  "bilingual_approval": "unverified",
+  "dropped_allocations": 0,
+  "executor_source_hash": "c2cfbd0e9971c1fda23723b0220173c307d534880201b96c072006373dd531cc",
+  "executor_version": "e1-motion-2",
+  "historical_and_frozen_files_unchanged": 292,
+  "historical_recommendation_labels_unchanged": 12096,
+  "model_provider_availability": "unverified",
+  "outcome_transitions": {
+    "EXECUTOR -> SUCCESS": 1,
+    "SUCCESS -> SUCCESS": 863
+  },
+  "policy_only_pairs_verified": 5760,
+  "real_P0_performance": "unverified",
+  "tick_changes": {
+    "fewer": 6,
+    "more": 117,
+    "same": 741
+  },
+  "witness_labels_unchanged": 864,
+  "witnesses": {
+    "accepted": true,
+    "covered": 864,
+    "failures": [],
+    "successes": 864
+  },
+  "worlds": 72,
+  "witness_file_sha256": "8b744973f2f2e5a9ec77239ece8b6bdc42d449de045d0f57d3ead8ddb4cea466",
+  "original_witness_file_sha256": "5533e6069c04af7c339b9be1a857545eaa9ae28aa2203a0593c1c50ae85a4ec9",
+  "baseline_manifest_lock_preserved": true,
+  "source_files": {
+    "executor.py": "c2cfbd0e9971c1fda23723b0220173c307d534880201b96c072006373dd531cc",
+    "worlds.py": "636cc606fca09c527b97b9f089f8280d6a8d08a4ab615a209871781844612145",
+    "run_e1.py": "09807ab704f719f4c2c843c4cb156970b9fa9e07474d9dc1048dd847351a550a"
+  }
+}

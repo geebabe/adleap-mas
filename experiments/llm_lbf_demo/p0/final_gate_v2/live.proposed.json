@@ -1,0 +1,65 @@
+{
+  "version": "P0-corrected-final-2",
+  "status": "FINAL_ALLOWED_CORRECTION_PENDING_NEW_SMOKE_AND_FREEZE",
+  "explicit_live_approval": false,
+  "dollar_ceiling": 1.5,
+  "budgets_usd": {
+    "gate": 1.5,
+    "smoke": 0.05
+  },
+  "models": [
+    {
+      "role": "primary",
+      "id": "gpt-4o-mini-2024-07-18",
+      "snapshot_frozen": true,
+      "temperature": 0,
+      "max_input_tokens": 10000,
+      "max_output_tokens": 256,
+      "input_usd_per_million": 0.15,
+      "cached_input_usd_per_million": 0.075,
+      "output_usd_per_million": 0.6,
+      "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4o-mini"
+    },
+    {
+      "role": "replication",
+      "id": "gpt-4.1-mini-2025-04-14",
+      "snapshot_frozen": true,
+      "temperature": 0,
+      "max_input_tokens": 10000,
+      "max_output_tokens": 256,
+      "input_usd_per_million": 0.4,
+      "cached_input_usd_per_million": 0.1,
+      "output_usd_per_million": 1.6,
+      "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4.1-mini"
+    }
+  ],
+  "provider": "OpenAI",
+  "endpoint": "https://api.openai.com/v1/chat/completions",
+  "request_settings": {
+    "temperature": 0,
+    "max_completion_tokens": 256,
+    "response_format": {
+      "type": "json_object"
+    },
+    "n": 1,
+    "stream": false,
+    "store": false,
+    "service_tier": "default"
+  },
+  "max_infrastructure_retries": 2,
+  "formal_gate_slots": 144,
+  "smoke_slots": 4,
+  "smoke_family": "development-000",
+  "thresholds": {
+    "parseability": 0.98,
+    "physical_validity": 0.95,
+    "progressive_goodness": 0.8
+  },
+  "provider_compatibility": "unverified",
+  "real_P0_performance": "unverified",
+  "bilingual_approval": "approved_external_record_unchanged_policies",
+  "held_out_E1": "BLOCKED_UNTIL_ALL_FOUR_CORRECTED_P0_CONDITIONS_PASS_AND_SEPARATE_SPENDING_AUTHORIZED",
+  "formal_attempt_number": 2,
+  "further_prompt_tuning_allowed": false,
+  "adapter_version": "p0-capacity-grounding-2"
+}

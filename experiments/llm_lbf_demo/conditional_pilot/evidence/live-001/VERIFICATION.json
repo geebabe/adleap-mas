@@ -1,0 +1,65 @@
+{
+  "status": "REAL_CONDITIONAL_DEVELOPMENT_PILOT_COMPLETE",
+  "protocol_hash": "7ec1a673f6354746fc8d5e506ef5a2b6ed2289bef2a9a8d603a4ac8f94d4324d",
+  "actual_model_counts": {
+    "gpt-4o-mini-2024-07-18": 72
+  },
+  "requests": 72,
+  "responses": 72,
+  "terminal_slots": 72,
+  "automatic_retries": 0,
+  "independent_families": 12,
+  "families_per_branch": 6,
+  "calls_per_branch_language": 18,
+  "independent_regrades": 72,
+  "independent_replays": 72,
+  "independent_numeric_branch_checks": 72,
+  "independent_numeric_policy_checks": 72,
+  "usage": {
+    "prompt_tokens": 29448,
+    "completion_tokens": 936,
+    "cached_input_tokens": 0
+  },
+  "actual_token_cost_usd": "0.00497880",
+  "reserved_usd": "0.1190592",
+  "hard_cap_usd": 0.15,
+  "unknown_cost_attempts": 0,
+  "fatal_blocker": null,
+  "failure_examples": 29,
+  "jointly_only_outcomes": [
+    {
+      "branch": "solo_required",
+      "language": "EN",
+      "calls": 18,
+      "jointly_only_selected_recommendations": 0,
+      "jointly_only_pickups": 0
+    },
+    {
+      "branch": "solo_required",
+      "language": "VI",
+      "calls": 18,
+      "jointly_only_selected_recommendations": 0,
+      "jointly_only_pickups": 0
+    },
+    {
+      "branch": "joint_required",
+      "language": "EN",
+      "calls": 18,
+      "jointly_only_selected_recommendations": 18,
+      "jointly_only_pickups": 15
+    },
+    {
+      "branch": "joint_required",
+      "language": "VI",
+      "calls": 18,
+      "jointly_only_selected_recommendations": 17,
+      "jointly_only_pickups": 17
+    }
+  ],
+  "historical_files_hash_verified_unchanged": 1141,
+  "prior_tests_passed_unchanged_source": 62,
+  "held_out_calls": 0,
+  "formal_gate_passed_by_this_pilot": false,
+  "causal_complexity_effect_established": false,
+  "novelty_claim": false
+}

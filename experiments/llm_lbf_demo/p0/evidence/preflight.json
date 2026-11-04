@@ -1,0 +1,151 @@
+{
+  "status": "PROPOSED_NOT_AUTHORIZED",
+  "binding": {
+    "proposal_hash": "ccc8c0699ca4078106fc7398dede3deb7c6e7fe374402b6e398ba2ab03bcc4bb",
+    "policy_hash": "e697de1da770bdd42cf431c6a205404c1a03fb718bf5c4f726fa1430bb05410d",
+    "policy_file_sha256": "49c899c6ae29ab2fd2bba6aaa9d5d4afbbf63b7afe5cad9de883ac8aa4ce4abd",
+    "manifest_hash": "273d3f15000247bdde3d9e0776204da599fdaa2fdeb3e09033e0dfbd57a3a955",
+    "executor": {
+      "executor_version": "e1-motion-2",
+      "executor_source_hash": "c2cfbd0e9971c1fda23723b0220173c307d534880201b96c072006373dd531cc",
+      "recovered_testbed_sha256": "7296cab935d1260d89615194ce4835afe22c0137f9dd1be74f4a9dd699330ab3",
+      "upstream_commit": "0874e57fc4974d7e1f8bdd5d39e04119e7053d6f",
+      "witness_file_sha256": "8b744973f2f2e5a9ec77239ece8b6bdc42d449de045d0f57d3ead8ddb4cea466",
+      "witnesses": {
+        "covered": 864,
+        "successes": 864,
+        "failures": []
+      }
+    },
+    "e1_code_hashes": {
+      "e1/__init__.py": "032e3a8514da89a467aefa9a5bb5eb7b9fe6b9f79aab096def118ea9b2c26b0c",
+      "e1/analyze_e1.py": "5408e572b0d4a5b0564b5d1422075a16c2ded1f22316dea33fad9ab3155ebd39",
+      "e1/common.py": "5d27da0d8eed131903fe0834ee5b1a084df296490ae3754dcac37484f7c17741",
+      "e1/controller.py": "2d663a44c6783887e2e209f46d077fb5e242c45bca9af982b8f09876988098d3",
+      "e1/e1_oracle.py": "8edb83a9d539f4b2c206d55b1b5fbeef425f48dedffab9f3bb61389e7a14c8e6",
+      "e1/executor.py": "c2cfbd0e9971c1fda23723b0220173c307d534880201b96c072006373dd531cc",
+      "e1/journal.py": "aed09bf388a66eadf9caa574a3d56a894c6991606db54af01502494a035820c0",
+      "e1/providers.py": "7892fd7cdec1400ed1b4419ca5a7c7f6e5f0243c52ad5cfc5ec3f20fb4e3e055",
+      "e1/run_e1.py": "09807ab704f719f4c2c843c4cb156970b9fa9e07474d9dc1048dd847351a550a",
+      "e1/safeguards.py": "ed7f57b7290511406e1a37553d055164de9f1ff8c071108b5c6180e1dfc62f8a",
+      "e1/worlds.py": "636cc606fca09c527b97b9f089f8280d6a8d08a4ab615a209871781844612145",
+      "requirements.lock": "22ccd65435efb5b18c42eda9f89786f25c8eb12710bf863aba256adc58f405f4",
+      "testbed.py": "7296cab935d1260d89615194ce4835afe22c0137f9dd1be74f4a9dd699330ab3",
+      "upstream.lock.json": "15a295828784d1864679d9400338a13d8061c2639487aecf492c7f79606e3006"
+    },
+    "p0_code_hashes": {
+      "__init__.py": "8170b88a3ec76071521058f05656b90634365db46c27e377d201691f0253789f",
+      "prepare.py": "b6350cbb3e30f359f9e30f87431cc1084011f33156b6a2ddf159e532c381e202",
+      "report.py": "56858fff38631155dfd958eb0fe161ec63b680d0ed941f5cd7ea5efe79f976ba",
+      "transport.py": "fb628a5cd5bcdc6602620fbcb1f0b504125265c3d37687467e5707223feb064c"
+    },
+    "request_settings": {
+      "temperature": 0,
+      "max_completion_tokens": 256,
+      "response_format": {
+        "type": "json_object"
+      },
+      "n": 1,
+      "stream": false,
+      "store": false,
+      "service_tier": "default"
+    },
+    "thresholds": {
+      "parseability": 0.98,
+      "physical_validity": 0.95,
+      "progressive_goodness": 0.8
+    },
+    "gate_slot_hash": "a545e5c0d223156d26fe685b2522c1a6d219660d94d2f9256307e758dd3b1ff8"
+  },
+  "budgets": [
+    {
+      "phase": "smoke",
+      "scheduled_calls": 4,
+      "maximum_provider_attempts": 12,
+      "worst_case_usd": 0.0363792,
+      "dollar_ceiling": 0.05,
+      "maximum_conservative_prompt_bound": 1969
+    },
+    {
+      "phase": "gate",
+      "scheduled_calls": 144,
+      "maximum_provider_attempts": 432,
+      "worst_case_usd": 1.3096512,
+      "dollar_ceiling": 1.5,
+      "maximum_conservative_prompt_bound": 1969
+    }
+  ],
+  "pending_gate_report": {
+    "kind": "formal_P0_gate",
+    "status": "NOT_RUN",
+    "paid_calls_made": 0,
+    "held_out_E1_authorized": false,
+    "conditions": [
+      {
+        "model_role": "primary",
+        "model_snapshot": "gpt-4o-mini-2024-07-18",
+        "language": "EN",
+        "scheduled_calls": 36,
+        "completed_calls": 0,
+        "parseability": null,
+        "capacity_validity": null,
+        "geometric_validity": null,
+        "physical_validity": null,
+        "progressive_goodness": null,
+        "infrastructure_failed_attempts": null,
+        "exhausted_infrastructure_slots": null,
+        "observed_usage_cost_usd": null,
+        "passed": null
+      },
+      {
+        "model_role": "primary",
+        "model_snapshot": "gpt-4o-mini-2024-07-18",
+        "language": "VI",
+        "scheduled_calls": 36,
+        "completed_calls": 0,
+        "parseability": null,
+        "capacity_validity": null,
+        "geometric_validity": null,
+        "physical_validity": null,
+        "progressive_goodness": null,
+        "infrastructure_failed_attempts": null,
+        "exhausted_infrastructure_slots": null,
+        "observed_usage_cost_usd": null,
+        "passed": null
+      },
+      {
+        "model_role": "replication",
+        "model_snapshot": "gpt-4.1-mini-2025-04-14",
+        "language": "EN",
+        "scheduled_calls": 36,
+        "completed_calls": 0,
+        "parseability": null,
+        "capacity_validity": null,
+        "geometric_validity": null,
+        "physical_validity": null,
+        "progressive_goodness": null,
+        "infrastructure_failed_attempts": null,
+        "exhausted_infrastructure_slots": null,
+        "observed_usage_cost_usd": null,
+        "passed": null
+      },
+      {
+        "model_role": "replication",
+        "model_snapshot": "gpt-4.1-mini-2025-04-14",
+        "language": "VI",
+        "scheduled_calls": 36,
+        "completed_calls": 0,
+        "parseability": null,
+        "capacity_validity": null,
+        "geometric_validity": null,
+        "physical_validity": null,
+        "progressive_goodness": null,
+        "infrastructure_failed_attempts": null,
+        "exhausted_infrastructure_slots": null,
+        "observed_usage_cost_usd": null,
+        "passed": null
+      }
+    ]
+  },
+  "provider_calls_made": 0
+}

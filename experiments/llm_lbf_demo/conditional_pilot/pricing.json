@@ -1,0 +1,9 @@
+{
+  "verified_on": "2026-11-05",
+  "source": "https://developers.openai.com/api/docs/models/gpt-4o-mini",
+  "snapshot": "gpt-4o-mini-2024-07-18",
+  "input_usd_per_million": 0.15,
+  "cached_input_usd_per_million": 0.075,
+  "output_usd_per_million": 0.60,
+  "billing_basis": "Standard-tier text tokens, no tools, no retries; conservative reservation assumes uncached input. Observed usage-based cost is not an invoice."
+}

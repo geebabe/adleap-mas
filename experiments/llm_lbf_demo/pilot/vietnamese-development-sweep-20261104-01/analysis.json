@@ -1,0 +1,1762 @@
+{
+  "label": "EXPLORATORY_VIETNAMESE_DEVELOPMENT_EVIDENCE",
+  "formal_gate_passed": false,
+  "held_out_E1_authorized": false,
+  "independent_families": 12,
+  "repeats_are_not_independent_families": true,
+  "scheduled_calls": 108,
+  "api_requests": 108,
+  "automatic_retries": 0,
+  "per_policy": {
+    "P0": {
+      "conditions": 36,
+      "statuses": {
+        "GOOD": 36
+      },
+      "strict_good": 36,
+      "strict_goodness_rate": 1.0,
+      "parseable": 36,
+      "capacity_feasible": 36,
+      "geometrically_feasible": 36,
+      "physically_valid": 36,
+      "policy_pattern_compliant": 36,
+      "executor_statuses": {
+        "SUCCESS": 36
+      },
+      "successful_pickups": 36,
+      "jointly_only_selected_recommendations": 0,
+      "jointly_only_pickups": 0,
+      "observed_usage_cost_usd": "0.00206820"
+    },
+    "R": {
+      "conditions": 36,
+      "statuses": {
+        "GOOD": 36
+      },
+      "strict_good": 36,
+      "strict_goodness_rate": 1.0,
+      "parseable": 36,
+      "capacity_feasible": 36,
+      "geometrically_feasible": 36,
+      "physically_valid": 36,
+      "policy_pattern_compliant": 36,
+      "executor_statuses": {
+        "SUCCESS": 36
+      },
+      "successful_pickups": 36,
+      "jointly_only_selected_recommendations": 0,
+      "jointly_only_pickups": 0,
+      "observed_usage_cost_usd": "0.00192780"
+    },
+    "F": {
+      "conditions": 36,
+      "statuses": {
+        "GOOD": 36
+      },
+      "strict_good": 36,
+      "strict_goodness_rate": 1.0,
+      "parseable": 36,
+      "capacity_feasible": 36,
+      "geometrically_feasible": 36,
+      "physically_valid": 36,
+      "policy_pattern_compliant": 36,
+      "executor_statuses": {
+        "SUCCESS": 36
+      },
+      "successful_pickups": 36,
+      "jointly_only_selected_recommendations": 0,
+      "jointly_only_pickups": 0,
+      "observed_usage_cost_usd": "0.00190740"
+    }
+  },
+  "pairpass": {
+    "passed": 36,
+    "pairs": 36,
+    "rate": 1.0,
+    "family_cluster_bootstrap_95_ci": [
+      1.0,
+      1.0
+    ],
+    "resamples": 10000,
+    "seed": 20261104,
+    "degenerate_interval": true
+  },
+  "by_world": [
+    {
+      "world": "development-000",
+      "stratum": "light",
+      "agent_capacities": {
+        "A": 1.0,
+        "B": 1.4
+      },
+      "boxes": [
+        {
+          "id": "b0",
+          "level": 0.4,
+          "jointly_only": false
+        },
+        {
+          "id": "b1",
+          "level": 0.6,
+          "jointly_only": false
+        },
+        {
+          "id": "b2",
+          "level": 0.8,
+          "jointly_only": false
+        }
+      ],
+      "repetitions": [
+        {
+          "repetition": 1,
+          "statuses": {
+            "P0": "GOOD",
+            "R": "GOOD",
+            "F": "GOOD"
+          },
+          "allocations": {
+            "P0": {
+              "A": "b1",
+              "B": null
+            },
+            "R": {
+              "A": "b0",
+              "B": "b0"
+            },
+            "F": {
+              "A": "b0",
+              "B": null
+            }
+          },
+          "pairpass": 1
+        },
+        {
+          "repetition": 2,
+          "statuses": {
+            "P0": "GOOD",
+            "R": "GOOD",
+            "F": "GOOD"
+          },
+          "allocations": {
+            "P0": {
+              "A": "b1",
+              "B": null
+            },
+            "R": {
+              "A": "b0",
+              "B": "b0"
+            },
+            "F": {
+              "A": "b0",
+              "B": null
+            }
+          },
+          "pairpass": 1
+        },
+        {
+          "repetition": 3,
+          "statuses": {
+            "P0": "GOOD",
+            "R": "GOOD",
+            "F": "GOOD"
+          },
+          "allocations": {
+            "P0": {
+              "A": "b1",
+              "B": null
+            },
+            "R": {
+              "A": "b0",
+              "B": "b0"
+            },
+            "F": {
+              "A": "b0",
+              "B": null
+            }
+          },
+          "pairpass": 1
+        }
+      ],
+      "pairpass_count": 3,
+      "pairpass_denominator": 3,
+      "conditions": 9,
+      "statuses": {
+        "GOOD": 9
+      },
+      "strict_good": 9,
+      "strict_goodness_rate": 1.0,
+      "parseable": 9,
+      "capacity_feasible": 9,
+      "geometrically_feasible": 9,
+      "physically_valid": 9,
+      "policy_pattern_compliant": 9,
+      "executor_statuses": {
+        "SUCCESS": 9
+      },
+      "successful_pickups": 9,
+      "jointly_only_selected_recommendations": 0,
+      "jointly_only_pickups": 0,
+      "observed_usage_cost_usd": "0.00049185"
+    },
+    {
+      "world": "development-001",
+      "stratum": "light",
+      "agent_capacities": {
+        "A": 0.8,
+        "B": 1.4
+      },
+      "boxes": [
+        {
+          "id": "b0",
+          "level": 0.4,
+          "jointly_only": false
+        },
+        {
+          "id": "b1",
+          "level": 0.6,
+          "jointly_only": false
+        },
+        {
+          "id": "b2",
+          "level": 0.6,
+          "jointly_only": false
+        }
+      ],
+      "repetitions": [
+        {
+          "repetition": 1,
+          "statuses": {
+            "P0": "GOOD",
+            "R": "GOOD",
+            "F": "GOOD"
+          },
+          "allocations": {
+            "P0": {
+              "A": "b0",
+              "B": null
+            },
+            "R": {
+              "A": "b1",
+              "B": "b1"
+            },
+            "F": {
+              "A": "b0",
+              "B": null
+            }
+          },
+          "pairpass": 1
+        },
+        {
+          "repetition": 2,
+          "statuses": {
+            "P0": "GOOD",
+            "R": "GOOD",
+            "F": "GOOD"
+          },
+          "allocations": {
+            "P0": {
+              "A": "b0",
+              "B": null
+            },
+            "R": {
+              "A": "b1",
+              "B": "b1"
+            },
+            "F": {
+              "A": "b0",
+              "B": null
+            }
+          },
+          "pairpass": 1
+        },
+        {
+          "repetition": 3,
+          "statuses": {
+            "P0": "GOOD",
+            "R": "GOOD",
+            "F": "GOOD"
+          },
+          "allocations": {
+            "P0": {
+              "A": "b0",
+              "B": null
+            },
+            "R": {
+              "A": "b1",
+              "B": "b1"
+            },
+            "F": {
+              "A": "b0",
+              "B": null
+            }
+          },
+          "pairpass": 1
+        }
+      ],
+      "pairpass_count": 3,
+      "pairpass_denominator": 3,
+      "conditions": 9,
+      "statuses": {
+        "GOOD": 9
+      },
+      "strict_good": 9,
+      "strict_goodness_rate": 1.0,
+      "parseable": 9,
+      "capacity_feasible": 9,
+      "geometrically_feasible": 9,
+      "physically_valid": 9,
+      "policy_pattern_compliant": 9,
+      "executor_statuses": {
+        "SUCCESS": 9
+      },
+      "successful_pickups": 9,
+      "jointly_only_selected_recommendations": 0,
+      "jointly_only_pickups": 0,
+      "observed_usage_cost_usd": "0.00049185"
+    },
+    {
+      "world": "development-002",
+      "stratum": "light",
+      "agent_capacities": {
+        "A": 1.2,
+        "B": 1.2
+      },
+      "boxes": [
+        {
+          "id": "b0",
+          "level": 0.4,
+          "jointly_only": false
+        },
+        {
+          "id": "b1",
+          "level": 0.6,
+          "jointly_only": false
+        },
+        {
+          "id": "b2",
+          "level": 0.9,
+          "jointly_only": false
+        }
+      ],
+      "repetitions": [
+        {
+          "repetition": 1,
+          "statuses": {
+            "P0": "GOOD",
+            "R": "GOOD",
+            "F": "GOOD"
+          },
+          "allocations": {
+            "P0": {
+              "A": "b2",
+              "B": null
+            },
+            "R": {
+              "A": "b1",
+              "B": "b1"
+            },
+            "F": {
+              "A": "b1",
+              "B": null
+            }
+          },
+          "pairpass": 1
+        },
+        {
+          "repetition": 2,
+          "statuses": {
+            "P0": "GOOD",
+            "R": "GOOD",
+            "F": "GOOD"
+          },
+          "allocations": {
+            "P0": {
+              "A": "b2",
+              "B": null
+            },
+            "R": {
+              "A": "b1",
+              "B": "b1"
+            },
+            "F": {
+              "A": "b1",
+              "B": null
+            }
+          },
+          "pairpass": 1
+        },
+        {
+          "repetition": 3,
+          "statuses": {
+            "P0": "GOOD",
+            "R": "GOOD",
+            "F": "GOOD"
+          },
+          "allocations": {
+            "P0": {
+              "A": "b2",
+              "B": null
+            },
+            "R": {
+              "A": "b1",
+              "B": "b1"
+            },
+            "F": {
+              "A": "b1",
+              "B": null
+            }
+          },
+          "pairpass": 1
+        }
+      ],
+      "pairpass_count": 3,
+      "pairpass_denominator": 3,
+      "conditions": 9,
+      "statuses": {
+        "GOOD": 9
+      },
+      "strict_good": 9,
+      "strict_goodness_rate": 1.0,
+      "parseable": 9,
+      "capacity_feasible": 9,
+      "geometrically_feasible": 9,
+      "physically_valid": 9,
+      "policy_pattern_compliant": 9,
+      "executor_statuses": {
+        "SUCCESS": 9
+      },
+      "successful_pickups": 9,
+      "jointly_only_selected_recommendations": 0,
+      "jointly_only_pickups": 0,
+      "observed_usage_cost_usd": "0.00049185"
+    },
+    {
+      "world": "development-003",
+      "stratum": "light",
+      "agent_capacities": {
+        "A": 1.4,
+        "B": 1.4
+      },
+      "boxes": [
+        {
+          "id": "b0",
+          "level": 0.4,
+          "jointly_only": false
+        },
+        {
+          "id": "b1",
+          "level": 0.6,
+          "jointly_only": false
+        },
+        {
+          "id": "b2",
+          "level": 1.0,
+          "jointly_only": false
+        }
+      ],
+      "repetitions": [
+        {
+          "repetition": 1,
+          "statuses": {
+            "P0": "GOOD",
+            "R": "GOOD",
+            "F": "GOOD"
+          },
+          "allocations": {
+            "P0": {
+              "A": "b0",
+              "B": null
+            },
+            "R": {
+              "A": "b2",
+              "B": "b2"
+            },
+            "F": {
+              "A": "b0",
+              "B": null
+            }
+          },
+          "pairpass": 1
+        },
+        {
+          "repetition": 2,
+          "statuses": {
+            "P0": "GOOD",
+            "R": "GOOD",
+            "F": "GOOD"
+          },
+          "allocations": {
+            "P0": {
+              "A": "b0",
+              "B": null
+            },
+            "R": {
+              "A": "b2",
+              "B": "b2"
+            },
+            "F": {
+              "A": "b0",
+              "B": null
+            }
+          },
+          "pairpass": 1
+        },
+        {
+          "repetition": 3,
+          "statuses": {
+            "P0": "GOOD",
+            "R": "GOOD",
+            "F": "GOOD"
+          },
+          "allocations": {
+            "P0": {
+              "A": "b0",
+              "B": null
+            },
+            "R": {
+              "A": "b0",
+              "B": "b0"
+            },
+            "F": {
+              "A": "b0",
+              "B": null
+            }
+          },
+          "pairpass": 1
+        }
+      ],
+      "pairpass_count": 3,
+      "pairpass_denominator": 3,
+      "conditions": 9,
+      "statuses": {
+        "GOOD": 9
+      },
+      "strict_good": 9,
+      "strict_goodness_rate": 1.0,
+      "parseable": 9,
+      "capacity_feasible": 9,
+      "geometrically_feasible": 9,
+      "physically_valid": 9,
+      "policy_pattern_compliant": 9,
+      "executor_statuses": {
+        "SUCCESS": 9
+      },
+      "successful_pickups": 9,
+      "jointly_only_selected_recommendations": 0,
+      "jointly_only_pickups": 0,
+      "observed_usage_cost_usd": "0.00049185"
+    },
+    {
+      "world": "development-004",
+      "stratum": "light",
+      "agent_capacities": {
+        "A": 1.4,
+        "B": 1.0
+      },
+      "boxes": [
+        {
+          "id": "b0",
+          "level": 0.4,
+          "jointly_only": false
+        },
+        {
+          "id": "b1",
+          "level": 0.6,
+          "jointly_only": false
+        },
+        {
+          "id": "b2",
+          "level": 0.8,
+          "jointly_only": false
+        }
+      ],
+      "repetitions": [
+        {
+          "repetition": 1,
+          "statuses": {
+            "P0": "GOOD",
+            "R": "GOOD",
+            "F": "GOOD"
+          },
+          "allocations": {
+            "P0": {
+              "A": "b0",
+              "B": null
+            },
+            "R": {
+              "A": "b0",
+              "B": "b0"
+            },
+            "F": {
+              "A": "b0",
+              "B": null
+            }
+          },
+          "pairpass": 1
+        },
+        {
+          "repetition": 2,
+          "statuses": {
+            "P0": "GOOD",
+            "R": "GOOD",
+            "F": "GOOD"
+          },
+          "allocations": {
+            "P0": {
+              "A": "b0",
+              "B": null
+            },
+            "R": {
+              "A": "b0",
+              "B": "b0"
+            },
+            "F": {
+              "A": "b0",
+              "B": null
+            }
+          },
+          "pairpass": 1
+        },
+        {
+          "repetition": 3,
+          "statuses": {
+            "P0": "GOOD",
+            "R": "GOOD",
+            "F": "GOOD"
+          },
+          "allocations": {
+            "P0": {
+              "A": "b0",
+              "B": null
+            },
+            "R": {
+              "A": "b0",
+              "B": "b0"
+            },
+            "F": {
+              "A": "b0",
+              "B": null
+            }
+          },
+          "pairpass": 1
+        }
+      ],
+      "pairpass_count": 3,
+      "pairpass_denominator": 3,
+      "conditions": 9,
+      "statuses": {
+        "GOOD": 9
+      },
+      "strict_good": 9,
+      "strict_goodness_rate": 1.0,
+      "parseable": 9,
+      "capacity_feasible": 9,
+      "geometrically_feasible": 9,
+      "physically_valid": 9,
+      "policy_pattern_compliant": 9,
+      "executor_statuses": {
+        "SUCCESS": 9
+      },
+      "successful_pickups": 9,
+      "jointly_only_selected_recommendations": 0,
+      "jointly_only_pickups": 0,
+      "observed_usage_cost_usd": "0.00049185"
+    },
+    {
+      "world": "development-005",
+      "stratum": "light",
+      "agent_capacities": {
+        "A": 1.4,
+        "B": 0.8
+      },
+      "boxes": [
+        {
+          "id": "b0",
+          "level": 0.4,
+          "jointly_only": false
+        },
+        {
+          "id": "b1",
+          "level": 0.6,
+          "jointly_only": false
+        },
+        {
+          "id": "b2",
+          "level": 0.6,
+          "jointly_only": false
+        }
+      ],
+      "repetitions": [
+        {
+          "repetition": 1,
+          "statuses": {
+            "P0": "GOOD",
+            "R": "GOOD",
+            "F": "GOOD"
+          },
+          "allocations": {
+            "P0": {
+              "A": "b0",
+              "B": null
+            },
+            "R": {
+              "A": "b2",
+              "B": "b2"
+            },
+            "F": {
+              "A": "b0",
+              "B": null
+            }
+          },
+          "pairpass": 1
+        },
+        {
+          "repetition": 2,
+          "statuses": {
+            "P0": "GOOD",
+            "R": "GOOD",
+            "F": "GOOD"
+          },
+          "allocations": {
+            "P0": {
+              "A": "b0",
+              "B": null
+            },
+            "R": {
+              "A": "b2",
+              "B": "b2"
+            },
+            "F": {
+              "A": "b2",
+              "B": null
+            }
+          },
+          "pairpass": 1
+        },
+        {
+          "repetition": 3,
+          "statuses": {
+            "P0": "GOOD",
+            "R": "GOOD",
+            "F": "GOOD"
+          },
+          "allocations": {
+            "P0": {
+              "A": "b0",
+              "B": null
+            },
+            "R": {
+              "A": "b2",
+              "B": "b2"
+            },
+            "F": {
+              "A": "b2",
+              "B": null
+            }
+          },
+          "pairpass": 1
+        }
+      ],
+      "pairpass_count": 3,
+      "pairpass_denominator": 3,
+      "conditions": 9,
+      "statuses": {
+        "GOOD": 9
+      },
+      "strict_good": 9,
+      "strict_goodness_rate": 1.0,
+      "parseable": 9,
+      "capacity_feasible": 9,
+      "geometrically_feasible": 9,
+      "physically_valid": 9,
+      "policy_pattern_compliant": 9,
+      "executor_statuses": {
+        "SUCCESS": 9
+      },
+      "successful_pickups": 9,
+      "jointly_only_selected_recommendations": 0,
+      "jointly_only_pickups": 0,
+      "observed_usage_cost_usd": "0.00049185"
+    },
+    {
+      "world": "development-006",
+      "stratum": "mixed",
+      "agent_capacities": {
+        "A": 1.0,
+        "B": 1.0
+      },
+      "boxes": [
+        {
+          "id": "b0",
+          "level": 0.4,
+          "jointly_only": false
+        },
+        {
+          "id": "b1",
+          "level": 0.6,
+          "jointly_only": false
+        },
+        {
+          "id": "b2",
+          "level": 1.2,
+          "jointly_only": true
+        }
+      ],
+      "repetitions": [
+        {
+          "repetition": 1,
+          "statuses": {
+            "P0": "GOOD",
+            "R": "GOOD",
+            "F": "GOOD"
+          },
+          "allocations": {
+            "P0": {
+              "A": "b0",
+              "B": null
+            },
+            "R": {
+              "A": "b0",
+              "B": "b0"
+            },
+            "F": {
+              "A": "b0",
+              "B": null
+            }
+          },
+          "pairpass": 1
+        },
+        {
+          "repetition": 2,
+          "statuses": {
+            "P0": "GOOD",
+            "R": "GOOD",
+            "F": "GOOD"
+          },
+          "allocations": {
+            "P0": {
+              "A": "b0",
+              "B": null
+            },
+            "R": {
+              "A": "b0",
+              "B": "b0"
+            },
+            "F": {
+              "A": "b0",
+              "B": null
+            }
+          },
+          "pairpass": 1
+        },
+        {
+          "repetition": 3,
+          "statuses": {
+            "P0": "GOOD",
+            "R": "GOOD",
+            "F": "GOOD"
+          },
+          "allocations": {
+            "P0": {
+              "A": "b0",
+              "B": null
+            },
+            "R": {
+              "A": "b0",
+              "B": "b0"
+            },
+            "F": {
+              "A": "b0",
+              "B": null
+            }
+          },
+          "pairpass": 1
+        }
+      ],
+      "pairpass_count": 3,
+      "pairpass_denominator": 3,
+      "conditions": 9,
+      "statuses": {
+        "GOOD": 9
+      },
+      "strict_good": 9,
+      "strict_goodness_rate": 1.0,
+      "parseable": 9,
+      "capacity_feasible": 9,
+      "geometrically_feasible": 9,
+      "physically_valid": 9,
+      "policy_pattern_compliant": 9,
+      "executor_statuses": {
+        "SUCCESS": 9
+      },
+      "successful_pickups": 9,
+      "jointly_only_selected_recommendations": 0,
+      "jointly_only_pickups": 0,
+      "observed_usage_cost_usd": "0.00049185"
+    },
+    {
+      "world": "development-007",
+      "stratum": "mixed",
+      "agent_capacities": {
+        "A": 1.2,
+        "B": 1.4
+      },
+      "boxes": [
+        {
+          "id": "b0",
+          "level": 0.4,
+          "jointly_only": false
+        },
+        {
+          "id": "b1",
+          "level": 0.6,
+          "jointly_only": false
+        },
+        {
+          "id": "b2",
+          "level": 1.6,
+          "jointly_only": true
+        }
+      ],
+      "repetitions": [
+        {
+          "repetition": 1,
+          "statuses": {
+            "P0": "GOOD",
+            "R": "GOOD",
+            "F": "GOOD"
+          },
+          "allocations": {
+            "P0": {
+              "A": "b1",
+              "B": null
+            },
+            "R": {
+              "A": "b1",
+              "B": "b1"
+            },
+            "F": {
+              "A": "b1",
+              "B": null
+            }
+          },
+          "pairpass": 1
+        },
+        {
+          "repetition": 2,
+          "statuses": {
+            "P0": "GOOD",
+            "R": "GOOD",
+            "F": "GOOD"
+          },
+          "allocations": {
+            "P0": {
+              "A": "b1",
+              "B": null
+            },
+            "R": {
+              "A": "b1",
+              "B": "b1"
+            },
+            "F": {
+              "A": "b1",
+              "B": null
+            }
+          },
+          "pairpass": 1
+        },
+        {
+          "repetition": 3,
+          "statuses": {
+            "P0": "GOOD",
+            "R": "GOOD",
+            "F": "GOOD"
+          },
+          "allocations": {
+            "P0": {
+              "A": "b1",
+              "B": null
+            },
+            "R": {
+              "A": "b1",
+              "B": "b1"
+            },
+            "F": {
+              "A": "b1",
+              "B": null
+            }
+          },
+          "pairpass": 1
+        }
+      ],
+      "pairpass_count": 3,
+      "pairpass_denominator": 3,
+      "conditions": 9,
+      "statuses": {
+        "GOOD": 9
+      },
+      "strict_good": 9,
+      "strict_goodness_rate": 1.0,
+      "parseable": 9,
+      "capacity_feasible": 9,
+      "geometrically_feasible": 9,
+      "physically_valid": 9,
+      "policy_pattern_compliant": 9,
+      "executor_statuses": {
+        "SUCCESS": 9
+      },
+      "successful_pickups": 9,
+      "jointly_only_selected_recommendations": 0,
+      "jointly_only_pickups": 0,
+      "observed_usage_cost_usd": "0.00049185"
+    },
+    {
+      "world": "development-008",
+      "stratum": "mixed",
+      "agent_capacities": {
+        "A": 1.0,
+        "B": 0.8
+      },
+      "boxes": [
+        {
+          "id": "b0",
+          "level": 0.4,
+          "jointly_only": false
+        },
+        {
+          "id": "b1",
+          "level": 0.6,
+          "jointly_only": false
+        },
+        {
+          "id": "b2",
+          "level": 1.2,
+          "jointly_only": true
+        }
+      ],
+      "repetitions": [
+        {
+          "repetition": 1,
+          "statuses": {
+            "P0": "GOOD",
+            "R": "GOOD",
+            "F": "GOOD"
+          },
+          "allocations": {
+            "P0": {
+              "A": "b1",
+              "B": null
+            },
+            "R": {
+              "A": "b1",
+              "B": "b1"
+            },
+            "F": {
+              "A": "b1",
+              "B": null
+            }
+          },
+          "pairpass": 1
+        },
+        {
+          "repetition": 2,
+          "statuses": {
+            "P0": "GOOD",
+            "R": "GOOD",
+            "F": "GOOD"
+          },
+          "allocations": {
+            "P0": {
+              "A": "b1",
+              "B": null
+            },
+            "R": {
+              "A": "b1",
+              "B": "b1"
+            },
+            "F": {
+              "A": "b1",
+              "B": null
+            }
+          },
+          "pairpass": 1
+        },
+        {
+          "repetition": 3,
+          "statuses": {
+            "P0": "GOOD",
+            "R": "GOOD",
+            "F": "GOOD"
+          },
+          "allocations": {
+            "P0": {
+              "A": "b1",
+              "B": null
+            },
+            "R": {
+              "A": "b1",
+              "B": "b1"
+            },
+            "F": {
+              "A": "b1",
+              "B": null
+            }
+          },
+          "pairpass": 1
+        }
+      ],
+      "pairpass_count": 3,
+      "pairpass_denominator": 3,
+      "conditions": 9,
+      "statuses": {
+        "GOOD": 9
+      },
+      "strict_good": 9,
+      "strict_goodness_rate": 1.0,
+      "parseable": 9,
+      "capacity_feasible": 9,
+      "geometrically_feasible": 9,
+      "physically_valid": 9,
+      "policy_pattern_compliant": 9,
+      "executor_statuses": {
+        "SUCCESS": 9
+      },
+      "successful_pickups": 9,
+      "jointly_only_selected_recommendations": 0,
+      "jointly_only_pickups": 0,
+      "observed_usage_cost_usd": "0.00049185"
+    },
+    {
+      "world": "development-009",
+      "stratum": "mixed",
+      "agent_capacities": {
+        "A": 1.2,
+        "B": 1.2
+      },
+      "boxes": [
+        {
+          "id": "b0",
+          "level": 0.4,
+          "jointly_only": false
+        },
+        {
+          "id": "b1",
+          "level": 0.6,
+          "jointly_only": false
+        },
+        {
+          "id": "b2",
+          "level": 1.4,
+          "jointly_only": true
+        }
+      ],
+      "repetitions": [
+        {
+          "repetition": 1,
+          "statuses": {
+            "P0": "GOOD",
+            "R": "GOOD",
+            "F": "GOOD"
+          },
+          "allocations": {
+            "P0": {
+              "A": "b1",
+              "B": null
+            },
+            "R": {
+              "A": "b1",
+              "B": "b1"
+            },
+            "F": {
+              "A": "b0",
+              "B": null
+            }
+          },
+          "pairpass": 1
+        },
+        {
+          "repetition": 2,
+          "statuses": {
+            "P0": "GOOD",
+            "R": "GOOD",
+            "F": "GOOD"
+          },
+          "allocations": {
+            "P0": {
+              "A": "b1",
+              "B": null
+            },
+            "R": {
+              "A": "b1",
+              "B": "b1"
+            },
+            "F": {
+              "A": "b0",
+              "B": null
+            }
+          },
+          "pairpass": 1
+        },
+        {
+          "repetition": 3,
+          "statuses": {
+            "P0": "GOOD",
+            "R": "GOOD",
+            "F": "GOOD"
+          },
+          "allocations": {
+            "P0": {
+              "A": "b1",
+              "B": null
+            },
+            "R": {
+              "A": "b1",
+              "B": "b1"
+            },
+            "F": {
+              "A": "b0",
+              "B": null
+            }
+          },
+          "pairpass": 1
+        }
+      ],
+      "pairpass_count": 3,
+      "pairpass_denominator": 3,
+      "conditions": 9,
+      "statuses": {
+        "GOOD": 9
+      },
+      "strict_good": 9,
+      "strict_goodness_rate": 1.0,
+      "parseable": 9,
+      "capacity_feasible": 9,
+      "geometrically_feasible": 9,
+      "physically_valid": 9,
+      "policy_pattern_compliant": 9,
+      "executor_statuses": {
+        "SUCCESS": 9
+      },
+      "successful_pickups": 9,
+      "jointly_only_selected_recommendations": 0,
+      "jointly_only_pickups": 0,
+      "observed_usage_cost_usd": "0.00049185"
+    },
+    {
+      "world": "development-010",
+      "stratum": "mixed",
+      "agent_capacities": {
+        "A": 0.8,
+        "B": 1.2
+      },
+      "boxes": [
+        {
+          "id": "b0",
+          "level": 0.4,
+          "jointly_only": false
+        },
+        {
+          "id": "b1",
+          "level": 0.6,
+          "jointly_only": false
+        },
+        {
+          "id": "b2",
+          "level": 1.4,
+          "jointly_only": true
+        }
+      ],
+      "repetitions": [
+        {
+          "repetition": 1,
+          "statuses": {
+            "P0": "GOOD",
+            "R": "GOOD",
+            "F": "GOOD"
+          },
+          "allocations": {
+            "P0": {
+              "A": "b0",
+              "B": null
+            },
+            "R": {
+              "A": "b0",
+              "B": "b0"
+            },
+            "F": {
+              "A": "b0",
+              "B": "b1"
+            }
+          },
+          "pairpass": 1
+        },
+        {
+          "repetition": 2,
+          "statuses": {
+            "P0": "GOOD",
+            "R": "GOOD",
+            "F": "GOOD"
+          },
+          "allocations": {
+            "P0": {
+              "A": "b0",
+              "B": null
+            },
+            "R": {
+              "A": "b0",
+              "B": "b0"
+            },
+            "F": {
+              "A": "b0",
+              "B": "b1"
+            }
+          },
+          "pairpass": 1
+        },
+        {
+          "repetition": 3,
+          "statuses": {
+            "P0": "GOOD",
+            "R": "GOOD",
+            "F": "GOOD"
+          },
+          "allocations": {
+            "P0": {
+              "A": "b0",
+              "B": null
+            },
+            "R": {
+              "A": "b0",
+              "B": "b0"
+            },
+            "F": {
+              "A": "b0",
+              "B": null
+            }
+          },
+          "pairpass": 1
+        }
+      ],
+      "pairpass_count": 3,
+      "pairpass_denominator": 3,
+      "conditions": 9,
+      "statuses": {
+        "GOOD": 9
+      },
+      "strict_good": 9,
+      "strict_goodness_rate": 1.0,
+      "parseable": 9,
+      "capacity_feasible": 9,
+      "geometrically_feasible": 9,
+      "physically_valid": 9,
+      "policy_pattern_compliant": 9,
+      "executor_statuses": {
+        "SUCCESS": 9
+      },
+      "successful_pickups": 9,
+      "jointly_only_selected_recommendations": 0,
+      "jointly_only_pickups": 0,
+      "observed_usage_cost_usd": "0.00049305"
+    },
+    {
+      "world": "development-011",
+      "stratum": "mixed",
+      "agent_capacities": {
+        "A": 1.4,
+        "B": 0.8
+      },
+      "boxes": [
+        {
+          "id": "b0",
+          "level": 0.4,
+          "jointly_only": false
+        },
+        {
+          "id": "b1",
+          "level": 0.6,
+          "jointly_only": false
+        },
+        {
+          "id": "b2",
+          "level": 1.6,
+          "jointly_only": true
+        }
+      ],
+      "repetitions": [
+        {
+          "repetition": 1,
+          "statuses": {
+            "P0": "GOOD",
+            "R": "GOOD",
+            "F": "GOOD"
+          },
+          "allocations": {
+            "P0": {
+              "A": "b0",
+              "B": null
+            },
+            "R": {
+              "A": "b0",
+              "B": "b0"
+            },
+            "F": {
+              "A": "b0",
+              "B": null
+            }
+          },
+          "pairpass": 1
+        },
+        {
+          "repetition": 2,
+          "statuses": {
+            "P0": "GOOD",
+            "R": "GOOD",
+            "F": "GOOD"
+          },
+          "allocations": {
+            "P0": {
+              "A": "b0",
+              "B": null
+            },
+            "R": {
+              "A": "b0",
+              "B": "b0"
+            },
+            "F": {
+              "A": "b0",
+              "B": null
+            }
+          },
+          "pairpass": 1
+        },
+        {
+          "repetition": 3,
+          "statuses": {
+            "P0": "GOOD",
+            "R": "GOOD",
+            "F": "GOOD"
+          },
+          "allocations": {
+            "P0": {
+              "A": "b0",
+              "B": null
+            },
+            "R": {
+              "A": "b0",
+              "B": "b0"
+            },
+            "F": {
+              "A": "b0",
+              "B": null
+            }
+          },
+          "pairpass": 1
+        }
+      ],
+      "pairpass_count": 3,
+      "pairpass_denominator": 3,
+      "conditions": 9,
+      "statuses": {
+        "GOOD": 9
+      },
+      "strict_good": 9,
+      "strict_goodness_rate": 1.0,
+      "parseable": 9,
+      "capacity_feasible": 9,
+      "geometrically_feasible": 9,
+      "physically_valid": 9,
+      "policy_pattern_compliant": 9,
+      "executor_statuses": {
+        "SUCCESS": 9
+      },
+      "successful_pickups": 9,
+      "jointly_only_selected_recommendations": 0,
+      "jointly_only_pickups": 0,
+      "observed_usage_cost_usd": "0.00049185"
+    }
+  ],
+  "pairs": [
+    {
+      "world": "development-000",
+      "repetition": 1,
+      "pairpass": 1,
+      "R_status": "GOOD",
+      "F_status": "GOOD"
+    },
+    {
+      "world": "development-000",
+      "repetition": 2,
+      "pairpass": 1,
+      "R_status": "GOOD",
+      "F_status": "GOOD"
+    },
+    {
+      "world": "development-000",
+      "repetition": 3,
+      "pairpass": 1,
+      "R_status": "GOOD",
+      "F_status": "GOOD"
+    },
+    {
+      "world": "development-001",
+      "repetition": 1,
+      "pairpass": 1,
+      "R_status": "GOOD",
+      "F_status": "GOOD"
+    },
+    {
+      "world": "development-001",
+      "repetition": 2,
+      "pairpass": 1,
+      "R_status": "GOOD",
+      "F_status": "GOOD"
+    },
+    {
+      "world": "development-001",
+      "repetition": 3,
+      "pairpass": 1,
+      "R_status": "GOOD",
+      "F_status": "GOOD"
+    },
+    {
+      "world": "development-002",
+      "repetition": 1,
+      "pairpass": 1,
+      "R_status": "GOOD",
+      "F_status": "GOOD"
+    },
+    {
+      "world": "development-002",
+      "repetition": 2,
+      "pairpass": 1,
+      "R_status": "GOOD",
+      "F_status": "GOOD"
+    },
+    {
+      "world": "development-002",
+      "repetition": 3,
+      "pairpass": 1,
+      "R_status": "GOOD",
+      "F_status": "GOOD"
+    },
+    {
+      "world": "development-003",
+      "repetition": 1,
+      "pairpass": 1,
+      "R_status": "GOOD",
+      "F_status": "GOOD"
+    },
+    {
+      "world": "development-003",
+      "repetition": 2,
+      "pairpass": 1,
+      "R_status": "GOOD",
+      "F_status": "GOOD"
+    },
+    {
+      "world": "development-003",
+      "repetition": 3,
+      "pairpass": 1,
+      "R_status": "GOOD",
+      "F_status": "GOOD"
+    },
+    {
+      "world": "development-004",
+      "repetition": 1,
+      "pairpass": 1,
+      "R_status": "GOOD",
+      "F_status": "GOOD"
+    },
+    {
+      "world": "development-004",
+      "repetition": 2,
+      "pairpass": 1,
+      "R_status": "GOOD",
+      "F_status": "GOOD"
+    },
+    {
+      "world": "development-004",
+      "repetition": 3,
+      "pairpass": 1,
+      "R_status": "GOOD",
+      "F_status": "GOOD"
+    },
+    {
+      "world": "development-005",
+      "repetition": 1,
+      "pairpass": 1,
+      "R_status": "GOOD",
+      "F_status": "GOOD"
+    },
+    {
+      "world": "development-005",
+      "repetition": 2,
+      "pairpass": 1,
+      "R_status": "GOOD",
+      "F_status": "GOOD"
+    },
+    {
+      "world": "development-005",
+      "repetition": 3,
+      "pairpass": 1,
+      "R_status": "GOOD",
+      "F_status": "GOOD"
+    },
+    {
+      "world": "development-006",
+      "repetition": 1,
+      "pairpass": 1,
+      "R_status": "GOOD",
+      "F_status": "GOOD"
+    },
+    {
+      "world": "development-006",
+      "repetition": 2,
+      "pairpass": 1,
+      "R_status": "GOOD",
+      "F_status": "GOOD"
+    },
+    {
+      "world": "development-006",
+      "repetition": 3,
+      "pairpass": 1,
+      "R_status": "GOOD",
+      "F_status": "GOOD"
+    },
+    {
+      "world": "development-007",
+      "repetition": 1,
+      "pairpass": 1,
+      "R_status": "GOOD",
+      "F_status": "GOOD"
+    },
+    {
+      "world": "development-007",
+      "repetition": 2,
+      "pairpass": 1,
+      "R_status": "GOOD",
+      "F_status": "GOOD"
+    },
+    {
+      "world": "development-007",
+      "repetition": 3,
+      "pairpass": 1,
+      "R_status": "GOOD",
+      "F_status": "GOOD"
+    },
+    {
+      "world": "development-008",
+      "repetition": 1,
+      "pairpass": 1,
+      "R_status": "GOOD",
+      "F_status": "GOOD"
+    },
+    {
+      "world": "development-008",
+      "repetition": 2,
+      "pairpass": 1,
+      "R_status": "GOOD",
+      "F_status": "GOOD"
+    },
+    {
+      "world": "development-008",
+      "repetition": 3,
+      "pairpass": 1,
+      "R_status": "GOOD",
+      "F_status": "GOOD"
+    },
+    {
+      "world": "development-009",
+      "repetition": 1,
+      "pairpass": 1,
+      "R_status": "GOOD",
+      "F_status": "GOOD"
+    },
+    {
+      "world": "development-009",
+      "repetition": 2,
+      "pairpass": 1,
+      "R_status": "GOOD",
+      "F_status": "GOOD"
+    },
+    {
+      "world": "development-009",
+      "repetition": 3,
+      "pairpass": 1,
+      "R_status": "GOOD",
+      "F_status": "GOOD"
+    },
+    {
+      "world": "development-010",
+      "repetition": 1,
+      "pairpass": 1,
+      "R_status": "GOOD",
+      "F_status": "GOOD"
+    },
+    {
+      "world": "development-010",
+      "repetition": 2,
+      "pairpass": 1,
+      "R_status": "GOOD",
+      "F_status": "GOOD"
+    },
+    {
+      "world": "development-010",
+      "repetition": 3,
+      "pairpass": 1,
+      "R_status": "GOOD",
+      "F_status": "GOOD"
+    },
+    {
+      "world": "development-011",
+      "repetition": 1,
+      "pairpass": 1,
+      "R_status": "GOOD",
+      "F_status": "GOOD"
+    },
+    {
+      "world": "development-011",
+      "repetition": 2,
+      "pairpass": 1,
+      "R_status": "GOOD",
+      "F_status": "GOOD"
+    },
+    {
+      "world": "development-011",
+      "repetition": 3,
+      "pairpass": 1,
+      "R_status": "GOOD",
+      "F_status": "GOOD"
+    }
+  ],
+  "distinct_failure_examples": [],
+  "usage": {
+    "prompt_tokens": 34020,
+    "cached_input_tokens": 0,
+    "completion_tokens": 1334
+  },
+  "observed_usage_cost_usd": "0.00590340",
+  "cost_is_invoiced": false,
+  "unknown_cost_attempts": 0,
+  "reserved_upper_bound_usd": 0.1785888,
+  "all_conditions": {
+    "conditions": 108,
+    "statuses": {
+      "GOOD": 108
+    },
+    "strict_good": 108,
+    "strict_goodness_rate": 1.0,
+    "parseable": 108,
+    "capacity_feasible": 108,
+    "geometrically_feasible": 108,
+    "physically_valid": 108,
+    "policy_pattern_compliant": 108,
+    "executor_statuses": {
+      "SUCCESS": 108
+    },
+    "successful_pickups": 108,
+    "jointly_only_selected_recommendations": 0,
+    "jointly_only_pickups": 0,
+    "observed_usage_cost_usd": "0.00590340"
+  }
+}

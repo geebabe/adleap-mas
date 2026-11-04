@@ -1,0 +1,25 @@
+{
+  "verified_on": "2026-11-04",
+  "source_type": "official OpenAI documentation, read-only web access",
+  "primary": {
+    "snapshot": "gpt-4o-mini-2024-07-18",
+    "input_usd_per_million": 0.15,
+    "cached_input_usd_per_million": 0.075,
+    "output_usd_per_million": 0.6,
+    "url": "https://developers.openai.com/api/docs/models/gpt-4o-mini",
+    "status": "deprecated; account access not tested"
+  },
+  "replication": {
+    "snapshot": "gpt-4.1-mini-2025-04-14",
+    "input_usd_per_million": 0.4,
+    "cached_input_usd_per_million": 0.1,
+    "output_usd_per_million": 1.6,
+    "url": "https://developers.openai.com/api/docs/models/gpt-4.1-mini",
+    "status": "deprecated; account access not tested"
+  },
+  "request_settings_source": "https://developers.openai.com/api/reference/resources/chat/subresources/completions/methods/create",
+  "pricing_overview": "https://developers.openai.com/api/docs/pricing",
+  "deprecation_source": "https://developers.openai.com/api/docs/deprecations",
+  "claims_boundary": "Documented snapshots/endpoints/prices; not verified account-level availability or supported settings for this account. Smoke check only after spending authorization. No model substitution without a new development-only preregistration.",
+  "billing_basis": "USD, standard tier, text only, no tools; budget assumes uncached input. Tax/currency conversion outside token estimate."
+}

@@ -1,0 +1,5 @@
+model_role,model_snapshot,language,scheduled_calls,completed_calls,provider_attempts,parseability,capacity_validity,geometric_validity,physical_validity,progressive_goodness,infrastructure_failed_attempts,exhausted_infrastructure_slots,observed_usage_cost_usd,attempts_with_unknown_cost,reserved_upper_bound_usd,cost_is_invoiced,compatibility_observed,statuses,passed
+primary,gpt-4o-mini-2024-07-18,EN,36,36,36,1.0,1.0,1.0,1.0,1.0,0,0,0.00198,0,0.059529599999999995,False,True,{'GOOD': 36},True
+primary,gpt-4o-mini-2024-07-18,VI,36,36,36,1.0,1.0,1.0,1.0,1.0,0,0,0.0020682,0,0.059529599999999995,False,True,{'GOOD': 36},True
+replication,gpt-4.1-mini-2025-04-14,EN,36,36,36,1.0,0.9444444444444444,1.0,0.9444444444444444,0.9444444444444444,0,0,0.005288,0,0.15874560000000001,False,True,"{'GOOD': 34, 'PHYSICS': 2}",False
+replication,gpt-4.1-mini-2025-04-14,VI,36,36,36,1.0,0.8611111111111112,1.0,0.8611111111111112,0.8611111111111112,0,0,0.0055248,0,0.15874560000000001,False,True,"{'GOOD': 31, 'PHYSICS': 5}",False

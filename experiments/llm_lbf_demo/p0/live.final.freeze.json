@@ -1,0 +1,243 @@
+{
+  "status": "FINAL_P0_CONFIGURATION_FROZEN",
+  "binding": {
+    "proposal_hash": "ccc8c0699ca4078106fc7398dede3deb7c6e7fe374402b6e398ba2ab03bcc4bb",
+    "policy_hash": "e697de1da770bdd42cf431c6a205404c1a03fb718bf5c4f726fa1430bb05410d",
+    "policy_file_sha256": "49c899c6ae29ab2fd2bba6aaa9d5d4afbbf63b7afe5cad9de883ac8aa4ce4abd",
+    "manifest_hash": "273d3f15000247bdde3d9e0776204da599fdaa2fdeb3e09033e0dfbd57a3a955",
+    "executor": {
+      "executor_version": "e1-motion-2",
+      "executor_source_hash": "c2cfbd0e9971c1fda23723b0220173c307d534880201b96c072006373dd531cc",
+      "recovered_testbed_sha256": "7296cab935d1260d89615194ce4835afe22c0137f9dd1be74f4a9dd699330ab3",
+      "upstream_commit": "0874e57fc4974d7e1f8bdd5d39e04119e7053d6f",
+      "witness_file_sha256": "8b744973f2f2e5a9ec77239ece8b6bdc42d449de045d0f57d3ead8ddb4cea466",
+      "witnesses": {
+        "covered": 864,
+        "successes": 864,
+        "failures": []
+      }
+    },
+    "e1_code_hashes": {
+      "e1/__init__.py": "032e3a8514da89a467aefa9a5bb5eb7b9fe6b9f79aab096def118ea9b2c26b0c",
+      "e1/analyze_e1.py": "5408e572b0d4a5b0564b5d1422075a16c2ded1f22316dea33fad9ab3155ebd39",
+      "e1/common.py": "5d27da0d8eed131903fe0834ee5b1a084df296490ae3754dcac37484f7c17741",
+      "e1/controller.py": "2d663a44c6783887e2e209f46d077fb5e242c45bca9af982b8f09876988098d3",
+      "e1/e1_oracle.py": "8edb83a9d539f4b2c206d55b1b5fbeef425f48dedffab9f3bb61389e7a14c8e6",
+      "e1/executor.py": "c2cfbd0e9971c1fda23723b0220173c307d534880201b96c072006373dd531cc",
+      "e1/journal.py": "aed09bf388a66eadf9caa574a3d56a894c6991606db54af01502494a035820c0",
+      "e1/providers.py": "7892fd7cdec1400ed1b4419ca5a7c7f6e5f0243c52ad5cfc5ec3f20fb4e3e055",
+      "e1/run_e1.py": "09807ab704f719f4c2c843c4cb156970b9fa9e07474d9dc1048dd847351a550a",
+      "e1/safeguards.py": "ed7f57b7290511406e1a37553d055164de9f1ff8c071108b5c6180e1dfc62f8a",
+      "e1/worlds.py": "636cc606fca09c527b97b9f089f8280d6a8d08a4ab615a209871781844612145",
+      "requirements.lock": "22ccd65435efb5b18c42eda9f89786f25c8eb12710bf863aba256adc58f405f4",
+      "testbed.py": "7296cab935d1260d89615194ce4835afe22c0137f9dd1be74f4a9dd699330ab3",
+      "upstream.lock.json": "15a295828784d1864679d9400338a13d8061c2639487aecf492c7f79606e3006"
+    },
+    "p0_code_hashes": {
+      "__init__.py": "8170b88a3ec76071521058f05656b90634365db46c27e377d201691f0253789f",
+      "prepare.py": "0852cd8f851b6446cc8eddc9b94343a5f13575b8b7cc40863a0ed361a4b94811",
+      "report.py": "56858fff38631155dfd958eb0fe161ec63b680d0ed941f5cd7ea5efe79f976ba",
+      "transport.py": "fb628a5cd5bcdc6602620fbcb1f0b504125265c3d37687467e5707223feb064c"
+    },
+    "request_settings": {
+      "temperature": 0,
+      "max_completion_tokens": 256,
+      "response_format": {
+        "type": "json_object"
+      },
+      "n": 1,
+      "stream": false,
+      "store": false,
+      "service_tier": "default"
+    },
+    "thresholds": {
+      "parseability": 0.98,
+      "physical_validity": 0.95,
+      "progressive_goodness": 0.8
+    },
+    "gate_slot_hash": "a545e5c0d223156d26fe685b2522c1a6d219660d94d2f9256307e758dd3b1ff8"
+  },
+  "binding_hash": "01327989b058586ebbb726dc5d05adfe089435cfedd551515a90afa635496707",
+  "proposal": {
+    "version": "P0-proposal-1",
+    "status": "PROPOSED_AWAITING_HUMAN_REVIEW_AUTHORIZATION_AND_SMOKE",
+    "explicit_live_approval": false,
+    "dollar_ceiling": 1.5,
+    "budgets_usd": {
+      "gate": 1.5,
+      "smoke": 0.05
+    },
+    "models": [
+      {
+        "role": "primary",
+        "id": "gpt-4o-mini-2024-07-18",
+        "snapshot_frozen": true,
+        "temperature": 0,
+        "max_input_tokens": 10000,
+        "max_output_tokens": 256,
+        "input_usd_per_million": 0.15,
+        "cached_input_usd_per_million": 0.075,
+        "output_usd_per_million": 0.6,
+        "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4o-mini"
+      },
+      {
+        "role": "replication",
+        "id": "gpt-4.1-mini-2025-04-14",
+        "snapshot_frozen": true,
+        "temperature": 0,
+        "max_input_tokens": 10000,
+        "max_output_tokens": 256,
+        "input_usd_per_million": 0.4,
+        "cached_input_usd_per_million": 0.1,
+        "output_usd_per_million": 1.6,
+        "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4.1-mini"
+      }
+    ],
+    "provider": "OpenAI",
+    "endpoint": "https://api.openai.com/v1/chat/completions",
+    "request_settings": {
+      "temperature": 0,
+      "max_completion_tokens": 256,
+      "response_format": {
+        "type": "json_object"
+      },
+      "n": 1,
+      "stream": false,
+      "store": false,
+      "service_tier": "default"
+    },
+    "max_infrastructure_retries": 2,
+    "formal_gate_slots": 144,
+    "smoke_slots": 4,
+    "smoke_family": "development-000",
+    "thresholds": {
+      "parseability": 0.98,
+      "physical_validity": 0.95,
+      "progressive_goodness": 0.8
+    },
+    "provider_compatibility": "unverified",
+    "real_P0_performance": "unverified",
+    "bilingual_approval": "unverified",
+    "held_out_E1": "BLOCKED_UNTIL_MATCHING_REAL_P0_GATE_PASSES"
+  },
+  "smoke_journal": "/Users/phoenix/PycharmProjects/adleap-mas/experiments/llm_lbf_demo/p0/runs/smoke-001/attempts.jsonl",
+  "smoke_journal_sha256": "c6b6171dbb89591fe004e32915dcf65b651db2b3aff696e65eae0e00754cb137",
+  "compatibility_report": {
+    "kind": "development_provider_compatibility_smoke_ONLY",
+    "infrastructure_validation": false,
+    "formal_gate_eligible": false,
+    "complete": true,
+    "held_out_E1_authorized": false,
+    "thresholds": {
+      "parseability": 0.98,
+      "physical_validity": 0.95,
+      "progressive_goodness": 0.8
+    },
+    "conditions": [
+      {
+        "model_role": "primary",
+        "model_snapshot": "gpt-4o-mini-2024-07-18",
+        "language": "EN",
+        "scheduled_calls": 1,
+        "completed_calls": 1,
+        "provider_attempts": 1,
+        "parseability": 1.0,
+        "capacity_validity": 1.0,
+        "geometric_validity": 1.0,
+        "physical_validity": 1.0,
+        "progressive_goodness": 1.0,
+        "infrastructure_failed_attempts": 0,
+        "exhausted_infrastructure_slots": 0,
+        "observed_usage_cost_usd": 5.49e-05,
+        "attempts_with_unknown_cost": 0,
+        "reserved_upper_bound_usd": 0.0016535999999999999,
+        "cost_is_invoiced": false,
+        "compatibility_observed": true,
+        "statuses": {
+          "GOOD": 1
+        },
+        "passed": null
+      },
+      {
+        "model_role": "primary",
+        "model_snapshot": "gpt-4o-mini-2024-07-18",
+        "language": "VI",
+        "scheduled_calls": 1,
+        "completed_calls": 1,
+        "provider_attempts": 1,
+        "parseability": 1.0,
+        "capacity_validity": 1.0,
+        "geometric_validity": 1.0,
+        "physical_validity": 1.0,
+        "progressive_goodness": 1.0,
+        "infrastructure_failed_attempts": 0,
+        "exhausted_infrastructure_slots": 0,
+        "observed_usage_cost_usd": 5.745e-05,
+        "attempts_with_unknown_cost": 0,
+        "reserved_upper_bound_usd": 0.0016535999999999999,
+        "cost_is_invoiced": false,
+        "compatibility_observed": true,
+        "statuses": {
+          "GOOD": 1
+        },
+        "passed": null
+      },
+      {
+        "model_role": "replication",
+        "model_snapshot": "gpt-4.1-mini-2025-04-14",
+        "language": "EN",
+        "scheduled_calls": 1,
+        "completed_calls": 1,
+        "provider_attempts": 1,
+        "parseability": 1.0,
+        "capacity_validity": 1.0,
+        "geometric_validity": 1.0,
+        "physical_validity": 1.0,
+        "progressive_goodness": 1.0,
+        "infrastructure_failed_attempts": 0,
+        "exhausted_infrastructure_slots": 0,
+        "observed_usage_cost_usd": 0.0001464,
+        "attempts_with_unknown_cost": 0,
+        "reserved_upper_bound_usd": 0.0044096000000000005,
+        "cost_is_invoiced": false,
+        "compatibility_observed": true,
+        "statuses": {
+          "GOOD": 1
+        },
+        "passed": null
+      },
+      {
+        "model_role": "replication",
+        "model_snapshot": "gpt-4.1-mini-2025-04-14",
+        "language": "VI",
+        "scheduled_calls": 1,
+        "completed_calls": 1,
+        "provider_attempts": 1,
+        "parseability": 1.0,
+        "capacity_validity": 1.0,
+        "geometric_validity": 1.0,
+        "physical_validity": 1.0,
+        "progressive_goodness": 1.0,
+        "infrastructure_failed_attempts": 0,
+        "exhausted_infrastructure_slots": 0,
+        "observed_usage_cost_usd": 0.0001532,
+        "attempts_with_unknown_cost": 0,
+        "reserved_upper_bound_usd": 0.0044096000000000005,
+        "cost_is_invoiced": false,
+        "compatibility_observed": true,
+        "statuses": {
+          "GOOD": 1
+        },
+        "passed": null
+      }
+    ],
+    "total_observed_usage_cost_usd": 0.00041195,
+    "cost_note": "Observed token usage at frozen prices; not an invoice. Unknown failed-call charges are not zero.",
+    "executor_version": "e1-motion-2",
+    "config_hash": "35d3be8989a18bff6c25e7a0239fbe8aa7ed0805c46003f086bdd31db794aa1b",
+    "gate_binding": "3c3dbc558e0c6a389445b782bccae86b9d5bd2f53e2f77a71b2e3ec3946d6a5d",
+    "manifest_hash": "273d3f15000247bdde3d9e0776204da599fdaa2fdeb3e09033e0dfbd57a3a955"
+  },
+  "frozen_at": "2026-11-04T13:48:14.587814+00:00",
+  "spending_authorized_by_freeze": false
+}

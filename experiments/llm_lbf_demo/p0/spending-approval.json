@@ -1,0 +1,24 @@
+{
+  "approved": true,
+  "approved_by": "user in this Codex chat",
+  "approved_at": "2026-11-04T13:45:40.140977+00:00",
+  "proposal_hash": "ccc8c0699ca4078106fc7398dede3deb7c6e7fe374402b6e398ba2ab03bcc4bb",
+  "phases": [
+    "smoke",
+    "gate"
+  ],
+  "max_usd": {
+    "smoke": 0.05,
+    "gate": 1.5
+  },
+  "combined_development_and_P0_cap_usd": 2.55,
+  "matched_VI_cap_usd": 1,
+  "held_out_E1_authorized": false,
+  "source": {
+    "semantic_question": "Do you approve the Vietnamese meanings in experiments/llm_lbf_demo/p0/review/e1_policies.json? It contains P0 plus both require/forbid paraphrases. P0 requires feasible progress; require means both robots per selected box; forbid means exactly one robot per selected box.",
+    "semantic_answer": "I reviewed and approve all EN/VI policy meanings",
+    "spending_question": "May I make the new paid development/P0 calls under a combined $2.55 ceiling: Vietnamese sweep <=$1, separate compatibility checks <=$0.05, formal P0 <=$1.50? Held-out E1 spending will need a separate budget.",
+    "spending_answer": "Authorize these development/P0 calls, up to $2.55 total",
+    "source": "Explicit user replies to the two pending approval questions in this Codex chat"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "formal_attempts_completed": 2,
+  "required_P0_passed": true,
+  "blocked_model_language_conditions": [],
+  "held_out_E1": "GATE_PREREQUISITE_MET_BUT_SEPARATE_BUDGET_REQUIRED",
+  "held_out_requests": 0,
+  "held_out_spending_authorized": false,
+  "further_interface_corrections_allowed": false,
+  "third_formal_gate_authorized": false,
+  "protocol_amendment_required_for_any_change_to_models_thresholds_or_scope": true
+}

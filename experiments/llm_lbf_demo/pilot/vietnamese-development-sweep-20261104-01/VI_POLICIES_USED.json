@@ -1,0 +1,27 @@
+{
+  "status": "HUMAN_APPROVAL_RECORDED_SEPARATELY",
+  "matched_English_paraphrase": 0,
+  "texts": {
+    "P0": "Hãy chọn ít nhất một thùng để có thể thu gom được. Với mỗi thùng được chọn, tổng sức nâng của các robot được phân công phải ít nhất bằng trọng lượng của thùng. Mỗi robot chỉ được phân công tối đa một thùng; có thể không phân công nhiệm vụ cho một robot.",
+    "R": "Với mỗi thùng được chọn tiếp theo, hãy phân công cả hai robot cùng thu gom thùng đó. Không được phân công chỉ một robot cho một thùng.",
+    "F": "Với mỗi thùng được chọn tiếp theo, hãy phân công đúng một robot thu gom thùng đó. Không được phân công cả hai robot cho cùng một thùng."
+  },
+  "authorization": {
+    "approved": true,
+    "approved_at": "2026-11-04T13:45:40.140977+00:00",
+    "approved_by": "user in this Codex chat",
+    "max_requests": 108,
+    "max_usd": 1,
+    "phase": "matched_vietnamese_development_sweep",
+    "policy_hash": "e697de1da770bdd42cf431c6a205404c1a03fb718bf5c4f726fa1430bb05410d",
+    "retries": 0,
+    "semantic_approval": true,
+    "source": {
+      "semantic_answer": "I reviewed and approve all EN/VI policy meanings",
+      "semantic_question": "Do you approve the Vietnamese meanings in experiments/llm_lbf_demo/p0/review/e1_policies.json? It contains P0 plus both require/forbid paraphrases. P0 requires feasible progress; require means both robots per selected box; forbid means exactly one robot per selected box.",
+      "source": "Explicit user replies to the two pending approval questions in this Codex chat",
+      "spending_answer": "Authorize these development/P0 calls, up to $2.55 total",
+      "spending_question": "May I make the new paid development/P0 calls under a combined $2.55 ceiling: Vietnamese sweep <=$1, separate compatibility checks <=$0.05, formal P0 <=$1.50? Held-out E1 spending will need a separate budget."
+    }
+  }
+}

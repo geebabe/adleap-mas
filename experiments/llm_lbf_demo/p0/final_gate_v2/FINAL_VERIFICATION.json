@@ -1,0 +1,99 @@
+{
+  "status": "SECOND_FINAL_P0_COMPLETE_PASSED",
+  "formal_attempt_number": 2,
+  "phase_stats": {
+    "smoke": {
+      "slots": 4,
+      "provider_attempts": 4,
+      "responses": 4,
+      "infra_failed_attempts": 0,
+      "attempts_with_unknown_cost": 0,
+      "observed_token_cost_usd": "0.00050325",
+      "reservation_usd": "0.0121264000000000008",
+      "usage": {
+        "prompt_tokens": 1638,
+        "completion_tokens": 48,
+        "cached_input_tokens": 0
+      },
+      "regraded": 4,
+      "replayed": 4,
+      "policy_only_language_pairs_checked": 2
+    },
+    "gate": {
+      "slots": 144,
+      "provider_attempts": 144,
+      "responses": 144,
+      "infra_failed_attempts": 0,
+      "attempts_with_unknown_cost": 0,
+      "observed_token_cost_usd": "0.01813380",
+      "reservation_usd": "0.4365504000000000288",
+      "usage": {
+        "prompt_tokens": 58968,
+        "completion_tokens": 1741,
+        "cached_input_tokens": 0
+      },
+      "regraded": 144,
+      "replayed": 143,
+      "policy_only_language_pairs_checked": 72
+    }
+  },
+  "new_provider_attempts": 148,
+  "actual_model_counts": {
+    "gpt-4o-mini-2024-07-18": 74,
+    "gpt-4.1-mini-2025-04-14": 74
+  },
+  "observed_token_cost_usd": "0.01863705",
+  "total_durable_reservation_usd": "0.4486768000000000296",
+  "authorized_cap_usd": 1.55,
+  "cost_is_invoice": false,
+  "tests_passed": 53,
+  "historical_files_hash_verified_unchanged": 525,
+  "existing_executor_witness_acceptance": {
+    "covered": 864,
+    "successes": 864,
+    "failures": [],
+    "accepted": true
+  },
+  "freeze_sha256": "f606710ae1b6509bf22ee68d9bc0b75bd34d4f512b1219cb1c7c4411e14c4087",
+  "old_and_new_gate_comparison": [
+    {
+      "model": "gpt-4o-mini-2024-07-18",
+      "language": "EN",
+      "first_gate_physical_valid": 36,
+      "second_gate_physical_valid": 36,
+      "calls_per_gate": 36,
+      "second_gate_passed": true
+    },
+    {
+      "model": "gpt-4o-mini-2024-07-18",
+      "language": "VI",
+      "first_gate_physical_valid": 36,
+      "second_gate_physical_valid": 36,
+      "calls_per_gate": 36,
+      "second_gate_passed": true
+    },
+    {
+      "model": "gpt-4.1-mini-2025-04-14",
+      "language": "EN",
+      "first_gate_physical_valid": 34,
+      "second_gate_physical_valid": 35,
+      "calls_per_gate": 36,
+      "second_gate_passed": true
+    },
+    {
+      "model": "gpt-4.1-mini-2025-04-14",
+      "language": "VI",
+      "first_gate_physical_valid": 31,
+      "second_gate_physical_valid": 36,
+      "calls_per_gate": 36,
+      "second_gate_passed": true
+    }
+  ],
+  "blocked_after_final_attempt": [],
+  "P0_prerequisite_passed": true,
+  "held_out_spending_authorized": false,
+  "held_out_calls": 0,
+  "further_prompt_corrections_allowed": false,
+  "third_gate_authorized": false,
+  "no_recommendations_repaired_or_substituted": true
+}

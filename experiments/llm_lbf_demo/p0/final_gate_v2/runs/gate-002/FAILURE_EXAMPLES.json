@@ -1,0 +1,116 @@
+{
+  "count": 1,
+  "failures": [
+    {
+      "slot": {
+        "family_id": "development-011",
+        "gold": "P0",
+        "language": "EN",
+        "model_role": "replication",
+        "paraphrase": 0,
+        "presented": "P0",
+        "repeat": 0,
+        "slot_id": "6e9b6955cac372982590a918d043d15034ce2090019d5b64b6f8f2b2e544a6ac",
+        "stage": "gate"
+      },
+      "actual_model": "gpt-4.1-mini-2025-04-14",
+      "state": {
+        "agents": [
+          {
+            "direction": 0.0,
+            "id": "A",
+            "level": 1.4,
+            "position": [
+              3,
+              3
+            ]
+          },
+          {
+            "direction": 0.0,
+            "id": "B",
+            "level": 0.8,
+            "position": [
+              5,
+              1
+            ]
+          }
+        ],
+        "obstacles": [],
+        "shape": [
+          8,
+          8
+        ],
+        "tasks": [
+          {
+            "completed": false,
+            "id": "b0",
+            "level": 0.4,
+            "position": [
+              1,
+              6
+            ]
+          },
+          {
+            "completed": false,
+            "id": "b1",
+            "level": 0.6,
+            "position": [
+              6,
+              4
+            ]
+          },
+          {
+            "completed": false,
+            "id": "b2",
+            "level": 1.6,
+            "position": [
+              2,
+              2
+            ]
+          }
+        ]
+      },
+      "exact_prompt": {
+        "messages": [
+          {
+            "content": "You control two robots in fully observed Level-Based Foraging. Recommend one next pickup allocation that follows the supplied policy and makes at least one feasible pickup. A robot can target one box or be unassigned. Assigned capacities combine only when robots collect the same box together. Return exactly {\"targets\":{agent_id:box_id_or_null,...}} using every registered agent ID and only unfinished box IDs. Return JSON only, without explanation or additional fields. Navigation and pickup synchronization are handled by a fixed executor. Do not recommend primitive moves or a full episode plan. Numeric field meanings: state.agents[].level is that robot's lifting capacity, and state.tasks[].level is that box's required lifting weight. For every selected box, sum the level values of only the robots assigned to that same box. This sum must be greater than or equal to the box's level. Robots assigned elsewhere or unassigned contribute nothing to that box. These physical rules apply under every supplied policy.",
+            "role": "system"
+          },
+          {
+            "content": "{\"objective\":\"Make at least one feasible pickup while obeying the policy.\",\"policy\":\"Select at least one box for a feasible pickup. For each selected box, the combined lifting capacity of the assigned robots must be at least its weight. Each robot may be assigned to at most one box; a robot may be unassigned.\",\"state\":{\"agents\":[{\"direction\":0.0,\"id\":\"A\",\"level\":1.4,\"position\":[3,3]},{\"direction\":0.0,\"id\":\"B\",\"level\":0.8,\"position\":[5,1]}],\"obstacles\":[],\"shape\":[8,8],\"tasks\":[{\"completed\":false,\"id\":\"b0\",\"level\":0.4,\"position\":[1,6]},{\"completed\":false,\"id\":\"b1\",\"level\":0.6,\"position\":[6,4]},{\"completed\":false,\"id\":\"b2\",\"level\":1.6,\"position\":[2,2]}]}}",
+            "role": "user"
+          }
+        ]
+      },
+      "raw_response": "{\"targets\":{\"A\":\"b2\",\"B\":null}}",
+      "verdict": {
+        "status": "PHYSICS",
+        "good": false,
+        "format_valid": true,
+        "capacity_feasible": false,
+        "geometric_feasible": true,
+        "physical_valid": false,
+        "progress": true,
+        "policy_compliant": true,
+        "joint_assignment": false,
+        "targets": {
+          "A": "b2",
+          "B": null
+        },
+        "comparison_valid": true,
+        "spec_defect": null
+      },
+      "capacity_arithmetic": [
+        {
+          "box": "b2",
+          "weight": 1.6,
+          "agents": [
+            "A"
+          ],
+          "capacity": 1.4
+        }
+      ],
+      "executor": null
+    }
+  ]
+}

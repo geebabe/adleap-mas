@@ -1,0 +1,50 @@
+{
+  "status": "NOT_RUN",
+  "new_provider_calls": 0,
+  "conditions": [
+    {
+      "branch": "solo_required",
+      "language": "EN",
+      "scheduled_calls": 18,
+      "independent_worlds": 6,
+      "strict_goodness": null,
+      "format_failures": null,
+      "capacity_failures": null,
+      "policy_failures": null,
+      "observed_token_cost_usd": null
+    },
+    {
+      "branch": "solo_required",
+      "language": "VI",
+      "scheduled_calls": 18,
+      "independent_worlds": 6,
+      "strict_goodness": null,
+      "format_failures": null,
+      "capacity_failures": null,
+      "policy_failures": null,
+      "observed_token_cost_usd": null
+    },
+    {
+      "branch": "joint_required",
+      "language": "EN",
+      "scheduled_calls": 18,
+      "independent_worlds": 6,
+      "strict_goodness": null,
+      "format_failures": null,
+      "capacity_failures": null,
+      "policy_failures": null,
+      "observed_token_cost_usd": null
+    },
+    {
+      "branch": "joint_required",
+      "language": "VI",
+      "scheduled_calls": 18,
+      "independent_worlds": 6,
+      "strict_goodness": null,
+      "format_failures": null,
+      "capacity_failures": null,
+      "policy_failures": null,
+      "observed_token_cost_usd": null
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "generation_seed": 20261104,
+  "families": 72,
+  "development": 12,
+  "held_out": 60,
+  "held_out_strata": {
+    "light": 30,
+    "mixed": 30
+  },
+  "manifest_hash": "273d3f15000247bdde3d9e0776204da599fdaa2fdeb3e09033e0dfbd57a3a955",
+  "manifest_file_sha256": "515591efa113191dec4357296b419d6fc57d016239401f6a63283c194706e036",
+  "policies_hash": "e697de1da770bdd42cf431c6a205404c1a03fb718bf5c4f726fa1430bb05410d",
+  "upstream_commit": "0874e57fc4974d7e1f8bdd5d39e04119e7053d6f",
+  "recovered_testbed_sha256": "7296cab935d1260d89615194ce4835afe22c0137f9dd1be74f4a9dd699330ab3",
+  "witness_file_sha256": "5533e6069c04af7c339b9be1a857545eaa9ae28aa2203a0593c1c50ae85a4ec9",
+  "witness_acceptance": {
+    "covered": 864,
+    "successes": 863,
+    "failures": [
+      {
+        "family_id": "test-006",
+        "targets": {
+          "A": "b0",
+          "B": "b2"
+        },
+        "status": "EXECUTOR",
+        "diagnosis": "40-tick horizon exhausted"
+      }
+    ],
+    "accepted": false
+  }
+}

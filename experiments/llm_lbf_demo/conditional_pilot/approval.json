@@ -1,0 +1,14 @@
+{
+  "approved": true,
+  "approved_by": "user in this Codex chat",
+  "approved_at": "2026-11-04T18:29:39.777462+00:00",
+  "bilingual_semantics_approved": true,
+  "policy_hash": "588c320df574cdbdf26f4beccf95bfd15115a54c5bee5b2e2c154c3e48318a75",
+  "protocol_hash": "7ec1a673f6354746fc8d5e506ef5a2b6ed2289bef2a9a8d603a4ac8f94d4324d",
+  "max_usd": 0.15,
+  "maximum_requests": 72,
+  "automatic_retries": 0,
+  "source": "User approved the displayed 72-call pilot in direct reply to the combined question asking approval of the exact bilingual meanings and USD 0.15 hard ceiling.",
+  "user_message": "oke, i approve the 72 call",
+  "scope": "Only this conditional development pilot. No held-out, formal E1 or full-episode execution."
+}

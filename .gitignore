@@ -26,3 +26,9 @@ dist/*
 *.sh
 docs/
 .env
+# Keep the explicitly requested E1 protocol reviewable; other docs stay ignored.
+!docs/
+docs/*
+!docs/Policy2Action_E1_Codex_Experimental_Spec.md
+.DS_Store
+docs/

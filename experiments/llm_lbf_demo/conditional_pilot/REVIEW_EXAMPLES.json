@@ -1,0 +1,408 @@
+{
+  "representative_states": [
+    {
+      "world": "development-000",
+      "state": {
+        "agents": [
+          {
+            "direction": 0.0,
+            "id": "A",
+            "level": 1.0,
+            "position": [
+              3,
+              2
+            ]
+          },
+          {
+            "direction": 0.0,
+            "id": "B",
+            "level": 1.4,
+            "position": [
+              4,
+              3
+            ]
+          }
+        ],
+        "obstacles": [],
+        "shape": [
+          8,
+          8
+        ],
+        "tasks": [
+          {
+            "completed": false,
+            "id": "b0",
+            "level": 0.4,
+            "position": [
+              4,
+              6
+            ]
+          },
+          {
+            "completed": false,
+            "id": "b1",
+            "level": 0.6,
+            "position": [
+              6,
+              2
+            ]
+          },
+          {
+            "completed": false,
+            "id": "b2",
+            "level": 0.8,
+            "position": [
+              1,
+              2
+            ]
+          }
+        ]
+      },
+      "condition": {
+        "branch": "solo_required",
+        "jointly_only_feasible_box_ids": []
+      },
+      "examples": [
+        {
+          "case": "accepted two solo",
+          "raw_response": "{\"targets\":{\"A\":\"b0\",\"B\":\"b1\"}}",
+          "grading": {
+            "status": "GOOD",
+            "good": true,
+            "format_valid": true,
+            "capacity_feasible": true,
+            "geometric_feasible": true,
+            "physical_valid": true,
+            "progress": true,
+            "policy_compliant": true,
+            "joint_assignment": false,
+            "targets": {
+              "A": "b0",
+              "B": "b1"
+            },
+            "comparison_valid": true,
+            "spec_defect": null,
+            "branch": "solo_required",
+            "jointly_only_feasible_box_ids": [],
+            "grader_version": "conditional-grader-1",
+            "branch_rule_satisfied": true,
+            "failure_flags": {
+              "format": false,
+              "capacity": false,
+              "geometry": false,
+              "progress": false,
+              "policy": false,
+              "specification": false
+            }
+          }
+        },
+        {
+          "case": "accepted one solo",
+          "raw_response": "{\"targets\":{\"A\":\"b0\",\"B\":null}}",
+          "grading": {
+            "status": "GOOD",
+            "good": true,
+            "format_valid": true,
+            "capacity_feasible": true,
+            "geometric_feasible": true,
+            "physical_valid": true,
+            "progress": true,
+            "policy_compliant": true,
+            "joint_assignment": false,
+            "targets": {
+              "A": "b0",
+              "B": null
+            },
+            "comparison_valid": true,
+            "spec_defect": null,
+            "branch": "solo_required",
+            "jointly_only_feasible_box_ids": [],
+            "grader_version": "conditional-grader-1",
+            "branch_rule_satisfied": true,
+            "failure_flags": {
+              "format": false,
+              "capacity": false,
+              "geometry": false,
+              "progress": false,
+              "policy": false,
+              "specification": false
+            }
+          }
+        },
+        {
+          "case": "rejected cooperation",
+          "raw_response": "{\"targets\":{\"A\":\"b0\",\"B\":\"b0\"}}",
+          "grading": {
+            "status": "POLICY",
+            "good": false,
+            "format_valid": true,
+            "capacity_feasible": true,
+            "geometric_feasible": true,
+            "physical_valid": true,
+            "progress": true,
+            "policy_compliant": false,
+            "joint_assignment": true,
+            "targets": {
+              "A": "b0",
+              "B": "b0"
+            },
+            "comparison_valid": true,
+            "spec_defect": null,
+            "branch": "solo_required",
+            "jointly_only_feasible_box_ids": [],
+            "grader_version": "conditional-grader-1",
+            "branch_rule_satisfied": false,
+            "failure_flags": {
+              "format": false,
+              "capacity": false,
+              "geometry": false,
+              "progress": false,
+              "policy": true,
+              "specification": false
+            }
+          }
+        },
+        {
+          "case": "rejected idle",
+          "raw_response": "{\"targets\":{\"A\":null,\"B\":null}}",
+          "grading": {
+            "status": "VACUOUS",
+            "good": false,
+            "format_valid": true,
+            "capacity_feasible": true,
+            "geometric_feasible": true,
+            "physical_valid": true,
+            "progress": false,
+            "policy_compliant": false,
+            "joint_assignment": false,
+            "targets": {
+              "A": null,
+              "B": null
+            },
+            "comparison_valid": true,
+            "spec_defect": null,
+            "branch": "solo_required",
+            "jointly_only_feasible_box_ids": [],
+            "grader_version": "conditional-grader-1",
+            "branch_rule_satisfied": false,
+            "failure_flags": {
+              "format": false,
+              "capacity": false,
+              "geometry": false,
+              "progress": true,
+              "policy": true,
+              "specification": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "world": "development-006",
+      "state": {
+        "agents": [
+          {
+            "direction": 0.0,
+            "id": "A",
+            "level": 1.0,
+            "position": [
+              6,
+              3
+            ]
+          },
+          {
+            "direction": 0.0,
+            "id": "B",
+            "level": 1.0,
+            "position": [
+              4,
+              5
+            ]
+          }
+        ],
+        "obstacles": [],
+        "shape": [
+          8,
+          8
+        ],
+        "tasks": [
+          {
+            "completed": false,
+            "id": "b0",
+            "level": 0.4,
+            "position": [
+              6,
+              2
+            ]
+          },
+          {
+            "completed": false,
+            "id": "b1",
+            "level": 0.6,
+            "position": [
+              5,
+              1
+            ]
+          },
+          {
+            "completed": false,
+            "id": "b2",
+            "level": 1.2,
+            "position": [
+              5,
+              4
+            ]
+          }
+        ]
+      },
+      "condition": {
+        "branch": "joint_required",
+        "jointly_only_feasible_box_ids": [
+          "b2"
+        ]
+      },
+      "examples": [
+        {
+          "case": "accepted joint-only",
+          "raw_response": "{\"targets\":{\"A\":\"b2\",\"B\":\"b2\"}}",
+          "grading": {
+            "status": "GOOD",
+            "good": true,
+            "format_valid": true,
+            "capacity_feasible": true,
+            "geometric_feasible": true,
+            "physical_valid": true,
+            "progress": true,
+            "policy_compliant": true,
+            "joint_assignment": true,
+            "targets": {
+              "A": "b2",
+              "B": "b2"
+            },
+            "comparison_valid": true,
+            "spec_defect": null,
+            "branch": "joint_required",
+            "jointly_only_feasible_box_ids": [
+              "b2"
+            ],
+            "grader_version": "conditional-grader-1",
+            "branch_rule_satisfied": true,
+            "failure_flags": {
+              "format": false,
+              "capacity": false,
+              "geometry": false,
+              "progress": false,
+              "policy": false,
+              "specification": false
+            }
+          }
+        },
+        {
+          "case": "rejected light cooperation",
+          "raw_response": "{\"targets\":{\"A\":\"b0\",\"B\":\"b0\"}}",
+          "grading": {
+            "status": "POLICY",
+            "good": false,
+            "format_valid": true,
+            "capacity_feasible": true,
+            "geometric_feasible": true,
+            "physical_valid": true,
+            "progress": true,
+            "policy_compliant": false,
+            "joint_assignment": true,
+            "targets": {
+              "A": "b0",
+              "B": "b0"
+            },
+            "comparison_valid": true,
+            "spec_defect": null,
+            "branch": "joint_required",
+            "jointly_only_feasible_box_ids": [
+              "b2"
+            ],
+            "grader_version": "conditional-grader-1",
+            "branch_rule_satisfied": false,
+            "failure_flags": {
+              "format": false,
+              "capacity": false,
+              "geometry": false,
+              "progress": false,
+              "policy": true,
+              "specification": false
+            }
+          }
+        },
+        {
+          "case": "rejected solo light progress",
+          "raw_response": "{\"targets\":{\"A\":\"b0\",\"B\":\"b1\"}}",
+          "grading": {
+            "status": "POLICY",
+            "good": false,
+            "format_valid": true,
+            "capacity_feasible": true,
+            "geometric_feasible": true,
+            "physical_valid": true,
+            "progress": true,
+            "policy_compliant": false,
+            "joint_assignment": false,
+            "targets": {
+              "A": "b0",
+              "B": "b1"
+            },
+            "comparison_valid": true,
+            "spec_defect": null,
+            "branch": "joint_required",
+            "jointly_only_feasible_box_ids": [
+              "b2"
+            ],
+            "grader_version": "conditional-grader-1",
+            "branch_rule_satisfied": false,
+            "failure_flags": {
+              "format": false,
+              "capacity": false,
+              "geometry": false,
+              "progress": false,
+              "policy": true,
+              "specification": false
+            }
+          }
+        },
+        {
+          "case": "rejected insufficient capacity",
+          "raw_response": "{\"targets\":{\"A\":\"b2\",\"B\":null}}",
+          "grading": {
+            "status": "PHYSICS",
+            "good": false,
+            "format_valid": true,
+            "capacity_feasible": false,
+            "geometric_feasible": true,
+            "physical_valid": false,
+            "progress": true,
+            "policy_compliant": false,
+            "joint_assignment": false,
+            "targets": {
+              "A": "b2",
+              "B": null
+            },
+            "comparison_valid": true,
+            "spec_defect": null,
+            "branch": "joint_required",
+            "jointly_only_feasible_box_ids": [
+              "b2"
+            ],
+            "grader_version": "conditional-grader-1",
+            "branch_rule_satisfied": false,
+            "failure_flags": {
+              "format": false,
+              "capacity": true,
+              "geometry": false,
+              "progress": false,
+              "policy": true,
+              "specification": false
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

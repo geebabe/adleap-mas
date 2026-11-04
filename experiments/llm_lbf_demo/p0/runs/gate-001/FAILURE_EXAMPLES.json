@@ -1,0 +1,810 @@
+{
+  "count": 7,
+  "failures": [
+    {
+      "slot": {
+        "family_id": "development-006",
+        "gold": "P0",
+        "language": "VI",
+        "model_role": "replication",
+        "paraphrase": 0,
+        "presented": "P0",
+        "repeat": 0,
+        "slot_id": "2f20e8e644b646ec576b59bfb1940c0cc5e6da6d12b39b64b894d35914555bd7",
+        "stage": "gate"
+      },
+      "requested_model": "gpt-4.1-mini-2025-04-14",
+      "actual_model": "gpt-4.1-mini-2025-04-14",
+      "state": {
+        "agents": [
+          {
+            "direction": 0.0,
+            "id": "A",
+            "level": 1.0,
+            "position": [
+              6,
+              3
+            ]
+          },
+          {
+            "direction": 0.0,
+            "id": "B",
+            "level": 1.0,
+            "position": [
+              4,
+              5
+            ]
+          }
+        ],
+        "obstacles": [],
+        "shape": [
+          8,
+          8
+        ],
+        "tasks": [
+          {
+            "completed": false,
+            "id": "b0",
+            "level": 0.4,
+            "position": [
+              6,
+              2
+            ]
+          },
+          {
+            "completed": false,
+            "id": "b1",
+            "level": 0.6,
+            "position": [
+              5,
+              1
+            ]
+          },
+          {
+            "completed": false,
+            "id": "b2",
+            "level": 1.2,
+            "position": [
+              5,
+              4
+            ]
+          }
+        ]
+      },
+      "exact_prompt": {
+        "messages": [
+          {
+            "content": "You control two robots in fully observed Level-Based Foraging. Recommend one next pickup allocation that follows the supplied policy and makes at least one feasible pickup. A robot can target one box or be unassigned. Assigned capacities combine only when robots collect the same box together. Return exactly {\"targets\":{agent_id:box_id_or_null,...}} using every registered agent ID and only unfinished box IDs. Return JSON only, without explanation or additional fields. Navigation and pickup synchronization are handled by a fixed executor. Do not recommend primitive moves or a full episode plan.",
+            "role": "system"
+          },
+          {
+            "content": "{\"objective\":\"Make at least one feasible pickup while obeying the policy.\",\"policy\":\"Hãy chọn ít nhất một thùng để có thể thu gom được. Với mỗi thùng được chọn, tổng sức nâng của các robot được phân công phải ít nhất bằng trọng lượng của thùng. Mỗi robot chỉ được phân công tối đa một thùng; có thể không phân công nhiệm vụ cho một robot.\",\"state\":{\"agents\":[{\"direction\":0.0,\"id\":\"A\",\"level\":1.0,\"position\":[6,3]},{\"direction\":0.0,\"id\":\"B\",\"level\":1.0,\"position\":[4,5]}],\"obstacles\":[],\"shape\":[8,8],\"tasks\":[{\"completed\":false,\"id\":\"b0\",\"level\":0.4,\"position\":[6,2]},{\"completed\":false,\"id\":\"b1\",\"level\":0.6,\"position\":[5,1]},{\"completed\":false,\"id\":\"b2\",\"level\":1.2,\"position\":[5,4]}]}}",
+            "role": "user"
+          }
+        ]
+      },
+      "raw_response": "{\"targets\":{\"A\":\"b2\",\"B\":null}}",
+      "verdict": {
+        "capacity_feasible": false,
+        "comparison_valid": true,
+        "format_valid": true,
+        "geometric_feasible": true,
+        "good": false,
+        "joint_assignment": false,
+        "physical_valid": false,
+        "policy_compliant": true,
+        "progress": true,
+        "spec_defect": null,
+        "status": "PHYSICS",
+        "targets": {
+          "A": "b2",
+          "B": null
+        }
+      },
+      "capacity_arithmetic": [
+        {
+          "box": "b2",
+          "box_weight": 1.2,
+          "assigned_agents": [
+            "A"
+          ],
+          "assigned_capacity": 1.0,
+          "capacity_sufficient": false
+        }
+      ],
+      "executor": null,
+      "diagnosis": "Capacity-infeasible recommendation; not an executor stall or simulator defect.",
+      "internal_model_cause": "Not identifiable from an allocation-only response."
+    },
+    {
+      "slot": {
+        "family_id": "development-008",
+        "gold": "P0",
+        "language": "VI",
+        "model_role": "replication",
+        "paraphrase": 0,
+        "presented": "P0",
+        "repeat": 2,
+        "slot_id": "76dd6ab3221a861db8412c11c44165a2917c32d07d250ce23274c3f31371baa8",
+        "stage": "gate"
+      },
+      "requested_model": "gpt-4.1-mini-2025-04-14",
+      "actual_model": "gpt-4.1-mini-2025-04-14",
+      "state": {
+        "agents": [
+          {
+            "direction": 0.0,
+            "id": "A",
+            "level": 1.0,
+            "position": [
+              1,
+              3
+            ]
+          },
+          {
+            "direction": 0.0,
+            "id": "B",
+            "level": 0.8,
+            "position": [
+              2,
+              1
+            ]
+          }
+        ],
+        "obstacles": [],
+        "shape": [
+          8,
+          8
+        ],
+        "tasks": [
+          {
+            "completed": false,
+            "id": "b0",
+            "level": 0.4,
+            "position": [
+              6,
+              3
+            ]
+          },
+          {
+            "completed": false,
+            "id": "b1",
+            "level": 0.6,
+            "position": [
+              4,
+              4
+            ]
+          },
+          {
+            "completed": false,
+            "id": "b2",
+            "level": 1.2,
+            "position": [
+              5,
+              4
+            ]
+          }
+        ]
+      },
+      "exact_prompt": {
+        "messages": [
+          {
+            "content": "You control two robots in fully observed Level-Based Foraging. Recommend one next pickup allocation that follows the supplied policy and makes at least one feasible pickup. A robot can target one box or be unassigned. Assigned capacities combine only when robots collect the same box together. Return exactly {\"targets\":{agent_id:box_id_or_null,...}} using every registered agent ID and only unfinished box IDs. Return JSON only, without explanation or additional fields. Navigation and pickup synchronization are handled by a fixed executor. Do not recommend primitive moves or a full episode plan.",
+            "role": "system"
+          },
+          {
+            "content": "{\"objective\":\"Make at least one feasible pickup while obeying the policy.\",\"policy\":\"Hãy chọn ít nhất một thùng để có thể thu gom được. Với mỗi thùng được chọn, tổng sức nâng của các robot được phân công phải ít nhất bằng trọng lượng của thùng. Mỗi robot chỉ được phân công tối đa một thùng; có thể không phân công nhiệm vụ cho một robot.\",\"state\":{\"agents\":[{\"direction\":0.0,\"id\":\"A\",\"level\":1.0,\"position\":[1,3]},{\"direction\":0.0,\"id\":\"B\",\"level\":0.8,\"position\":[2,1]}],\"obstacles\":[],\"shape\":[8,8],\"tasks\":[{\"completed\":false,\"id\":\"b0\",\"level\":0.4,\"position\":[6,3]},{\"completed\":false,\"id\":\"b1\",\"level\":0.6,\"position\":[4,4]},{\"completed\":false,\"id\":\"b2\",\"level\":1.2,\"position\":[5,4]}]}}",
+            "role": "user"
+          }
+        ]
+      },
+      "raw_response": "{\"targets\":{\"A\":\"b2\",\"B\":null}}",
+      "verdict": {
+        "capacity_feasible": false,
+        "comparison_valid": true,
+        "format_valid": true,
+        "geometric_feasible": true,
+        "good": false,
+        "joint_assignment": false,
+        "physical_valid": false,
+        "policy_compliant": true,
+        "progress": true,
+        "spec_defect": null,
+        "status": "PHYSICS",
+        "targets": {
+          "A": "b2",
+          "B": null
+        }
+      },
+      "capacity_arithmetic": [
+        {
+          "box": "b2",
+          "box_weight": 1.2,
+          "assigned_agents": [
+            "A"
+          ],
+          "assigned_capacity": 1.0,
+          "capacity_sufficient": false
+        }
+      ],
+      "executor": null,
+      "diagnosis": "Capacity-infeasible recommendation; not an executor stall or simulator defect.",
+      "internal_model_cause": "Not identifiable from an allocation-only response."
+    },
+    {
+      "slot": {
+        "family_id": "development-006",
+        "gold": "P0",
+        "language": "VI",
+        "model_role": "replication",
+        "paraphrase": 0,
+        "presented": "P0",
+        "repeat": 1,
+        "slot_id": "7a517c5752f085821c617dc32bb47f731d48dac2a43fb7994f9eb485a68931b9",
+        "stage": "gate"
+      },
+      "requested_model": "gpt-4.1-mini-2025-04-14",
+      "actual_model": "gpt-4.1-mini-2025-04-14",
+      "state": {
+        "agents": [
+          {
+            "direction": 0.0,
+            "id": "A",
+            "level": 1.0,
+            "position": [
+              6,
+              3
+            ]
+          },
+          {
+            "direction": 0.0,
+            "id": "B",
+            "level": 1.0,
+            "position": [
+              4,
+              5
+            ]
+          }
+        ],
+        "obstacles": [],
+        "shape": [
+          8,
+          8
+        ],
+        "tasks": [
+          {
+            "completed": false,
+            "id": "b0",
+            "level": 0.4,
+            "position": [
+              6,
+              2
+            ]
+          },
+          {
+            "completed": false,
+            "id": "b1",
+            "level": 0.6,
+            "position": [
+              5,
+              1
+            ]
+          },
+          {
+            "completed": false,
+            "id": "b2",
+            "level": 1.2,
+            "position": [
+              5,
+              4
+            ]
+          }
+        ]
+      },
+      "exact_prompt": {
+        "messages": [
+          {
+            "content": "You control two robots in fully observed Level-Based Foraging. Recommend one next pickup allocation that follows the supplied policy and makes at least one feasible pickup. A robot can target one box or be unassigned. Assigned capacities combine only when robots collect the same box together. Return exactly {\"targets\":{agent_id:box_id_or_null,...}} using every registered agent ID and only unfinished box IDs. Return JSON only, without explanation or additional fields. Navigation and pickup synchronization are handled by a fixed executor. Do not recommend primitive moves or a full episode plan.",
+            "role": "system"
+          },
+          {
+            "content": "{\"objective\":\"Make at least one feasible pickup while obeying the policy.\",\"policy\":\"Hãy chọn ít nhất một thùng để có thể thu gom được. Với mỗi thùng được chọn, tổng sức nâng của các robot được phân công phải ít nhất bằng trọng lượng của thùng. Mỗi robot chỉ được phân công tối đa một thùng; có thể không phân công nhiệm vụ cho một robot.\",\"state\":{\"agents\":[{\"direction\":0.0,\"id\":\"A\",\"level\":1.0,\"position\":[6,3]},{\"direction\":0.0,\"id\":\"B\",\"level\":1.0,\"position\":[4,5]}],\"obstacles\":[],\"shape\":[8,8],\"tasks\":[{\"completed\":false,\"id\":\"b0\",\"level\":0.4,\"position\":[6,2]},{\"completed\":false,\"id\":\"b1\",\"level\":0.6,\"position\":[5,1]},{\"completed\":false,\"id\":\"b2\",\"level\":1.2,\"position\":[5,4]}]}}",
+            "role": "user"
+          }
+        ]
+      },
+      "raw_response": "{\"targets\":{\"A\":\"b2\",\"B\":null}}",
+      "verdict": {
+        "capacity_feasible": false,
+        "comparison_valid": true,
+        "format_valid": true,
+        "geometric_feasible": true,
+        "good": false,
+        "joint_assignment": false,
+        "physical_valid": false,
+        "policy_compliant": true,
+        "progress": true,
+        "spec_defect": null,
+        "status": "PHYSICS",
+        "targets": {
+          "A": "b2",
+          "B": null
+        }
+      },
+      "capacity_arithmetic": [
+        {
+          "box": "b2",
+          "box_weight": 1.2,
+          "assigned_agents": [
+            "A"
+          ],
+          "assigned_capacity": 1.0,
+          "capacity_sufficient": false
+        }
+      ],
+      "executor": null,
+      "diagnosis": "Capacity-infeasible recommendation; not an executor stall or simulator defect.",
+      "internal_model_cause": "Not identifiable from an allocation-only response."
+    },
+    {
+      "slot": {
+        "family_id": "development-011",
+        "gold": "P0",
+        "language": "VI",
+        "model_role": "replication",
+        "paraphrase": 0,
+        "presented": "P0",
+        "repeat": 2,
+        "slot_id": "39e5a3c2252bf6dfaab1dab734bd05a7ff29ff20c3ac870f5a5faaa3895b071d",
+        "stage": "gate"
+      },
+      "requested_model": "gpt-4.1-mini-2025-04-14",
+      "actual_model": "gpt-4.1-mini-2025-04-14",
+      "state": {
+        "agents": [
+          {
+            "direction": 0.0,
+            "id": "A",
+            "level": 1.4,
+            "position": [
+              3,
+              3
+            ]
+          },
+          {
+            "direction": 0.0,
+            "id": "B",
+            "level": 0.8,
+            "position": [
+              5,
+              1
+            ]
+          }
+        ],
+        "obstacles": [],
+        "shape": [
+          8,
+          8
+        ],
+        "tasks": [
+          {
+            "completed": false,
+            "id": "b0",
+            "level": 0.4,
+            "position": [
+              1,
+              6
+            ]
+          },
+          {
+            "completed": false,
+            "id": "b1",
+            "level": 0.6,
+            "position": [
+              6,
+              4
+            ]
+          },
+          {
+            "completed": false,
+            "id": "b2",
+            "level": 1.6,
+            "position": [
+              2,
+              2
+            ]
+          }
+        ]
+      },
+      "exact_prompt": {
+        "messages": [
+          {
+            "content": "You control two robots in fully observed Level-Based Foraging. Recommend one next pickup allocation that follows the supplied policy and makes at least one feasible pickup. A robot can target one box or be unassigned. Assigned capacities combine only when robots collect the same box together. Return exactly {\"targets\":{agent_id:box_id_or_null,...}} using every registered agent ID and only unfinished box IDs. Return JSON only, without explanation or additional fields. Navigation and pickup synchronization are handled by a fixed executor. Do not recommend primitive moves or a full episode plan.",
+            "role": "system"
+          },
+          {
+            "content": "{\"objective\":\"Make at least one feasible pickup while obeying the policy.\",\"policy\":\"Hãy chọn ít nhất một thùng để có thể thu gom được. Với mỗi thùng được chọn, tổng sức nâng của các robot được phân công phải ít nhất bằng trọng lượng của thùng. Mỗi robot chỉ được phân công tối đa một thùng; có thể không phân công nhiệm vụ cho một robot.\",\"state\":{\"agents\":[{\"direction\":0.0,\"id\":\"A\",\"level\":1.4,\"position\":[3,3]},{\"direction\":0.0,\"id\":\"B\",\"level\":0.8,\"position\":[5,1]}],\"obstacles\":[],\"shape\":[8,8],\"tasks\":[{\"completed\":false,\"id\":\"b0\",\"level\":0.4,\"position\":[1,6]},{\"completed\":false,\"id\":\"b1\",\"level\":0.6,\"position\":[6,4]},{\"completed\":false,\"id\":\"b2\",\"level\":1.6,\"position\":[2,2]}]}}",
+            "role": "user"
+          }
+        ]
+      },
+      "raw_response": "{\"targets\":{\"A\":\"b2\",\"B\":null}}",
+      "verdict": {
+        "capacity_feasible": false,
+        "comparison_valid": true,
+        "format_valid": true,
+        "geometric_feasible": true,
+        "good": false,
+        "joint_assignment": false,
+        "physical_valid": false,
+        "policy_compliant": true,
+        "progress": true,
+        "spec_defect": null,
+        "status": "PHYSICS",
+        "targets": {
+          "A": "b2",
+          "B": null
+        }
+      },
+      "capacity_arithmetic": [
+        {
+          "box": "b2",
+          "box_weight": 1.6,
+          "assigned_agents": [
+            "A"
+          ],
+          "assigned_capacity": 1.4,
+          "capacity_sufficient": false
+        }
+      ],
+      "executor": null,
+      "diagnosis": "Capacity-infeasible recommendation; not an executor stall or simulator defect.",
+      "internal_model_cause": "Not identifiable from an allocation-only response."
+    },
+    {
+      "slot": {
+        "family_id": "development-011",
+        "gold": "P0",
+        "language": "EN",
+        "model_role": "replication",
+        "paraphrase": 0,
+        "presented": "P0",
+        "repeat": 2,
+        "slot_id": "4e1c178974c62bbb524a7c8627cca527de25467968c5ef9ba493ba975a9dd713",
+        "stage": "gate"
+      },
+      "requested_model": "gpt-4.1-mini-2025-04-14",
+      "actual_model": "gpt-4.1-mini-2025-04-14",
+      "state": {
+        "agents": [
+          {
+            "direction": 0.0,
+            "id": "A",
+            "level": 1.4,
+            "position": [
+              3,
+              3
+            ]
+          },
+          {
+            "direction": 0.0,
+            "id": "B",
+            "level": 0.8,
+            "position": [
+              5,
+              1
+            ]
+          }
+        ],
+        "obstacles": [],
+        "shape": [
+          8,
+          8
+        ],
+        "tasks": [
+          {
+            "completed": false,
+            "id": "b0",
+            "level": 0.4,
+            "position": [
+              1,
+              6
+            ]
+          },
+          {
+            "completed": false,
+            "id": "b1",
+            "level": 0.6,
+            "position": [
+              6,
+              4
+            ]
+          },
+          {
+            "completed": false,
+            "id": "b2",
+            "level": 1.6,
+            "position": [
+              2,
+              2
+            ]
+          }
+        ]
+      },
+      "exact_prompt": {
+        "messages": [
+          {
+            "content": "You control two robots in fully observed Level-Based Foraging. Recommend one next pickup allocation that follows the supplied policy and makes at least one feasible pickup. A robot can target one box or be unassigned. Assigned capacities combine only when robots collect the same box together. Return exactly {\"targets\":{agent_id:box_id_or_null,...}} using every registered agent ID and only unfinished box IDs. Return JSON only, without explanation or additional fields. Navigation and pickup synchronization are handled by a fixed executor. Do not recommend primitive moves or a full episode plan.",
+            "role": "system"
+          },
+          {
+            "content": "{\"objective\":\"Make at least one feasible pickup while obeying the policy.\",\"policy\":\"Select at least one box for a feasible pickup. For each selected box, the combined lifting capacity of the assigned robots must be at least its weight. Each robot may be assigned to at most one box; a robot may be unassigned.\",\"state\":{\"agents\":[{\"direction\":0.0,\"id\":\"A\",\"level\":1.4,\"position\":[3,3]},{\"direction\":0.0,\"id\":\"B\",\"level\":0.8,\"position\":[5,1]}],\"obstacles\":[],\"shape\":[8,8],\"tasks\":[{\"completed\":false,\"id\":\"b0\",\"level\":0.4,\"position\":[1,6]},{\"completed\":false,\"id\":\"b1\",\"level\":0.6,\"position\":[6,4]},{\"completed\":false,\"id\":\"b2\",\"level\":1.6,\"position\":[2,2]}]}}",
+            "role": "user"
+          }
+        ]
+      },
+      "raw_response": "{\"targets\":{\"A\":\"b2\",\"B\":null}}",
+      "verdict": {
+        "capacity_feasible": false,
+        "comparison_valid": true,
+        "format_valid": true,
+        "geometric_feasible": true,
+        "good": false,
+        "joint_assignment": false,
+        "physical_valid": false,
+        "policy_compliant": true,
+        "progress": true,
+        "spec_defect": null,
+        "status": "PHYSICS",
+        "targets": {
+          "A": "b2",
+          "B": null
+        }
+      },
+      "capacity_arithmetic": [
+        {
+          "box": "b2",
+          "box_weight": 1.6,
+          "assigned_agents": [
+            "A"
+          ],
+          "assigned_capacity": 1.4,
+          "capacity_sufficient": false
+        }
+      ],
+      "executor": null,
+      "diagnosis": "Capacity-infeasible recommendation; not an executor stall or simulator defect.",
+      "internal_model_cause": "Not identifiable from an allocation-only response."
+    },
+    {
+      "slot": {
+        "family_id": "development-006",
+        "gold": "P0",
+        "language": "VI",
+        "model_role": "replication",
+        "paraphrase": 0,
+        "presented": "P0",
+        "repeat": 2,
+        "slot_id": "b4543b6520abf70532e04ecbdc8c5f7a5b21c74547cf7776d06764a3abf47bc0",
+        "stage": "gate"
+      },
+      "requested_model": "gpt-4.1-mini-2025-04-14",
+      "actual_model": "gpt-4.1-mini-2025-04-14",
+      "state": {
+        "agents": [
+          {
+            "direction": 0.0,
+            "id": "A",
+            "level": 1.0,
+            "position": [
+              6,
+              3
+            ]
+          },
+          {
+            "direction": 0.0,
+            "id": "B",
+            "level": 1.0,
+            "position": [
+              4,
+              5
+            ]
+          }
+        ],
+        "obstacles": [],
+        "shape": [
+          8,
+          8
+        ],
+        "tasks": [
+          {
+            "completed": false,
+            "id": "b0",
+            "level": 0.4,
+            "position": [
+              6,
+              2
+            ]
+          },
+          {
+            "completed": false,
+            "id": "b1",
+            "level": 0.6,
+            "position": [
+              5,
+              1
+            ]
+          },
+          {
+            "completed": false,
+            "id": "b2",
+            "level": 1.2,
+            "position": [
+              5,
+              4
+            ]
+          }
+        ]
+      },
+      "exact_prompt": {
+        "messages": [
+          {
+            "content": "You control two robots in fully observed Level-Based Foraging. Recommend one next pickup allocation that follows the supplied policy and makes at least one feasible pickup. A robot can target one box or be unassigned. Assigned capacities combine only when robots collect the same box together. Return exactly {\"targets\":{agent_id:box_id_or_null,...}} using every registered agent ID and only unfinished box IDs. Return JSON only, without explanation or additional fields. Navigation and pickup synchronization are handled by a fixed executor. Do not recommend primitive moves or a full episode plan.",
+            "role": "system"
+          },
+          {
+            "content": "{\"objective\":\"Make at least one feasible pickup while obeying the policy.\",\"policy\":\"Hãy chọn ít nhất một thùng để có thể thu gom được. Với mỗi thùng được chọn, tổng sức nâng của các robot được phân công phải ít nhất bằng trọng lượng của thùng. Mỗi robot chỉ được phân công tối đa một thùng; có thể không phân công nhiệm vụ cho một robot.\",\"state\":{\"agents\":[{\"direction\":0.0,\"id\":\"A\",\"level\":1.0,\"position\":[6,3]},{\"direction\":0.0,\"id\":\"B\",\"level\":1.0,\"position\":[4,5]}],\"obstacles\":[],\"shape\":[8,8],\"tasks\":[{\"completed\":false,\"id\":\"b0\",\"level\":0.4,\"position\":[6,2]},{\"completed\":false,\"id\":\"b1\",\"level\":0.6,\"position\":[5,1]},{\"completed\":false,\"id\":\"b2\",\"level\":1.2,\"position\":[5,4]}]}}",
+            "role": "user"
+          }
+        ]
+      },
+      "raw_response": "{\"targets\":{\"A\":\"b2\",\"B\":null}}",
+      "verdict": {
+        "capacity_feasible": false,
+        "comparison_valid": true,
+        "format_valid": true,
+        "geometric_feasible": true,
+        "good": false,
+        "joint_assignment": false,
+        "physical_valid": false,
+        "policy_compliant": true,
+        "progress": true,
+        "spec_defect": null,
+        "status": "PHYSICS",
+        "targets": {
+          "A": "b2",
+          "B": null
+        }
+      },
+      "capacity_arithmetic": [
+        {
+          "box": "b2",
+          "box_weight": 1.2,
+          "assigned_agents": [
+            "A"
+          ],
+          "assigned_capacity": 1.0,
+          "capacity_sufficient": false
+        }
+      ],
+      "executor": null,
+      "diagnosis": "Capacity-infeasible recommendation; not an executor stall or simulator defect.",
+      "internal_model_cause": "Not identifiable from an allocation-only response."
+    },
+    {
+      "slot": {
+        "family_id": "development-011",
+        "gold": "P0",
+        "language": "EN",
+        "model_role": "replication",
+        "paraphrase": 0,
+        "presented": "P0",
+        "repeat": 1,
+        "slot_id": "b22e37b65d7ee51f9f8afd5059ce03fe3ffe3d348213b86d44c841ed475cb485",
+        "stage": "gate"
+      },
+      "requested_model": "gpt-4.1-mini-2025-04-14",
+      "actual_model": "gpt-4.1-mini-2025-04-14",
+      "state": {
+        "agents": [
+          {
+            "direction": 0.0,
+            "id": "A",
+            "level": 1.4,
+            "position": [
+              3,
+              3
+            ]
+          },
+          {
+            "direction": 0.0,
+            "id": "B",
+            "level": 0.8,
+            "position": [
+              5,
+              1
+            ]
+          }
+        ],
+        "obstacles": [],
+        "shape": [
+          8,
+          8
+        ],
+        "tasks": [
+          {
+            "completed": false,
+            "id": "b0",
+            "level": 0.4,
+            "position": [
+              1,
+              6
+            ]
+          },
+          {
+            "completed": false,
+            "id": "b1",
+            "level": 0.6,
+            "position": [
+              6,
+              4
+            ]
+          },
+          {
+            "completed": false,
+            "id": "b2",
+            "level": 1.6,
+            "position": [
+              2,
+              2
+            ]
+          }
+        ]
+      },
+      "exact_prompt": {
+        "messages": [
+          {
+            "content": "You control two robots in fully observed Level-Based Foraging. Recommend one next pickup allocation that follows the supplied policy and makes at least one feasible pickup. A robot can target one box or be unassigned. Assigned capacities combine only when robots collect the same box together. Return exactly {\"targets\":{agent_id:box_id_or_null,...}} using every registered agent ID and only unfinished box IDs. Return JSON only, without explanation or additional fields. Navigation and pickup synchronization are handled by a fixed executor. Do not recommend primitive moves or a full episode plan.",
+            "role": "system"
+          },
+          {
+            "content": "{\"objective\":\"Make at least one feasible pickup while obeying the policy.\",\"policy\":\"Select at least one box for a feasible pickup. For each selected box, the combined lifting capacity of the assigned robots must be at least its weight. Each robot may be assigned to at most one box; a robot may be unassigned.\",\"state\":{\"agents\":[{\"direction\":0.0,\"id\":\"A\",\"level\":1.4,\"position\":[3,3]},{\"direction\":0.0,\"id\":\"B\",\"level\":0.8,\"position\":[5,1]}],\"obstacles\":[],\"shape\":[8,8],\"tasks\":[{\"completed\":false,\"id\":\"b0\",\"level\":0.4,\"position\":[1,6]},{\"completed\":false,\"id\":\"b1\",\"level\":0.6,\"position\":[6,4]},{\"completed\":false,\"id\":\"b2\",\"level\":1.6,\"position\":[2,2]}]}}",
+            "role": "user"
+          }
+        ]
+      },
+      "raw_response": "{\"targets\":{\"A\":\"b2\",\"B\":null}}",
+      "verdict": {
+        "capacity_feasible": false,
+        "comparison_valid": true,
+        "format_valid": true,
+        "geometric_feasible": true,
+        "good": false,
+        "joint_assignment": false,
+        "physical_valid": false,
+        "policy_compliant": true,
+        "progress": true,
+        "spec_defect": null,
+        "status": "PHYSICS",
+        "targets": {
+          "A": "b2",
+          "B": null
+        }
+      },
+      "capacity_arithmetic": [
+        {
+          "box": "b2",
+          "box_weight": 1.6,
+          "assigned_agents": [
+            "A"
+          ],
+          "assigned_capacity": 1.4,
+          "capacity_sufficient": false
+        }
+      ],
+      "executor": null,
+      "diagnosis": "Capacity-infeasible recommendation; not an executor stall or simulator defect.",
+      "internal_model_cause": "Not identifiable from an allocation-only response."
+    }
+  ]
+}

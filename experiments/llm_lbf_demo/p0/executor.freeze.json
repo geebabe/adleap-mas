@@ -1,0 +1,12 @@
+{
+  "executor_version": "e1-motion-2",
+  "executor_source_hash": "c2cfbd0e9971c1fda23723b0220173c307d534880201b96c072006373dd531cc",
+  "recovered_testbed_sha256": "7296cab935d1260d89615194ce4835afe22c0137f9dd1be74f4a9dd699330ab3",
+  "upstream_commit": "0874e57fc4974d7e1f8bdd5d39e04119e7053d6f",
+  "witness_file_sha256": "8b744973f2f2e5a9ec77239ece8b6bdc42d449de045d0f57d3ead8ddb4cea466",
+  "witnesses": {
+    "covered": 864,
+    "successes": 864,
+    "failures": []
+  }
+}

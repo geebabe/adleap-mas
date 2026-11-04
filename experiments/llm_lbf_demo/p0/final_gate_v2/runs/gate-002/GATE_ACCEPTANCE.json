@@ -1,0 +1,332 @@
+{
+  "infrastructure_validation": false,
+  "complete": true,
+  "manifest_hash": "273d3f15000247bdde3d9e0776204da599fdaa2fdeb3e09033e0dfbd57a3a955",
+  "gate_binding": "c829f850ede4b18aa6c9227e942688135064a2f085f8e536bc6e7e893b892e9e",
+  "config_hash": "253d330051b637fec9bc33574d5ec7012eb9dca230ecc02cc515cf35e0cfbe7a",
+  "expected_slots": 144,
+  "completed_slots": 144,
+  "api_attempts": 144,
+  "model_findings": true,
+  "overall": {
+    "slots": 144,
+    "statuses": {
+      "GOOD": 143,
+      "PHYSICS": 1
+    },
+    "strict_goodness": 0.9930555555555556,
+    "parse_rate": 1.0,
+    "capacity_rate": 0.9930555555555556,
+    "geometry_rate": 1.0,
+    "physical_rate": 0.9930555555555556,
+    "false_idle_rate": 0.0,
+    "joint_assignment_rate": 0.05555555555555555,
+    "policy_violation_unconditional": 0.0,
+    "policy_violation_given_physical": 0.0,
+    "replay": {
+      "replayed": 143,
+      "successful_pickups": 143,
+      "executor_failures": 0,
+      "spec_defects": 0,
+      "forbidden_joint_load_attempts": 0,
+      "forbidden_successful_pickups": 0,
+      "substitutions": 0,
+      "mean_ticks": 3.3776223776223775
+    }
+  },
+  "gate": [
+    {
+      "model_role": "primary",
+      "language": "EN",
+      "passed": true,
+      "eligible_live_evidence": true,
+      "slots": 36,
+      "statuses": {
+        "GOOD": 36
+      },
+      "strict_goodness": 1.0,
+      "parse_rate": 1.0,
+      "capacity_rate": 1.0,
+      "geometry_rate": 1.0,
+      "physical_rate": 1.0,
+      "false_idle_rate": 0.0,
+      "joint_assignment_rate": 0.0,
+      "policy_violation_unconditional": 0.0,
+      "policy_violation_given_physical": 0.0,
+      "replay": {
+        "replayed": 36,
+        "successful_pickups": 36,
+        "executor_failures": 0,
+        "spec_defects": 0,
+        "forbidden_joint_load_attempts": 0,
+        "forbidden_successful_pickups": 0,
+        "substitutions": 0,
+        "mean_ticks": 3.3333333333333335
+      }
+    },
+    {
+      "model_role": "primary",
+      "language": "VI",
+      "passed": true,
+      "eligible_live_evidence": true,
+      "slots": 36,
+      "statuses": {
+        "GOOD": 36
+      },
+      "strict_goodness": 1.0,
+      "parse_rate": 1.0,
+      "capacity_rate": 1.0,
+      "geometry_rate": 1.0,
+      "physical_rate": 1.0,
+      "false_idle_rate": 0.0,
+      "joint_assignment_rate": 0.0,
+      "policy_violation_unconditional": 0.0,
+      "policy_violation_given_physical": 0.0,
+      "replay": {
+        "replayed": 36,
+        "successful_pickups": 36,
+        "executor_failures": 0,
+        "spec_defects": 0,
+        "forbidden_joint_load_attempts": 0,
+        "forbidden_successful_pickups": 0,
+        "substitutions": 0,
+        "mean_ticks": 3.3333333333333335
+      }
+    },
+    {
+      "model_role": "replication",
+      "language": "EN",
+      "passed": true,
+      "eligible_live_evidence": true,
+      "slots": 36,
+      "statuses": {
+        "GOOD": 35,
+        "PHYSICS": 1
+      },
+      "strict_goodness": 0.9722222222222222,
+      "parse_rate": 1.0,
+      "capacity_rate": 0.9722222222222222,
+      "geometry_rate": 1.0,
+      "physical_rate": 0.9722222222222222,
+      "false_idle_rate": 0.0,
+      "joint_assignment_rate": 0.1388888888888889,
+      "policy_violation_unconditional": 0.0,
+      "policy_violation_given_physical": 0.0,
+      "replay": {
+        "replayed": 35,
+        "successful_pickups": 35,
+        "executor_failures": 0,
+        "spec_defects": 0,
+        "forbidden_joint_load_attempts": 0,
+        "forbidden_successful_pickups": 0,
+        "substitutions": 0,
+        "mean_ticks": 3.5428571428571427
+      }
+    },
+    {
+      "model_role": "replication",
+      "language": "VI",
+      "passed": true,
+      "eligible_live_evidence": true,
+      "slots": 36,
+      "statuses": {
+        "GOOD": 36
+      },
+      "strict_goodness": 1.0,
+      "parse_rate": 1.0,
+      "capacity_rate": 1.0,
+      "geometry_rate": 1.0,
+      "physical_rate": 1.0,
+      "false_idle_rate": 0.0,
+      "joint_assignment_rate": 0.08333333333333333,
+      "policy_violation_unconditional": 0.0,
+      "policy_violation_given_physical": 0.0,
+      "replay": {
+        "replayed": 36,
+        "successful_pickups": 36,
+        "executor_failures": 0,
+        "spec_defects": 0,
+        "forbidden_joint_load_attempts": 0,
+        "forbidden_successful_pickups": 0,
+        "substitutions": 0,
+        "mean_ticks": 3.3055555555555554
+      }
+    }
+  ],
+  "models": {
+    "primary": {
+      "pairs": 0,
+      "pairs_per_language": {},
+      "families": 0,
+      "pairpass": null,
+      "primary_EN_and_secondary_VI": null,
+      "all_variants_family_event": null,
+      "family_means": [],
+      "marginals": {
+        "slots": 0,
+        "statuses": {},
+        "strict_goodness": null,
+        "parse_rate": null,
+        "capacity_rate": null,
+        "geometry_rate": null,
+        "physical_rate": null,
+        "false_idle_rate": null,
+        "joint_assignment_rate": null,
+        "policy_violation_unconditional": null,
+        "policy_violation_given_physical": null,
+        "replay": {
+          "replayed": 0,
+          "successful_pickups": 0,
+          "executor_failures": 0,
+          "spec_defects": 0,
+          "forbidden_joint_load_attempts": 0,
+          "forbidden_successful_pickups": 0,
+          "substitutions": 0,
+          "mean_ticks": null
+        }
+      },
+      "by_policy": {
+        "R": {
+          "slots": 0,
+          "statuses": {},
+          "strict_goodness": null,
+          "parse_rate": null,
+          "capacity_rate": null,
+          "geometry_rate": null,
+          "physical_rate": null,
+          "false_idle_rate": null,
+          "joint_assignment_rate": null,
+          "policy_violation_unconditional": null,
+          "policy_violation_given_physical": null,
+          "replay": {
+            "replayed": 0,
+            "successful_pickups": 0,
+            "executor_failures": 0,
+            "spec_defects": 0,
+            "forbidden_joint_load_attempts": 0,
+            "forbidden_successful_pickups": 0,
+            "substitutions": 0,
+            "mean_ticks": null
+          }
+        },
+        "F": {
+          "slots": 0,
+          "statuses": {},
+          "strict_goodness": null,
+          "parse_rate": null,
+          "capacity_rate": null,
+          "geometry_rate": null,
+          "physical_rate": null,
+          "false_idle_rate": null,
+          "joint_assignment_rate": null,
+          "policy_violation_unconditional": null,
+          "policy_violation_given_physical": null,
+          "replay": {
+            "replayed": 0,
+            "successful_pickups": 0,
+            "executor_failures": 0,
+            "spec_defects": 0,
+            "forbidden_joint_load_attempts": 0,
+            "forbidden_successful_pickups": 0,
+            "substitutions": 0,
+            "mean_ticks": null
+          }
+        }
+      },
+      "strata": {
+        "light": null,
+        "mixed": null
+      }
+    },
+    "replication": {
+      "pairs": 0,
+      "pairs_per_language": {},
+      "families": 0,
+      "pairpass": null,
+      "primary_EN_and_secondary_VI": null,
+      "all_variants_family_event": null,
+      "family_means": [],
+      "marginals": {
+        "slots": 0,
+        "statuses": {},
+        "strict_goodness": null,
+        "parse_rate": null,
+        "capacity_rate": null,
+        "geometry_rate": null,
+        "physical_rate": null,
+        "false_idle_rate": null,
+        "joint_assignment_rate": null,
+        "policy_violation_unconditional": null,
+        "policy_violation_given_physical": null,
+        "replay": {
+          "replayed": 0,
+          "successful_pickups": 0,
+          "executor_failures": 0,
+          "spec_defects": 0,
+          "forbidden_joint_load_attempts": 0,
+          "forbidden_successful_pickups": 0,
+          "substitutions": 0,
+          "mean_ticks": null
+        }
+      },
+      "by_policy": {
+        "R": {
+          "slots": 0,
+          "statuses": {},
+          "strict_goodness": null,
+          "parse_rate": null,
+          "capacity_rate": null,
+          "geometry_rate": null,
+          "physical_rate": null,
+          "false_idle_rate": null,
+          "joint_assignment_rate": null,
+          "policy_violation_unconditional": null,
+          "policy_violation_given_physical": null,
+          "replay": {
+            "replayed": 0,
+            "successful_pickups": 0,
+            "executor_failures": 0,
+            "spec_defects": 0,
+            "forbidden_joint_load_attempts": 0,
+            "forbidden_successful_pickups": 0,
+            "substitutions": 0,
+            "mean_ticks": null
+          }
+        },
+        "F": {
+          "slots": 0,
+          "statuses": {},
+          "strict_goodness": null,
+          "parse_rate": null,
+          "capacity_rate": null,
+          "geometry_rate": null,
+          "physical_rate": null,
+          "false_idle_rate": null,
+          "joint_assignment_rate": null,
+          "policy_violation_unconditional": null,
+          "policy_violation_given_physical": null,
+          "replay": {
+            "replayed": 0,
+            "successful_pickups": 0,
+            "executor_failures": 0,
+            "spec_defects": 0,
+            "forbidden_joint_load_attempts": 0,
+            "forbidden_successful_pickups": 0,
+            "substitutions": 0,
+            "mean_ticks": null
+          }
+        }
+      },
+      "strata": {
+        "light": null,
+        "mixed": null
+      }
+    }
+  },
+  "family_unit": "generated world, not repeat/paraphrase",
+  "uncertainty": {
+    "method": "paired family-cluster percentile bootstrap",
+    "resamples": 10000,
+    "seed": 4103
+  }
+}

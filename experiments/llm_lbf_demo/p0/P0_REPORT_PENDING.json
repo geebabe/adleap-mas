@@ -1,0 +1,72 @@
+{
+  "kind": "formal_P0_gate",
+  "status": "NOT_RUN",
+  "paid_calls_made": 0,
+  "held_out_E1_authorized": false,
+  "conditions": [
+    {
+      "model_role": "primary",
+      "model_snapshot": "gpt-4o-mini-2024-07-18",
+      "language": "EN",
+      "scheduled_calls": 36,
+      "completed_calls": 0,
+      "parseability": null,
+      "capacity_validity": null,
+      "geometric_validity": null,
+      "physical_validity": null,
+      "progressive_goodness": null,
+      "infrastructure_failed_attempts": null,
+      "exhausted_infrastructure_slots": null,
+      "observed_usage_cost_usd": null,
+      "passed": null
+    },
+    {
+      "model_role": "primary",
+      "model_snapshot": "gpt-4o-mini-2024-07-18",
+      "language": "VI",
+      "scheduled_calls": 36,
+      "completed_calls": 0,
+      "parseability": null,
+      "capacity_validity": null,
+      "geometric_validity": null,
+      "physical_validity": null,
+      "progressive_goodness": null,
+      "infrastructure_failed_attempts": null,
+      "exhausted_infrastructure_slots": null,
+      "observed_usage_cost_usd": null,
+      "passed": null
+    },
+    {
+      "model_role": "replication",
+      "model_snapshot": "gpt-4.1-mini-2025-04-14",
+      "language": "EN",
+      "scheduled_calls": 36,
+      "completed_calls": 0,
+      "parseability": null,
+      "capacity_validity": null,
+      "geometric_validity": null,
+      "physical_validity": null,
+      "progressive_goodness": null,
+      "infrastructure_failed_attempts": null,
+      "exhausted_infrastructure_slots": null,
+      "observed_usage_cost_usd": null,
+      "passed": null
+    },
+    {
+      "model_role": "replication",
+      "model_snapshot": "gpt-4.1-mini-2025-04-14",
+      "language": "VI",
+      "scheduled_calls": 36,
+      "completed_calls": 0,
+      "parseability": null,
+      "capacity_validity": null,
+      "geometric_validity": null,
+      "physical_validity": null,
+      "progressive_goodness": null,
+      "infrastructure_failed_attempts": null,
+      "exhausted_infrastructure_slots": null,
+      "observed_usage_cost_usd": null,
+      "passed": null
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "allocations": 78,
+  "successes": 78,
+  "worlds": 12,
+  "failures": [],
+  "by_branch": {
+    "solo_required": 72,
+    "joint_required": 6
+  },
+  "no_dropped_worlds": true,
+  "recommendation_labels_independent_of_executor": true,
+  "new_worlds_generated": 0,
+  "LLM_calls": 0
+}

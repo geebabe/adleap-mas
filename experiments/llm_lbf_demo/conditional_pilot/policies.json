@@ -1,0 +1,6 @@
+{
+  "version": "conditional-policy-1",
+  "human_semantic_approval": "AWAITING_REVIEW_OF_THIS_NEW_POLICY",
+  "EN": "If any remaining box cannot be lifted by either robot alone but can be lifted by both together, assign both robots to one such box. Otherwise, make physically feasible solo assignments that produce progress.",
+  "VI": "Nếu có bất kỳ thùng nào chưa được thu gom mà không robot nào trong hai robot có thể tự nâng một mình, nhưng cả hai robot có thể cùng nâng được, hãy phân công cả hai robot cho một thùng như vậy. Nếu không, hãy đưa ra các phân công thu gom riêng lẻ khả thi về mặt vật lý để tạo ra tiến triển."
+}

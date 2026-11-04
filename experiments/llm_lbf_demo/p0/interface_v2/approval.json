@@ -1,0 +1,10 @@
+{
+  "approved": true,
+  "approved_by": "user in this Codex chat",
+  "approved_at": "2026-11-04T14:12:08.917363+00:00",
+  "protocol_hash": "cff1f7eb9e83a5109e2067434273d0916b9b2a45df6266ef2e6eb71a15761234",
+  "max_usd": 0.1,
+  "scope": "Only the frozen 24-call original-versus-clarified capacity-grounding development diagnostic; zero retries; no formal gate or held-out spending.",
+  "source": "Explicit user answer to the pending diagnostic spending question",
+  "user_answer": "Authorize the 24-call diagnostic, up to $0.10"
+}

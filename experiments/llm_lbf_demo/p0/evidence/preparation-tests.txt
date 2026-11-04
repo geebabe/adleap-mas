@@ -1,0 +1,48 @@
+test_capacity_geometry_and_executor_are_separate (test_e1.TestE1.test_capacity_geometry_and_executor_are_separate) ... /Users/phoenix/PycharmProjects/adleap-mas/experiments/llm_lbf_demo/vendor/adleap-mas/src/envs/AdhocReasoningEnv.py:81: UserWarning: do not forget to manually set the initial state and initial components.
+  warn("do not forget to manually set the initial state and initial components.",UserWarning)
+ok
+test_controls_without_network (test_e1.TestE1.test_controls_without_network) ... ok
+test_executor_witness_coverage_retains_real_regression (test_e1.TestE1.test_executor_witness_coverage_retains_real_regression) ... ok
+test_family_bootstrap_retains_pairs (test_e1.TestE1.test_family_bootstrap_retains_pairs) ... ok
+test_gate_thresholds_and_fake_gate_not_live_evidence (test_e1.TestE1.test_gate_thresholds_and_fake_gate_not_live_evidence) ... ok
+test_gold_is_independent_of_presented_text (test_e1.TestE1.test_gold_is_independent_of_presented_text) ... ok
+test_hand_table_and_all_alternatives (test_e1.TestE1.test_hand_table_and_all_alternatives) ... ok
+test_ids_and_capacity_metamorphic (test_e1.TestE1.test_ids_and_capacity_metamorphic) ... ok
+test_journal_tampering_and_torn_tail (test_e1.TestE1.test_journal_tampering_and_torn_tail) ... ok
+test_live_prerequisites_and_cost_without_transport (test_e1.TestE1.test_live_prerequisites_and_cost_without_transport) ... ok
+test_manifest_regeneration_splits_and_good_sets (test_e1.TestE1.test_manifest_regeneration_splits_and_good_sets) ... ok
+test_motion_arbitration_preserves_load_wait_and_inputs (test_e1.TestE1.test_motion_arbitration_preserves_load_wait_and_inputs) ... ok
+test_motion_fix_is_not_family_seed_id_or_coordinate_specific (test_e1.TestE1.test_motion_fix_is_not_family_seed_id_or_coordinate_specific) ... ok
+test_native_actions_wait_load_and_failed_joint_attempt (test_e1.TestE1.test_native_actions_wait_load_and_failed_joint_attempt) ... ok
+test_old_witnesses_do_not_certify_new_executor (test_e1.TestE1.test_old_witnesses_do_not_certify_new_executor) ... ok
+test_payload_only_policy_changes_no_confounds (test_e1.TestE1.test_payload_only_policy_changes_no_confounds) ... ok
+test_replay_cache_rejects_stale_executor_version (test_e1.TestE1.test_replay_cache_rejects_stale_executor_version) ... ok
+test_response_durable_before_terminal (test_e1.TestE1.test_response_durable_before_terminal) ... ok
+test_resume_and_compatible_binding (test_e1.TestE1.test_resume_and_compatible_binding) ... ok
+test_retries_are_bounded_and_exhaustion_incomplete (test_e1.TestE1.test_retries_are_bounded_and_exhaustion_incomplete) ... ok
+test_slot_counts_and_pairing (test_e1.TestE1.test_slot_counts_and_pairing) ... ok
+test_strict_parser (test_e1.TestE1.test_strict_parser) ... ok
+test_uncertain_request_is_not_resent (test_e1.TestE1.test_uncertain_request_is_not_resent) ... ok
+test_exact_snapshot_proposal_and_retry_inclusive_budget (test_p0.TestP0Preparation.test_exact_snapshot_proposal_and_retry_inclusive_budget) ... ok
+test_executor_and_exact_policy_review_copy_frozen (test_p0.TestP0Preparation.test_executor_and_exact_policy_review_copy_frozen) ... ok
+test_four_conditions_each_36_cost_and_infra_reported (test_p0.TestP0Preparation.test_four_conditions_each_36_cost_and_infra_reported) ... ok
+test_mocked_provider_parameters_and_raw_usage_preserved (test_p0.TestP0Preparation.test_mocked_provider_parameters_and_raw_usage_preserved) ... ok
+test_pending_report_is_not_observed_results (test_p0.TestP0Preparation.test_pending_report_is_not_observed_results) ... ok
+test_real_smoke_required_before_final_freeze (test_p0.TestP0Preparation.test_real_smoke_required_before_final_freeze) ... ok
+test_smoke_development_only_and_does_not_enter_formal_gate (test_p0.TestP0Preparation.test_smoke_development_only_and_does_not_enter_formal_gate) ... ok
+test_unauthorized_and_heldout_calls_blocked_before_transport (test_p0.TestP0Preparation.test_unauthorized_and_heldout_calls_blocked_before_transport) ... ok
+test_usage_cost_cached_unknown_and_never_fake_invoice (test_p0.TestP0Preparation.test_usage_cost_cached_unknown_and_never_fake_invoice) ... ok
+test_all_scenarios_and_paired_tradeoff (test_testbed.TestPolicy2Action.test_all_scenarios_and_paired_tradeoff) ... ok
+test_astar (test_testbed.TestPolicy2Action.test_astar) ... ok
+test_log_reproducibility_and_preservation (test_testbed.TestPolicy2Action.test_log_reproducibility_and_preservation) ... ok
+test_mock_failure_paths (test_testbed.TestPolicy2Action.test_mock_failure_paths) ... ok
+test_no_path (test_testbed.TestPolicy2Action.test_no_path) ... ok
+test_observable_attempt_and_exception (test_testbed.TestPolicy2Action.test_observable_attempt_and_exception) ... ok
+test_optional_llm_backend_without_network (test_testbed.TestPolicy2Action.test_optional_llm_backend_without_network) ... ok
+test_real_upstream_and_noop (test_testbed.TestPolicy2Action.test_real_upstream_and_noop) ... ok
+test_structural_and_grounding (test_testbed.TestPolicy2Action.test_structural_and_grounding) ... ok
+
+----------------------------------------------------------------------
+Ran 41 tests in 2.956s
+
+OK

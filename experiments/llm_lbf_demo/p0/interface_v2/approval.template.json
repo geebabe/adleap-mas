@@ -1,0 +1,8 @@
+{
+  "approved": false,
+  "approved_by": null,
+  "approved_at": null,
+  "protocol_hash": "cff1f7eb9e83a5109e2067434273d0916b9b2a45df6266ef2e6eb71a15761234",
+  "max_usd": 0.1,
+  "scope": "Only the 24-call versioned capacity-grounding development diagnostic; no formal gate or held-out spending"
+}

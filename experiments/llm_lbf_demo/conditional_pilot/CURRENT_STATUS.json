@@ -1,0 +1,121 @@
+{
+  "status": "REAL_72_CALL_PILOT_COMPLETE",
+  "model": "gpt-4o-mini-2024-07-18",
+  "conditions": [
+    {
+      "branch": "solo_required",
+      "language": "EN",
+      "scheduled_calls": 18,
+      "independent_worlds": 6,
+      "strict_good": 11,
+      "strict_goodness_rate": 0.6111111111111112,
+      "format_valid": 18,
+      "capacity_valid": 18,
+      "geometry_valid": 18,
+      "policy_compliant": 11,
+      "failure_flags_nonexclusive": {
+        "format": 0,
+        "capacity": 0,
+        "geometry": 0,
+        "progress": 0,
+        "policy": 7,
+        "specification": 0
+      },
+      "statuses": {
+        "POLICY": 7,
+        "GOOD": 11
+      },
+      "executor_pickups": 18,
+      "conditional_pickup_violations": 7,
+      "observed_token_cost_usd": "0.00119610"
+    },
+    {
+      "branch": "solo_required",
+      "language": "VI",
+      "scheduled_calls": 18,
+      "independent_worlds": 6,
+      "strict_good": 0,
+      "strict_goodness_rate": 0.0,
+      "format_valid": 18,
+      "capacity_valid": 18,
+      "geometry_valid": 18,
+      "policy_compliant": 0,
+      "failure_flags_nonexclusive": {
+        "format": 0,
+        "capacity": 0,
+        "geometry": 0,
+        "progress": 0,
+        "policy": 18,
+        "specification": 0
+      },
+      "statuses": {
+        "POLICY": 18
+      },
+      "executor_pickups": 18,
+      "conditional_pickup_violations": 18,
+      "observed_token_cost_usd": "0.00129330"
+    },
+    {
+      "branch": "joint_required",
+      "language": "EN",
+      "scheduled_calls": 18,
+      "independent_worlds": 6,
+      "strict_good": 15,
+      "strict_goodness_rate": 0.8333333333333334,
+      "format_valid": 18,
+      "capacity_valid": 15,
+      "geometry_valid": 18,
+      "policy_compliant": 15,
+      "failure_flags_nonexclusive": {
+        "format": 0,
+        "capacity": 3,
+        "geometry": 0,
+        "progress": 0,
+        "policy": 3,
+        "specification": 0
+      },
+      "statuses": {
+        "GOOD": 15,
+        "PHYSICS": 3
+      },
+      "executor_pickups": 18,
+      "conditional_pickup_violations": 3,
+      "observed_token_cost_usd": "0.00119610"
+    },
+    {
+      "branch": "joint_required",
+      "language": "VI",
+      "scheduled_calls": 18,
+      "independent_worlds": 6,
+      "strict_good": 17,
+      "strict_goodness_rate": 0.9444444444444444,
+      "format_valid": 18,
+      "capacity_valid": 18,
+      "geometry_valid": 18,
+      "policy_compliant": 17,
+      "failure_flags_nonexclusive": {
+        "format": 0,
+        "capacity": 0,
+        "geometry": 0,
+        "progress": 0,
+        "policy": 1,
+        "specification": 0
+      },
+      "statuses": {
+        "GOOD": 17,
+        "POLICY": 1
+      },
+      "executor_pickups": 18,
+      "conditional_pickup_violations": 1,
+      "observed_token_cost_usd": "0.00129330"
+    }
+  ],
+  "strict_good_total": 43,
+  "calls": 72,
+  "first_pickups": 72,
+  "observed_token_cost_usd": "0.00497880",
+  "held_out_calls": 0,
+  "results": "evidence/live-001/RESULTS.md",
+  "verification": "evidence/live-001/VERIFICATION.json",
+  "note": "REAL_RESULTS_PENDING.json and PRE_LIVE_REVIEW.md preserve the original pre-approval state. Current approval and results are separate; frozen policies and source were not edited."
+}

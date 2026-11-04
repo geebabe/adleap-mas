@@ -1,0 +1,19 @@
+{
+  "approved": true,
+  "approved_by": "user in this Codex chat",
+  "approved_at": "2026-11-04T16:28:55.483203+00:00",
+  "proposal_hash": "5ae24bbff54d27ceb51cc7d38d7c42c514201684c632309126ae3c8f5aa6a1b4",
+  "phases": [
+    "smoke",
+    "gate"
+  ],
+  "max_usd": {
+    "smoke": 0.05,
+    "gate": 1.5
+  },
+  "combined_cap_usd": 1.55,
+  "formal_attempt_number": 2,
+  "held_out_spending_authorized": false,
+  "source": "User replied \"oke, just proceed\" to the immediately preceding proposal for one final clarified formal P0, four separate smoke calls, 144 gate calls and USD 1.55 ceiling including retries.",
+  "user_message": "oke, just proceed"
+}

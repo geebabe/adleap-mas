@@ -1,0 +1,15 @@
+vendor/
+.venv/
+__pycache__/
+!testbed.py
+!tests/
+!tests/*.py
+evidence/deterministic-v1/
+evidence/deterministic-v2/
+evidence/verified/
+evidence/tests.txt
+evidence/tests-final.txt
+evidence/malformed.jsonl
+e1/evidence/tests-first.txt
+e1/evidence/tests-second.txt
+e1/evidence/tests-third.txt

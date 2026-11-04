@@ -1,0 +1,144 @@
+--- a/experiments/llm_lbf_demo/e1/executor.py
++++ b/experiments/llm_lbf_demo/e1/executor.py
+@@ -1,7 +1,31 @@
+-"""Thin bridge to the recovered executor; upstream and recovered code unchanged."""
++"""Versioned motion coordination around the unchanged recovered A* executor."""
++import hashlib
++from pathlib import Path
+ import random
+ from .. import testbed as recovered
+ from .common import digest
++
++EXECUTOR_VERSION = 'e1-motion-2'
++LEGACY_EXECUTOR_VERSION = 'e1-motion-1'
++
++
++def executor_source_hash():
++    return hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
++
++
++def coordinate_motion(proposed):
++    """Serialize directional commands globally; preserve joint LOAD and true wait.
++
++    Recovered A* plans around other robots' current cells. Moving multiple groups
++    together invalidates that stationary-obstacle assumption and can cause cycles.
++    Stable agent-ID priority keeps the other robots fixed for each movement/turn.
++    No target, path, facing decision, or LOAD command is substituted.
++    """
++    actions = dict(proposed)
++    movers = sorted(aid for aid, action in actions.items() if action in (0, 1, 2, 3))
++    for aid in movers[1:]:
++        actions[aid] = None
++    return actions
+ 
+ 
+ class SpecDefect(RuntimeError):
+@@ -38,15 +62,20 @@
+     result = {'status':'EXECUTOR','success':False,'diagnosis':'40-tick horizon exhausted',
+               'substitutions':[],'joint_load_attempts':0,'forbidden_joint_load_attempts':0,
+               'forbidden_successful_pickups':0,'ticks':0,'trace':trace,'seed':seed}
++    coordinated = navigator is None
++    result['executor_version'] = (EXECUTOR_VERSION if coordinated else LEGACY_EXECUTOR_VERSION
++                                  if navigator is recovered.navigate else 'injected-test-navigator')
++    result['executor_source_hash'] = executor_source_hash()
+     try:
+         env = make_env(state, seed)
+         navigator = navigator or recovered.navigate
+         for tick in range(horizon):
+             before = recovered.snapshot(env)
+-            actions,error = navigator(env,dict(targets))
++            proposed,error = navigator(env,dict(targets))
+             if error:
+                 result['diagnosis'] = error
+                 break
++            actions = coordinate_motion(proposed) if coordinated else proposed
+             attempts = load_attempts(env,actions)
+             joint = [tid for tid,members in attempts.items() if len(members)>1]
+             result['joint_load_attempts'] += len(joint)
+@@ -61,6 +90,9 @@
+                 result['substitutions'].append({'tick':tick,'unexpected_tasks':unexpected})
+             trace.append({'tick':tick,'targets':dict(targets),'before':before,'actions':actions,
+                           'attempts':attempts,'pickups':finished,'after':recovered.snapshot(env)})
++            if coordinated:
++                trace[-1].update(proposed_actions=proposed,
++                                 motion_yields=[aid for aid in proposed if proposed[aid] != actions[aid]])
+             if finished:
+                 result.update(success=not result['substitutions'],status='SUCCESS' if not result['substitutions'] else 'EXECUTOR',
+                               diagnosis=None if not result['substitutions'] else 'executor substituted targets')
+--- a/experiments/llm_lbf_demo/e1/worlds.py
++++ b/experiments/llm_lbf_demo/e1/worlds.py
+@@ -6,7 +6,9 @@
+ import random
+ from .common import ROOT, canonical, digest, read_json
+ from .e1_oracle import allocations, score, good_set
+-from .executor import replay
++from .executor import EXECUTOR_VERSION,executor_source_hash,replay
++
++WITNESS_PATH = ROOT/'evidence/executor-v2/witnesses.jsonl'
+ 
+ 
+ def hand_fixture():
+@@ -115,14 +117,14 @@
+ def main():
+     p=argparse.ArgumentParser(description=__doc__)
+     p.add_argument('--manifest',type=Path,default=ROOT/'e1_manifest.jsonl')
+-    p.add_argument('--witnesses',type=Path,default=ROOT/'evidence/e1_witnesses.jsonl')
++    p.add_argument('--witnesses',type=Path,default=WITNESS_PATH)
+     args=p.parse_args()
+     worlds=generate();write_manifest(args.manifest,worlds)
+     print(canonical({'worlds':len(worlds),'manifest_hash':digest(worlds),
+                      'executor_witnesses':write_witnesses(worlds,args.witnesses)}))
+ 
+ 
+-def witness_acceptance(worlds,path=ROOT/'evidence/e1_witnesses.jsonl'):
++def witness_acceptance(worlds,path=WITNESS_PATH,*,expected_version=EXECUTOR_VERSION):
+     expected={(w['family_id'],canonical(a)) for w in worlds for a in good_set(w['state'],'P0')}
+     rows=[json.loads(line) for line in Path(path).read_text().splitlines()]
+     actual={(r['family_id'],canonical(r['targets'])) for r in rows}
+@@ -133,6 +135,9 @@
+         result=row['executor']
+         if row['state_hash']!=by_id[row['family_id']]['state_hash'] or digest(result['trace'])!=result['trace_hash']:
+             raise ValueError('witness state/trace hash mismatch')
++        if expected_version is not None and (result.get('executor_version')!=expected_version or
++                result.get('executor_source_hash')!=executor_source_hash()):
++            raise ValueError('stale executor witness version/source hash')
+         if not result['success']:
+             failures.append({'family_id':row['family_id'],'targets':row['targets'],'status':result['status'],'diagnosis':result['diagnosis']})
+     return {'covered':len(rows),'successes':len(rows)-len(failures),'failures':failures,'accepted':not failures}
+--- a/experiments/llm_lbf_demo/e1/run_e1.py
++++ b/experiments/llm_lbf_demo/e1/run_e1.py
+@@ -11,7 +11,7 @@
+ from .common import ROOT,canonical,digest,read_json,PARSER_VERSION,ORACLE_VERSION,PROTOCOL_VERSION
+ from .controller import payload
+ from .e1_oracle import score
+-from .executor import replay
++from .executor import EXECUTOR_VERSION,executor_source_hash,replay
+ from .journal import Journal
+ from .providers import FakeProvider,LiveProvider,InfrastructureError
+ from .safeguards import validate_live,preflight_cost,estimate_attempt
+@@ -52,12 +52,15 @@
+ 
+ 
+ def _replay_cached(output,world,targets,gold):
+-    key=digest({'state':world['state_hash'],'targets':targets,'gold':gold,'seed':world['simulator_seed']})
++    key=digest({'state':world['state_hash'],'targets':targets,'gold':gold,'seed':world['simulator_seed'],
++                'executor_version':EXECUTOR_VERSION,'executor_source_hash':executor_source_hash()})
+     path=output/'replays'/f'{key}.json'
+     path.parent.mkdir(exist_ok=True)
+     if path.exists():
+         stored=read_json(path); result=stored['result']
+-        if stored['key']!=key or digest(result)!=stored['hash']:raise ValueError('replay cache integrity failure')
++        if (stored['key']!=key or digest(result)!=stored['hash'] or
++            result.get('executor_version')!=EXECUTOR_VERSION or result.get('executor_source_hash')!=executor_source_hash()):
++            raise ValueError('replay cache integrity/version failure')
+     else:
+         result=replay(world['state'],targets,gold,world['simulator_seed'])
+         with path.open('x') as f:
+@@ -90,6 +93,7 @@
+     if not dry_run and getattr(provider,'infrastructure_validation',False):
+         raise PermissionError('live run refuses fixture evidence')
+     configuration={'version':PROTOCOL_VERSION,'infrastructure_validation':dry_run,'fixture':mode if dry_run else None,
++        'executor_version':EXECUTOR_VERSION,'executor_source_hash':executor_source_hash(),
+         'manifest_hash':digest(worlds),'policy_hash':digest(policies),'slot_hash':digest(slots),'slot_count':len(slots),
+         'models':models,'code_hashes':code_hashes(),'parser':PARSER_VERSION,'oracle':ORACLE_VERSION,
+         'gate_binding':binding,'stage':stage,'config':config if not dry_run else None,

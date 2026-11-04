@@ -1,0 +1,10 @@
+{
+  "status": "AWAITING_HUMAN_SEMANTIC_APPROVAL",
+  "matched_English_paraphrase": 0,
+  "texts": {
+    "P0": "Hãy chọn ít nhất một thùng để có thể thu gom được. Với mỗi thùng được chọn, tổng sức nâng của các robot được phân công phải ít nhất bằng trọng lượng của thùng. Mỗi robot chỉ được phân công tối đa một thùng; có thể không phân công nhiệm vụ cho một robot.",
+    "R": "Với mỗi thùng được chọn tiếp theo, hãy phân công cả hai robot cùng thu gom thùng đó. Không được phân công chỉ một robot cho một thùng.",
+    "F": "Với mỗi thùng được chọn tiếp theo, hãy phân công đúng một robot thu gom thùng đó. Không được phân công cả hai robot cho cùng một thùng."
+  },
+  "no_Vietnamese_API_calls_made": true
+}

@@ -1,0 +1,229 @@
+{
+  "label": "EXPLORATORY_MATCHED_DEVELOPMENT_COMPARISON_NOT_FORMAL_E1",
+  "independent_families": 12,
+  "english_results_sha256": "082928d4cf709de5c6babfebc11b7bcadd726ecc9de37d51d00d630fb0c4e451",
+  "only_policy_field_changes": true,
+  "source_hashes_match": true,
+  "limitations": [
+    "Languages collected in separate sequential sweeps; not randomized language order.",
+    "Repetitions are nested within 12 development worlds; not independent families.",
+    "No formal gate or held-out inference is established by these sweeps."
+  ],
+  "by_policy": {
+    "P0": {
+      "EN": {
+        "conditions": 36,
+        "statuses": {
+          "GOOD": 36
+        },
+        "strict_good": 36,
+        "strict_goodness_rate": 1.0,
+        "parseable": 36,
+        "capacity_feasible": 36,
+        "geometrically_feasible": 36,
+        "physically_valid": 36,
+        "policy_pattern_compliant": 36,
+        "executor_statuses": {
+          "SUCCESS": 36
+        },
+        "successful_pickups": 36,
+        "jointly_only_selected_recommendations": 0,
+        "jointly_only_pickups": 0,
+        "observed_usage_cost_usd": "0.0019812"
+      },
+      "VI": {
+        "conditions": 36,
+        "statuses": {
+          "GOOD": 36
+        },
+        "strict_good": 36,
+        "strict_goodness_rate": 1.0,
+        "parseable": 36,
+        "capacity_feasible": 36,
+        "geometrically_feasible": 36,
+        "physically_valid": 36,
+        "policy_pattern_compliant": 36,
+        "executor_statuses": {
+          "SUCCESS": 36
+        },
+        "successful_pickups": 36,
+        "jointly_only_selected_recommendations": 0,
+        "jointly_only_pickups": 0,
+        "observed_usage_cost_usd": "0.00206820"
+      }
+    },
+    "R": {
+      "EN": {
+        "conditions": 36,
+        "statuses": {
+          "GOOD": 36
+        },
+        "strict_good": 36,
+        "strict_goodness_rate": 1.0,
+        "parseable": 36,
+        "capacity_feasible": 36,
+        "geometrically_feasible": 36,
+        "physically_valid": 36,
+        "policy_pattern_compliant": 36,
+        "executor_statuses": {
+          "SUCCESS": 36
+        },
+        "successful_pickups": 36,
+        "jointly_only_selected_recommendations": 0,
+        "jointly_only_pickups": 0,
+        "observed_usage_cost_usd": "0.0018684"
+      },
+      "VI": {
+        "conditions": 36,
+        "statuses": {
+          "GOOD": 36
+        },
+        "strict_good": 36,
+        "strict_goodness_rate": 1.0,
+        "parseable": 36,
+        "capacity_feasible": 36,
+        "geometrically_feasible": 36,
+        "physically_valid": 36,
+        "policy_pattern_compliant": 36,
+        "executor_statuses": {
+          "SUCCESS": 36
+        },
+        "successful_pickups": 36,
+        "jointly_only_selected_recommendations": 0,
+        "jointly_only_pickups": 0,
+        "observed_usage_cost_usd": "0.00192780"
+      }
+    },
+    "F": {
+      "EN": {
+        "conditions": 36,
+        "statuses": {
+          "GOOD": 33,
+          "PHYSICS": 3
+        },
+        "strict_good": 33,
+        "strict_goodness_rate": 0.9166666666666666,
+        "parseable": 36,
+        "capacity_feasible": 33,
+        "geometrically_feasible": 36,
+        "physically_valid": 33,
+        "policy_pattern_compliant": 36,
+        "executor_statuses": {
+          "SUCCESS": 36
+        },
+        "successful_pickups": 36,
+        "jointly_only_selected_recommendations": 3,
+        "jointly_only_pickups": 0,
+        "observed_usage_cost_usd": "0.00187380"
+      },
+      "VI": {
+        "conditions": 36,
+        "statuses": {
+          "GOOD": 36
+        },
+        "strict_good": 36,
+        "strict_goodness_rate": 1.0,
+        "parseable": 36,
+        "capacity_feasible": 36,
+        "geometrically_feasible": 36,
+        "physically_valid": 36,
+        "policy_pattern_compliant": 36,
+        "executor_statuses": {
+          "SUCCESS": 36
+        },
+        "successful_pickups": 36,
+        "jointly_only_selected_recommendations": 0,
+        "jointly_only_pickups": 0,
+        "observed_usage_cost_usd": "0.00190740"
+      }
+    }
+  },
+  "by_world": [
+    {
+      "world": "development-000",
+      "EN_pairpass": 3,
+      "VI_pairpass": 3,
+      "pairs_per_language": 3
+    },
+    {
+      "world": "development-001",
+      "EN_pairpass": 3,
+      "VI_pairpass": 3,
+      "pairs_per_language": 3
+    },
+    {
+      "world": "development-002",
+      "EN_pairpass": 3,
+      "VI_pairpass": 3,
+      "pairs_per_language": 3
+    },
+    {
+      "world": "development-003",
+      "EN_pairpass": 3,
+      "VI_pairpass": 3,
+      "pairs_per_language": 3
+    },
+    {
+      "world": "development-004",
+      "EN_pairpass": 3,
+      "VI_pairpass": 3,
+      "pairs_per_language": 3
+    },
+    {
+      "world": "development-005",
+      "EN_pairpass": 3,
+      "VI_pairpass": 3,
+      "pairs_per_language": 3
+    },
+    {
+      "world": "development-006",
+      "EN_pairpass": 3,
+      "VI_pairpass": 3,
+      "pairs_per_language": 3
+    },
+    {
+      "world": "development-007",
+      "EN_pairpass": 0,
+      "VI_pairpass": 3,
+      "pairs_per_language": 3
+    },
+    {
+      "world": "development-008",
+      "EN_pairpass": 3,
+      "VI_pairpass": 3,
+      "pairs_per_language": 3
+    },
+    {
+      "world": "development-009",
+      "EN_pairpass": 3,
+      "VI_pairpass": 3,
+      "pairs_per_language": 3
+    },
+    {
+      "world": "development-010",
+      "EN_pairpass": 3,
+      "VI_pairpass": 3,
+      "pairs_per_language": 3
+    },
+    {
+      "world": "development-011",
+      "EN_pairpass": 3,
+      "VI_pairpass": 3,
+      "pairs_per_language": 3
+    }
+  ],
+  "held_out_E1_authorized": false,
+  "pairpass": {
+    "EN_passed": 33,
+    "VI_passed": 36,
+    "pairs_per_language": 36,
+    "VI_minus_EN_rate": 0.08333333333333333,
+    "paired_family_bootstrap_95_ci": [
+      0.0,
+      0.25
+    ],
+    "degenerate_interval": false,
+    "resamples": 10000,
+    "seed": 20261104
+  }
+}

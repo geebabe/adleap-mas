@@ -1,0 +1,413 @@
+{
+  "scope": "DEVELOPMENT_CONDITIONAL_APPLICATION_NOT_CAUSAL_COMPLEXITY_OR_NOVELTY",
+  "infrastructure_validation": true,
+  "conditions": [
+    {
+      "branch": "solo_required",
+      "language": "EN",
+      "scheduled_calls": 18,
+      "independent_worlds": 6,
+      "strict_good": 18,
+      "strict_goodness_rate": 1.0,
+      "format_valid": 18,
+      "capacity_valid": 18,
+      "geometry_valid": 18,
+      "policy_compliant": 18,
+      "failure_flags_nonexclusive": {
+        "format": 0,
+        "capacity": 0,
+        "geometry": 0,
+        "progress": 0,
+        "policy": 0,
+        "specification": 0
+      },
+      "statuses": {
+        "GOOD": 18
+      },
+      "executor_pickups": 18,
+      "conditional_pickup_violations": 0,
+      "observed_token_cost_usd": null
+    },
+    {
+      "branch": "solo_required",
+      "language": "VI",
+      "scheduled_calls": 18,
+      "independent_worlds": 6,
+      "strict_good": 18,
+      "strict_goodness_rate": 1.0,
+      "format_valid": 18,
+      "capacity_valid": 18,
+      "geometry_valid": 18,
+      "policy_compliant": 18,
+      "failure_flags_nonexclusive": {
+        "format": 0,
+        "capacity": 0,
+        "geometry": 0,
+        "progress": 0,
+        "policy": 0,
+        "specification": 0
+      },
+      "statuses": {
+        "GOOD": 18
+      },
+      "executor_pickups": 18,
+      "conditional_pickup_violations": 0,
+      "observed_token_cost_usd": null
+    },
+    {
+      "branch": "joint_required",
+      "language": "EN",
+      "scheduled_calls": 18,
+      "independent_worlds": 6,
+      "strict_good": 18,
+      "strict_goodness_rate": 1.0,
+      "format_valid": 18,
+      "capacity_valid": 18,
+      "geometry_valid": 18,
+      "policy_compliant": 18,
+      "failure_flags_nonexclusive": {
+        "format": 0,
+        "capacity": 0,
+        "geometry": 0,
+        "progress": 0,
+        "policy": 0,
+        "specification": 0
+      },
+      "statuses": {
+        "GOOD": 18
+      },
+      "executor_pickups": 18,
+      "conditional_pickup_violations": 0,
+      "observed_token_cost_usd": null
+    },
+    {
+      "branch": "joint_required",
+      "language": "VI",
+      "scheduled_calls": 18,
+      "independent_worlds": 6,
+      "strict_good": 18,
+      "strict_goodness_rate": 1.0,
+      "format_valid": 18,
+      "capacity_valid": 18,
+      "geometry_valid": 18,
+      "policy_compliant": 18,
+      "failure_flags_nonexclusive": {
+        "format": 0,
+        "capacity": 0,
+        "geometry": 0,
+        "progress": 0,
+        "policy": 0,
+        "specification": 0
+      },
+      "statuses": {
+        "GOOD": 18
+      },
+      "executor_pickups": 18,
+      "conditional_pickup_violations": 0,
+      "observed_token_cost_usd": null
+    }
+  ],
+  "family_results": [
+    {
+      "world": "development-000",
+      "branch": "solo_required",
+      "language": "EN",
+      "repetitions": 3,
+      "good_count": 3,
+      "statuses_by_repetition": {
+        "1": "GOOD",
+        "2": "GOOD",
+        "3": "GOOD"
+      }
+    },
+    {
+      "world": "development-001",
+      "branch": "solo_required",
+      "language": "EN",
+      "repetitions": 3,
+      "good_count": 3,
+      "statuses_by_repetition": {
+        "3": "GOOD",
+        "2": "GOOD",
+        "1": "GOOD"
+      }
+    },
+    {
+      "world": "development-002",
+      "branch": "solo_required",
+      "language": "EN",
+      "repetitions": 3,
+      "good_count": 3,
+      "statuses_by_repetition": {
+        "3": "GOOD",
+        "1": "GOOD",
+        "2": "GOOD"
+      }
+    },
+    {
+      "world": "development-003",
+      "branch": "solo_required",
+      "language": "EN",
+      "repetitions": 3,
+      "good_count": 3,
+      "statuses_by_repetition": {
+        "1": "GOOD",
+        "3": "GOOD",
+        "2": "GOOD"
+      }
+    },
+    {
+      "world": "development-004",
+      "branch": "solo_required",
+      "language": "EN",
+      "repetitions": 3,
+      "good_count": 3,
+      "statuses_by_repetition": {
+        "2": "GOOD",
+        "1": "GOOD",
+        "3": "GOOD"
+      }
+    },
+    {
+      "world": "development-005",
+      "branch": "solo_required",
+      "language": "EN",
+      "repetitions": 3,
+      "good_count": 3,
+      "statuses_by_repetition": {
+        "3": "GOOD",
+        "1": "GOOD",
+        "2": "GOOD"
+      }
+    },
+    {
+      "world": "development-000",
+      "branch": "solo_required",
+      "language": "VI",
+      "repetitions": 3,
+      "good_count": 3,
+      "statuses_by_repetition": {
+        "1": "GOOD",
+        "2": "GOOD",
+        "3": "GOOD"
+      }
+    },
+    {
+      "world": "development-001",
+      "branch": "solo_required",
+      "language": "VI",
+      "repetitions": 3,
+      "good_count": 3,
+      "statuses_by_repetition": {
+        "3": "GOOD",
+        "2": "GOOD",
+        "1": "GOOD"
+      }
+    },
+    {
+      "world": "development-002",
+      "branch": "solo_required",
+      "language": "VI",
+      "repetitions": 3,
+      "good_count": 3,
+      "statuses_by_repetition": {
+        "3": "GOOD",
+        "1": "GOOD",
+        "2": "GOOD"
+      }
+    },
+    {
+      "world": "development-003",
+      "branch": "solo_required",
+      "language": "VI",
+      "repetitions": 3,
+      "good_count": 3,
+      "statuses_by_repetition": {
+        "1": "GOOD",
+        "3": "GOOD",
+        "2": "GOOD"
+      }
+    },
+    {
+      "world": "development-004",
+      "branch": "solo_required",
+      "language": "VI",
+      "repetitions": 3,
+      "good_count": 3,
+      "statuses_by_repetition": {
+        "2": "GOOD",
+        "1": "GOOD",
+        "3": "GOOD"
+      }
+    },
+    {
+      "world": "development-005",
+      "branch": "solo_required",
+      "language": "VI",
+      "repetitions": 3,
+      "good_count": 3,
+      "statuses_by_repetition": {
+        "3": "GOOD",
+        "1": "GOOD",
+        "2": "GOOD"
+      }
+    },
+    {
+      "world": "development-006",
+      "branch": "joint_required",
+      "language": "EN",
+      "repetitions": 3,
+      "good_count": 3,
+      "statuses_by_repetition": {
+        "3": "GOOD",
+        "2": "GOOD",
+        "1": "GOOD"
+      }
+    },
+    {
+      "world": "development-007",
+      "branch": "joint_required",
+      "language": "EN",
+      "repetitions": 3,
+      "good_count": 3,
+      "statuses_by_repetition": {
+        "1": "GOOD",
+        "2": "GOOD",
+        "3": "GOOD"
+      }
+    },
+    {
+      "world": "development-008",
+      "branch": "joint_required",
+      "language": "EN",
+      "repetitions": 3,
+      "good_count": 3,
+      "statuses_by_repetition": {
+        "3": "GOOD",
+        "1": "GOOD",
+        "2": "GOOD"
+      }
+    },
+    {
+      "world": "development-009",
+      "branch": "joint_required",
+      "language": "EN",
+      "repetitions": 3,
+      "good_count": 3,
+      "statuses_by_repetition": {
+        "2": "GOOD",
+        "3": "GOOD",
+        "1": "GOOD"
+      }
+    },
+    {
+      "world": "development-010",
+      "branch": "joint_required",
+      "language": "EN",
+      "repetitions": 3,
+      "good_count": 3,
+      "statuses_by_repetition": {
+        "1": "GOOD",
+        "3": "GOOD",
+        "2": "GOOD"
+      }
+    },
+    {
+      "world": "development-011",
+      "branch": "joint_required",
+      "language": "EN",
+      "repetitions": 3,
+      "good_count": 3,
+      "statuses_by_repetition": {
+        "2": "GOOD",
+        "1": "GOOD",
+        "3": "GOOD"
+      }
+    },
+    {
+      "world": "development-006",
+      "branch": "joint_required",
+      "language": "VI",
+      "repetitions": 3,
+      "good_count": 3,
+      "statuses_by_repetition": {
+        "3": "GOOD",
+        "2": "GOOD",
+        "1": "GOOD"
+      }
+    },
+    {
+      "world": "development-007",
+      "branch": "joint_required",
+      "language": "VI",
+      "repetitions": 3,
+      "good_count": 3,
+      "statuses_by_repetition": {
+        "1": "GOOD",
+        "2": "GOOD",
+        "3": "GOOD"
+      }
+    },
+    {
+      "world": "development-008",
+      "branch": "joint_required",
+      "language": "VI",
+      "repetitions": 3,
+      "good_count": 3,
+      "statuses_by_repetition": {
+        "3": "GOOD",
+        "1": "GOOD",
+        "2": "GOOD"
+      }
+    },
+    {
+      "world": "development-009",
+      "branch": "joint_required",
+      "language": "VI",
+      "repetitions": 3,
+      "good_count": 3,
+      "statuses_by_repetition": {
+        "2": "GOOD",
+        "3": "GOOD",
+        "1": "GOOD"
+      }
+    },
+    {
+      "world": "development-010",
+      "branch": "joint_required",
+      "language": "VI",
+      "repetitions": 3,
+      "good_count": 3,
+      "statuses_by_repetition": {
+        "1": "GOOD",
+        "3": "GOOD",
+        "2": "GOOD"
+      }
+    },
+    {
+      "world": "development-011",
+      "branch": "joint_required",
+      "language": "VI",
+      "repetitions": 3,
+      "good_count": 3,
+      "statuses_by_repetition": {
+        "2": "GOOD",
+        "1": "GOOD",
+        "3": "GOOD"
+      }
+    }
+  ],
+  "independent_families": 12,
+  "repetitions_are_not_independent": true,
+  "failure_counts_overlap": true,
+  "api_requests": 0,
+  "automatic_retries": 0,
+  "observed_token_cost_usd": null,
+  "unknown_cost_attempts": 0,
+  "independent_regrades": 72,
+  "independent_replays": 72,
+  "failures": [],
+  "held_out_calls": 0,
+  "formal_gate_passed": false,
+  "fatal_blocker": null
+}

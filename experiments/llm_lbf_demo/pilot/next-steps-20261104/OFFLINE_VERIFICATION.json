@@ -1,0 +1,78 @@
+{
+  "status": "OFFLINE_PREPARATION_VERIFIED_LIVE_APPROVAL_PENDING",
+  "unit_tests_passed": 41,
+  "new_runner_syntax_checked": true,
+  "analysis_syntax_checked": true,
+  "missing_or_false_approval_blocks_before_credentials_and_network": true,
+  "new_provider_calls": 0,
+  "frozen_executor": "e1-motion-2",
+  "executor_sha256": "c2cfbd0e9971c1fda23723b0220173c307d534880201b96c072006373dd531cc",
+  "existing_executor_witness_acceptance": {
+    "covered": 864,
+    "successes": 864,
+    "failures": [],
+    "accepted": true
+  },
+  "policy_hash": "e697de1da770bdd42cf431c6a205404c1a03fb718bf5c4f726fa1430bb05410d",
+  "formal_freeze_exists": false,
+  "VI_preflight": {
+    "calls": 108,
+    "cap_usd": 1,
+    "executor_source_hash": "c2cfbd0e9971c1fda23723b0220173c307d534880201b96c072006373dd531cc",
+    "executor_version": "e1-motion-2",
+    "families": 12,
+    "held_out_E1_authorized": false,
+    "human_semantic_approval_required": true,
+    "language": "VI",
+    "matching_English_conditions": 108,
+    "model": {
+      "cached_input_usd_per_million": 0.075,
+      "id": "gpt-4o-mini-2024-07-18",
+      "input_usd_per_million": 0.15,
+      "max_input_tokens": 10000,
+      "max_output_tokens": 256,
+      "output_usd_per_million": 0.6,
+      "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4o-mini",
+      "role": "primary",
+      "snapshot_frozen": true,
+      "temperature": 0
+    },
+    "only_policy_field_changes": true,
+    "policy_hash": "e697de1da770bdd42cf431c6a205404c1a03fb718bf5c4f726fa1430bb05410d",
+    "retries": 0,
+    "settings": {
+      "max_completion_tokens": 256,
+      "n": 1,
+      "response_format": {
+        "type": "json_object"
+      },
+      "service_tier": "default",
+      "store": false,
+      "stream": false,
+      "temperature": 0
+    },
+    "status": "PREPARED_NOT_AUTHORIZED",
+    "worst_case_reserved_usd": "0.1785888"
+  },
+  "P0_budgets": [
+    {
+      "phase": "smoke",
+      "scheduled_calls": 4,
+      "maximum_provider_attempts": 12,
+      "worst_case_usd": 0.0363792,
+      "dollar_ceiling": 0.05,
+      "maximum_conservative_prompt_bound": 1969
+    },
+    {
+      "phase": "gate",
+      "scheduled_calls": 144,
+      "maximum_provider_attempts": 432,
+      "worst_case_usd": 1.3096512,
+      "dollar_ceiling": 1.5,
+      "maximum_conservative_prompt_bound": 1969
+    }
+  ],
+  "human_semantic_approval_pending": true,
+  "spending_confirmation_pending": true,
+  "held_out_E1_authorized": false
+}

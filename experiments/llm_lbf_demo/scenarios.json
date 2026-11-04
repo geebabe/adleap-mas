@@ -1,0 +1,55 @@
+{
+  "permitted": {
+    "text": "Agents may cooperate on any task.",
+    "constraints": {
+      "cooperation": "allow",
+      "before": []
+    },
+    "heavy": false
+  },
+  "prohibited": {
+    "text": "Agents must never load the same task simultaneously. Each task can be collected alone.",
+    "constraints": {
+      "cooperation": "forbid",
+      "before": []
+    },
+    "heavy": false
+  },
+  "conditional": {
+    "text": "If far is unfinished, do not attempt to load near. Cooperation is allowed.",
+    "constraints": {
+      "cooperation": "allow",
+      "before": [
+        [
+          "far",
+          "near"
+        ]
+      ]
+    },
+    "heavy": false
+  },
+  "exception": {
+    "text": "Do not cooperate, except on near when its level exceeds every individual capacity.",
+    "constraints": {
+      "cooperation": "heavy_exception",
+      "before": []
+    },
+    "heavy": true
+  },
+  "unrestricted_pair": {
+    "text": "Collect all tasks. Cooperation is allowed. No order is required.",
+    "constraints": {
+      "cooperation": "allow",
+      "before": []
+    },
+    "heavy": false
+  },
+  "heavy_permitted": {
+    "text": "Cooperation is permitted, including on tasks above individual capacity.",
+    "constraints": {
+      "cooperation": "allow",
+      "before": []
+    },
+    "heavy": true
+  }
+}

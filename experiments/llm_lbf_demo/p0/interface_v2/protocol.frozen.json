@@ -1,0 +1,2444 @@
+{
+  "protocol_hash": "cff1f7eb9e83a5109e2067434273d0916b9b2a45df6266ef2e6eb71a15761234",
+  "protocol": {
+    "version": "p0-capacity-grounding-2",
+    "label": "POSTHOC_DEVELOPMENT_DIAGNOSTIC_NOT_FORMAL_P0_OR_E1",
+    "hypothesis": "Explicitly grounding level fields and the per-box capacity inequality may reduce capacity-infeasible recommendations.",
+    "selection": "All three development families with a PHYSICS failure in the first formal P0; post-hoc selection, not a generalization sample.",
+    "independent_families": 3,
+    "scheduled_requests": 24,
+    "fresh_context": true,
+    "retries": 0,
+    "spending_ceiling_usd": 0.1,
+    "reserved_worst_case_usd": "0.0727584",
+    "models": [
+      {
+        "role": "primary",
+        "id": "gpt-4o-mini-2024-07-18",
+        "snapshot_frozen": true,
+        "temperature": 0,
+        "max_input_tokens": 10000,
+        "max_output_tokens": 256,
+        "input_usd_per_million": 0.15,
+        "cached_input_usd_per_million": 0.075,
+        "output_usd_per_million": 0.6,
+        "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4o-mini"
+      },
+      {
+        "role": "replication",
+        "id": "gpt-4.1-mini-2025-04-14",
+        "snapshot_frozen": true,
+        "temperature": 0,
+        "max_input_tokens": 10000,
+        "max_output_tokens": 256,
+        "input_usd_per_million": 0.4,
+        "cached_input_usd_per_million": 0.1,
+        "output_usd_per_million": 1.6,
+        "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4.1-mini"
+      }
+    ],
+    "request_settings": {
+      "temperature": 0,
+      "max_completion_tokens": 256,
+      "response_format": {
+        "type": "json_object"
+      },
+      "n": 1,
+      "stream": false,
+      "store": false,
+      "service_tier": "default"
+    },
+    "source_hashes": {
+      "__init__.py": "7436b6f64f56dc7c57188db90ef3bcd92b337ec14f05fe8b87631a5e3381c963",
+      "audit.py": "250d314c0b59dc76c2f299dddb6d184b4d588505f4fce1294c108019dcbfbb27",
+      "controller.py": "10765fbd312222066905a700d0d0415227e4c3315d720d2b125e72c934884043",
+      "experiment.py": "d0ee8e48a47c5557f4333fc89e81039b84289df7a9cb7dcec48c8de09004f694"
+    },
+    "preserved_v1_binding_hash": "01327989b058586ebbb726dc5d05adfe089435cfedd551515a90afa635496707",
+    "policy_hash": "e697de1da770bdd42cf431c6a205404c1a03fb718bf5c4f726fa1430bb05410d",
+    "failed_gate_sha256": "81dba98033b57c05e1f96ef735002682a0a4cce46e6b6c6e73d6653e43abafc4",
+    "randomization_seed": 4206,
+    "slots": [
+      {
+        "world": {
+          "family_id": "development-011",
+          "generation_seed": 20261104,
+          "good_set_hashes": {
+            "F": "c90e3429b3370e0dcad343c8a78fe44ccb7030d72ce18596431269d94c9d4e7e",
+            "R": "b64b63e7c3f6d642d9778287a0800a917af6e775d77c005f4a2e332998e8e61a"
+          },
+          "identity_hash": "a9d65ca48a9a7552cb459f191e08f9de91fccdcc2b3f5f767a15e093bd1e6650",
+          "simulator_seed": 20261115,
+          "split": "development",
+          "state": {
+            "agents": [
+              {
+                "direction": 0.0,
+                "id": "A",
+                "level": 1.4,
+                "position": [
+                  3,
+                  3
+                ]
+              },
+              {
+                "direction": 0.0,
+                "id": "B",
+                "level": 0.8,
+                "position": [
+                  5,
+                  1
+                ]
+              }
+            ],
+            "obstacles": [],
+            "shape": [
+              8,
+              8
+            ],
+            "tasks": [
+              {
+                "completed": false,
+                "id": "b0",
+                "level": 0.4,
+                "position": [
+                  1,
+                  6
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b1",
+                "level": 0.6,
+                "position": [
+                  6,
+                  4
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b2",
+                "level": 1.6,
+                "position": [
+                  2,
+                  2
+                ]
+              }
+            ]
+          },
+          "state_hash": "7f49ca3f32aac27f4a66173ef989bdc4d702208a3eed7131b437fd9e615581b6",
+          "stratum": "mixed"
+        },
+        "model": {
+          "role": "replication",
+          "id": "gpt-4.1-mini-2025-04-14",
+          "snapshot_frozen": true,
+          "temperature": 0,
+          "max_input_tokens": 10000,
+          "max_output_tokens": 256,
+          "input_usd_per_million": 0.4,
+          "cached_input_usd_per_million": 0.1,
+          "output_usd_per_million": 1.6,
+          "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4.1-mini"
+        },
+        "language": "VI",
+        "arm": "original",
+        "policy": "P0",
+        "request": {
+          "messages": [
+            {
+              "role": "system",
+              "content": "You control two robots in fully observed Level-Based Foraging. Recommend one next pickup allocation that follows the supplied policy and makes at least one feasible pickup. A robot can target one box or be unassigned. Assigned capacities combine only when robots collect the same box together. Return exactly {\"targets\":{agent_id:box_id_or_null,...}} using every registered agent ID and only unfinished box IDs. Return JSON only, without explanation or additional fields. Navigation and pickup synchronization are handled by a fixed executor. Do not recommend primitive moves or a full episode plan."
+            },
+            {
+              "role": "user",
+              "content": "{\"objective\":\"Make at least one feasible pickup while obeying the policy.\",\"policy\":\"Hãy chọn ít nhất một thùng để có thể thu gom được. Với mỗi thùng được chọn, tổng sức nâng của các robot được phân công phải ít nhất bằng trọng lượng của thùng. Mỗi robot chỉ được phân công tối đa một thùng; có thể không phân công nhiệm vụ cho một robot.\",\"state\":{\"agents\":[{\"direction\":0.0,\"id\":\"A\",\"level\":1.4,\"position\":[3,3]},{\"direction\":0.0,\"id\":\"B\",\"level\":0.8,\"position\":[5,1]}],\"obstacles\":[],\"shape\":[8,8],\"tasks\":[{\"completed\":false,\"id\":\"b0\",\"level\":0.4,\"position\":[1,6]},{\"completed\":false,\"id\":\"b1\",\"level\":0.6,\"position\":[6,4]},{\"completed\":false,\"id\":\"b2\",\"level\":1.6,\"position\":[2,2]}]}}"
+            }
+          ]
+        },
+        "slot_id": "e6ac04d2a744011d274dff08c29f64fd373f302868d5b622452642ae76966879"
+      },
+      {
+        "world": {
+          "family_id": "development-011",
+          "generation_seed": 20261104,
+          "good_set_hashes": {
+            "F": "c90e3429b3370e0dcad343c8a78fe44ccb7030d72ce18596431269d94c9d4e7e",
+            "R": "b64b63e7c3f6d642d9778287a0800a917af6e775d77c005f4a2e332998e8e61a"
+          },
+          "identity_hash": "a9d65ca48a9a7552cb459f191e08f9de91fccdcc2b3f5f767a15e093bd1e6650",
+          "simulator_seed": 20261115,
+          "split": "development",
+          "state": {
+            "agents": [
+              {
+                "direction": 0.0,
+                "id": "A",
+                "level": 1.4,
+                "position": [
+                  3,
+                  3
+                ]
+              },
+              {
+                "direction": 0.0,
+                "id": "B",
+                "level": 0.8,
+                "position": [
+                  5,
+                  1
+                ]
+              }
+            ],
+            "obstacles": [],
+            "shape": [
+              8,
+              8
+            ],
+            "tasks": [
+              {
+                "completed": false,
+                "id": "b0",
+                "level": 0.4,
+                "position": [
+                  1,
+                  6
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b1",
+                "level": 0.6,
+                "position": [
+                  6,
+                  4
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b2",
+                "level": 1.6,
+                "position": [
+                  2,
+                  2
+                ]
+              }
+            ]
+          },
+          "state_hash": "7f49ca3f32aac27f4a66173ef989bdc4d702208a3eed7131b437fd9e615581b6",
+          "stratum": "mixed"
+        },
+        "model": {
+          "role": "replication",
+          "id": "gpt-4.1-mini-2025-04-14",
+          "snapshot_frozen": true,
+          "temperature": 0,
+          "max_input_tokens": 10000,
+          "max_output_tokens": 256,
+          "input_usd_per_million": 0.4,
+          "cached_input_usd_per_million": 0.1,
+          "output_usd_per_million": 1.6,
+          "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4.1-mini"
+        },
+        "language": "VI",
+        "arm": "clarified",
+        "policy": "P0",
+        "request": {
+          "messages": [
+            {
+              "role": "system",
+              "content": "You control two robots in fully observed Level-Based Foraging. Recommend one next pickup allocation that follows the supplied policy and makes at least one feasible pickup. A robot can target one box or be unassigned. Assigned capacities combine only when robots collect the same box together. Return exactly {\"targets\":{agent_id:box_id_or_null,...}} using every registered agent ID and only unfinished box IDs. Return JSON only, without explanation or additional fields. Navigation and pickup synchronization are handled by a fixed executor. Do not recommend primitive moves or a full episode plan. Numeric field meanings: state.agents[].level is that robot's lifting capacity, and state.tasks[].level is that box's required lifting weight. For every selected box, sum the level values of only the robots assigned to that same box. This sum must be greater than or equal to the box's level. Robots assigned elsewhere or unassigned contribute nothing to that box. These physical rules apply under every supplied policy."
+            },
+            {
+              "role": "user",
+              "content": "{\"objective\":\"Make at least one feasible pickup while obeying the policy.\",\"policy\":\"Hãy chọn ít nhất một thùng để có thể thu gom được. Với mỗi thùng được chọn, tổng sức nâng của các robot được phân công phải ít nhất bằng trọng lượng của thùng. Mỗi robot chỉ được phân công tối đa một thùng; có thể không phân công nhiệm vụ cho một robot.\",\"state\":{\"agents\":[{\"direction\":0.0,\"id\":\"A\",\"level\":1.4,\"position\":[3,3]},{\"direction\":0.0,\"id\":\"B\",\"level\":0.8,\"position\":[5,1]}],\"obstacles\":[],\"shape\":[8,8],\"tasks\":[{\"completed\":false,\"id\":\"b0\",\"level\":0.4,\"position\":[1,6]},{\"completed\":false,\"id\":\"b1\",\"level\":0.6,\"position\":[6,4]},{\"completed\":false,\"id\":\"b2\",\"level\":1.6,\"position\":[2,2]}]}}"
+            }
+          ]
+        },
+        "slot_id": "0982330f4255b431ff9814d153fe227393de448dfd1e1cd0254d892e323658c7"
+      },
+      {
+        "world": {
+          "family_id": "development-006",
+          "generation_seed": 20261104,
+          "good_set_hashes": {
+            "F": "c90e3429b3370e0dcad343c8a78fe44ccb7030d72ce18596431269d94c9d4e7e",
+            "R": "b64b63e7c3f6d642d9778287a0800a917af6e775d77c005f4a2e332998e8e61a"
+          },
+          "identity_hash": "73f8bff14d949e8a738ad9e192fb10c8d50b1b978fa06e10316af1dc9e5c3974",
+          "simulator_seed": 20261110,
+          "split": "development",
+          "state": {
+            "agents": [
+              {
+                "direction": 0.0,
+                "id": "A",
+                "level": 1.0,
+                "position": [
+                  6,
+                  3
+                ]
+              },
+              {
+                "direction": 0.0,
+                "id": "B",
+                "level": 1.0,
+                "position": [
+                  4,
+                  5
+                ]
+              }
+            ],
+            "obstacles": [],
+            "shape": [
+              8,
+              8
+            ],
+            "tasks": [
+              {
+                "completed": false,
+                "id": "b0",
+                "level": 0.4,
+                "position": [
+                  6,
+                  2
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b1",
+                "level": 0.6,
+                "position": [
+                  5,
+                  1
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b2",
+                "level": 1.2,
+                "position": [
+                  5,
+                  4
+                ]
+              }
+            ]
+          },
+          "state_hash": "a745feb6827c86c90634615ce1746b067c2870604c8591963b77334316b4a2fb",
+          "stratum": "mixed"
+        },
+        "model": {
+          "role": "replication",
+          "id": "gpt-4.1-mini-2025-04-14",
+          "snapshot_frozen": true,
+          "temperature": 0,
+          "max_input_tokens": 10000,
+          "max_output_tokens": 256,
+          "input_usd_per_million": 0.4,
+          "cached_input_usd_per_million": 0.1,
+          "output_usd_per_million": 1.6,
+          "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4.1-mini"
+        },
+        "language": "VI",
+        "arm": "clarified",
+        "policy": "P0",
+        "request": {
+          "messages": [
+            {
+              "role": "system",
+              "content": "You control two robots in fully observed Level-Based Foraging. Recommend one next pickup allocation that follows the supplied policy and makes at least one feasible pickup. A robot can target one box or be unassigned. Assigned capacities combine only when robots collect the same box together. Return exactly {\"targets\":{agent_id:box_id_or_null,...}} using every registered agent ID and only unfinished box IDs. Return JSON only, without explanation or additional fields. Navigation and pickup synchronization are handled by a fixed executor. Do not recommend primitive moves or a full episode plan. Numeric field meanings: state.agents[].level is that robot's lifting capacity, and state.tasks[].level is that box's required lifting weight. For every selected box, sum the level values of only the robots assigned to that same box. This sum must be greater than or equal to the box's level. Robots assigned elsewhere or unassigned contribute nothing to that box. These physical rules apply under every supplied policy."
+            },
+            {
+              "role": "user",
+              "content": "{\"objective\":\"Make at least one feasible pickup while obeying the policy.\",\"policy\":\"Hãy chọn ít nhất một thùng để có thể thu gom được. Với mỗi thùng được chọn, tổng sức nâng của các robot được phân công phải ít nhất bằng trọng lượng của thùng. Mỗi robot chỉ được phân công tối đa một thùng; có thể không phân công nhiệm vụ cho một robot.\",\"state\":{\"agents\":[{\"direction\":0.0,\"id\":\"A\",\"level\":1.0,\"position\":[6,3]},{\"direction\":0.0,\"id\":\"B\",\"level\":1.0,\"position\":[4,5]}],\"obstacles\":[],\"shape\":[8,8],\"tasks\":[{\"completed\":false,\"id\":\"b0\",\"level\":0.4,\"position\":[6,2]},{\"completed\":false,\"id\":\"b1\",\"level\":0.6,\"position\":[5,1]},{\"completed\":false,\"id\":\"b2\",\"level\":1.2,\"position\":[5,4]}]}}"
+            }
+          ]
+        },
+        "slot_id": "d5fa663452239cca569ac84f5a7dacdf1a0e9a7a96fd2aa4c69f3d9c994e12ca"
+      },
+      {
+        "world": {
+          "family_id": "development-006",
+          "generation_seed": 20261104,
+          "good_set_hashes": {
+            "F": "c90e3429b3370e0dcad343c8a78fe44ccb7030d72ce18596431269d94c9d4e7e",
+            "R": "b64b63e7c3f6d642d9778287a0800a917af6e775d77c005f4a2e332998e8e61a"
+          },
+          "identity_hash": "73f8bff14d949e8a738ad9e192fb10c8d50b1b978fa06e10316af1dc9e5c3974",
+          "simulator_seed": 20261110,
+          "split": "development",
+          "state": {
+            "agents": [
+              {
+                "direction": 0.0,
+                "id": "A",
+                "level": 1.0,
+                "position": [
+                  6,
+                  3
+                ]
+              },
+              {
+                "direction": 0.0,
+                "id": "B",
+                "level": 1.0,
+                "position": [
+                  4,
+                  5
+                ]
+              }
+            ],
+            "obstacles": [],
+            "shape": [
+              8,
+              8
+            ],
+            "tasks": [
+              {
+                "completed": false,
+                "id": "b0",
+                "level": 0.4,
+                "position": [
+                  6,
+                  2
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b1",
+                "level": 0.6,
+                "position": [
+                  5,
+                  1
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b2",
+                "level": 1.2,
+                "position": [
+                  5,
+                  4
+                ]
+              }
+            ]
+          },
+          "state_hash": "a745feb6827c86c90634615ce1746b067c2870604c8591963b77334316b4a2fb",
+          "stratum": "mixed"
+        },
+        "model": {
+          "role": "replication",
+          "id": "gpt-4.1-mini-2025-04-14",
+          "snapshot_frozen": true,
+          "temperature": 0,
+          "max_input_tokens": 10000,
+          "max_output_tokens": 256,
+          "input_usd_per_million": 0.4,
+          "cached_input_usd_per_million": 0.1,
+          "output_usd_per_million": 1.6,
+          "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4.1-mini"
+        },
+        "language": "VI",
+        "arm": "original",
+        "policy": "P0",
+        "request": {
+          "messages": [
+            {
+              "role": "system",
+              "content": "You control two robots in fully observed Level-Based Foraging. Recommend one next pickup allocation that follows the supplied policy and makes at least one feasible pickup. A robot can target one box or be unassigned. Assigned capacities combine only when robots collect the same box together. Return exactly {\"targets\":{agent_id:box_id_or_null,...}} using every registered agent ID and only unfinished box IDs. Return JSON only, without explanation or additional fields. Navigation and pickup synchronization are handled by a fixed executor. Do not recommend primitive moves or a full episode plan."
+            },
+            {
+              "role": "user",
+              "content": "{\"objective\":\"Make at least one feasible pickup while obeying the policy.\",\"policy\":\"Hãy chọn ít nhất một thùng để có thể thu gom được. Với mỗi thùng được chọn, tổng sức nâng của các robot được phân công phải ít nhất bằng trọng lượng của thùng. Mỗi robot chỉ được phân công tối đa một thùng; có thể không phân công nhiệm vụ cho một robot.\",\"state\":{\"agents\":[{\"direction\":0.0,\"id\":\"A\",\"level\":1.0,\"position\":[6,3]},{\"direction\":0.0,\"id\":\"B\",\"level\":1.0,\"position\":[4,5]}],\"obstacles\":[],\"shape\":[8,8],\"tasks\":[{\"completed\":false,\"id\":\"b0\",\"level\":0.4,\"position\":[6,2]},{\"completed\":false,\"id\":\"b1\",\"level\":0.6,\"position\":[5,1]},{\"completed\":false,\"id\":\"b2\",\"level\":1.2,\"position\":[5,4]}]}}"
+            }
+          ]
+        },
+        "slot_id": "6b0526d92134f3c86a59032befbf7399c87b501fa50b352f4846e27d9e7eb859"
+      },
+      {
+        "world": {
+          "family_id": "development-006",
+          "generation_seed": 20261104,
+          "good_set_hashes": {
+            "F": "c90e3429b3370e0dcad343c8a78fe44ccb7030d72ce18596431269d94c9d4e7e",
+            "R": "b64b63e7c3f6d642d9778287a0800a917af6e775d77c005f4a2e332998e8e61a"
+          },
+          "identity_hash": "73f8bff14d949e8a738ad9e192fb10c8d50b1b978fa06e10316af1dc9e5c3974",
+          "simulator_seed": 20261110,
+          "split": "development",
+          "state": {
+            "agents": [
+              {
+                "direction": 0.0,
+                "id": "A",
+                "level": 1.0,
+                "position": [
+                  6,
+                  3
+                ]
+              },
+              {
+                "direction": 0.0,
+                "id": "B",
+                "level": 1.0,
+                "position": [
+                  4,
+                  5
+                ]
+              }
+            ],
+            "obstacles": [],
+            "shape": [
+              8,
+              8
+            ],
+            "tasks": [
+              {
+                "completed": false,
+                "id": "b0",
+                "level": 0.4,
+                "position": [
+                  6,
+                  2
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b1",
+                "level": 0.6,
+                "position": [
+                  5,
+                  1
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b2",
+                "level": 1.2,
+                "position": [
+                  5,
+                  4
+                ]
+              }
+            ]
+          },
+          "state_hash": "a745feb6827c86c90634615ce1746b067c2870604c8591963b77334316b4a2fb",
+          "stratum": "mixed"
+        },
+        "model": {
+          "role": "primary",
+          "id": "gpt-4o-mini-2024-07-18",
+          "snapshot_frozen": true,
+          "temperature": 0,
+          "max_input_tokens": 10000,
+          "max_output_tokens": 256,
+          "input_usd_per_million": 0.15,
+          "cached_input_usd_per_million": 0.075,
+          "output_usd_per_million": 0.6,
+          "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4o-mini"
+        },
+        "language": "VI",
+        "arm": "original",
+        "policy": "P0",
+        "request": {
+          "messages": [
+            {
+              "role": "system",
+              "content": "You control two robots in fully observed Level-Based Foraging. Recommend one next pickup allocation that follows the supplied policy and makes at least one feasible pickup. A robot can target one box or be unassigned. Assigned capacities combine only when robots collect the same box together. Return exactly {\"targets\":{agent_id:box_id_or_null,...}} using every registered agent ID and only unfinished box IDs. Return JSON only, without explanation or additional fields. Navigation and pickup synchronization are handled by a fixed executor. Do not recommend primitive moves or a full episode plan."
+            },
+            {
+              "role": "user",
+              "content": "{\"objective\":\"Make at least one feasible pickup while obeying the policy.\",\"policy\":\"Hãy chọn ít nhất một thùng để có thể thu gom được. Với mỗi thùng được chọn, tổng sức nâng của các robot được phân công phải ít nhất bằng trọng lượng của thùng. Mỗi robot chỉ được phân công tối đa một thùng; có thể không phân công nhiệm vụ cho một robot.\",\"state\":{\"agents\":[{\"direction\":0.0,\"id\":\"A\",\"level\":1.0,\"position\":[6,3]},{\"direction\":0.0,\"id\":\"B\",\"level\":1.0,\"position\":[4,5]}],\"obstacles\":[],\"shape\":[8,8],\"tasks\":[{\"completed\":false,\"id\":\"b0\",\"level\":0.4,\"position\":[6,2]},{\"completed\":false,\"id\":\"b1\",\"level\":0.6,\"position\":[5,1]},{\"completed\":false,\"id\":\"b2\",\"level\":1.2,\"position\":[5,4]}]}}"
+            }
+          ]
+        },
+        "slot_id": "2e9491a71c6ee9d4da2c6d14c7dd224da7465f66c1276ab8586d5d1875595646"
+      },
+      {
+        "world": {
+          "family_id": "development-006",
+          "generation_seed": 20261104,
+          "good_set_hashes": {
+            "F": "c90e3429b3370e0dcad343c8a78fe44ccb7030d72ce18596431269d94c9d4e7e",
+            "R": "b64b63e7c3f6d642d9778287a0800a917af6e775d77c005f4a2e332998e8e61a"
+          },
+          "identity_hash": "73f8bff14d949e8a738ad9e192fb10c8d50b1b978fa06e10316af1dc9e5c3974",
+          "simulator_seed": 20261110,
+          "split": "development",
+          "state": {
+            "agents": [
+              {
+                "direction": 0.0,
+                "id": "A",
+                "level": 1.0,
+                "position": [
+                  6,
+                  3
+                ]
+              },
+              {
+                "direction": 0.0,
+                "id": "B",
+                "level": 1.0,
+                "position": [
+                  4,
+                  5
+                ]
+              }
+            ],
+            "obstacles": [],
+            "shape": [
+              8,
+              8
+            ],
+            "tasks": [
+              {
+                "completed": false,
+                "id": "b0",
+                "level": 0.4,
+                "position": [
+                  6,
+                  2
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b1",
+                "level": 0.6,
+                "position": [
+                  5,
+                  1
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b2",
+                "level": 1.2,
+                "position": [
+                  5,
+                  4
+                ]
+              }
+            ]
+          },
+          "state_hash": "a745feb6827c86c90634615ce1746b067c2870604c8591963b77334316b4a2fb",
+          "stratum": "mixed"
+        },
+        "model": {
+          "role": "primary",
+          "id": "gpt-4o-mini-2024-07-18",
+          "snapshot_frozen": true,
+          "temperature": 0,
+          "max_input_tokens": 10000,
+          "max_output_tokens": 256,
+          "input_usd_per_million": 0.15,
+          "cached_input_usd_per_million": 0.075,
+          "output_usd_per_million": 0.6,
+          "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4o-mini"
+        },
+        "language": "VI",
+        "arm": "clarified",
+        "policy": "P0",
+        "request": {
+          "messages": [
+            {
+              "role": "system",
+              "content": "You control two robots in fully observed Level-Based Foraging. Recommend one next pickup allocation that follows the supplied policy and makes at least one feasible pickup. A robot can target one box or be unassigned. Assigned capacities combine only when robots collect the same box together. Return exactly {\"targets\":{agent_id:box_id_or_null,...}} using every registered agent ID and only unfinished box IDs. Return JSON only, without explanation or additional fields. Navigation and pickup synchronization are handled by a fixed executor. Do not recommend primitive moves or a full episode plan. Numeric field meanings: state.agents[].level is that robot's lifting capacity, and state.tasks[].level is that box's required lifting weight. For every selected box, sum the level values of only the robots assigned to that same box. This sum must be greater than or equal to the box's level. Robots assigned elsewhere or unassigned contribute nothing to that box. These physical rules apply under every supplied policy."
+            },
+            {
+              "role": "user",
+              "content": "{\"objective\":\"Make at least one feasible pickup while obeying the policy.\",\"policy\":\"Hãy chọn ít nhất một thùng để có thể thu gom được. Với mỗi thùng được chọn, tổng sức nâng của các robot được phân công phải ít nhất bằng trọng lượng của thùng. Mỗi robot chỉ được phân công tối đa một thùng; có thể không phân công nhiệm vụ cho một robot.\",\"state\":{\"agents\":[{\"direction\":0.0,\"id\":\"A\",\"level\":1.0,\"position\":[6,3]},{\"direction\":0.0,\"id\":\"B\",\"level\":1.0,\"position\":[4,5]}],\"obstacles\":[],\"shape\":[8,8],\"tasks\":[{\"completed\":false,\"id\":\"b0\",\"level\":0.4,\"position\":[6,2]},{\"completed\":false,\"id\":\"b1\",\"level\":0.6,\"position\":[5,1]},{\"completed\":false,\"id\":\"b2\",\"level\":1.2,\"position\":[5,4]}]}}"
+            }
+          ]
+        },
+        "slot_id": "37afc8bf3eb4f1d562e5b87bffc636892554730ef1369597a5d99f4b699de0a8"
+      },
+      {
+        "world": {
+          "family_id": "development-011",
+          "generation_seed": 20261104,
+          "good_set_hashes": {
+            "F": "c90e3429b3370e0dcad343c8a78fe44ccb7030d72ce18596431269d94c9d4e7e",
+            "R": "b64b63e7c3f6d642d9778287a0800a917af6e775d77c005f4a2e332998e8e61a"
+          },
+          "identity_hash": "a9d65ca48a9a7552cb459f191e08f9de91fccdcc2b3f5f767a15e093bd1e6650",
+          "simulator_seed": 20261115,
+          "split": "development",
+          "state": {
+            "agents": [
+              {
+                "direction": 0.0,
+                "id": "A",
+                "level": 1.4,
+                "position": [
+                  3,
+                  3
+                ]
+              },
+              {
+                "direction": 0.0,
+                "id": "B",
+                "level": 0.8,
+                "position": [
+                  5,
+                  1
+                ]
+              }
+            ],
+            "obstacles": [],
+            "shape": [
+              8,
+              8
+            ],
+            "tasks": [
+              {
+                "completed": false,
+                "id": "b0",
+                "level": 0.4,
+                "position": [
+                  1,
+                  6
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b1",
+                "level": 0.6,
+                "position": [
+                  6,
+                  4
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b2",
+                "level": 1.6,
+                "position": [
+                  2,
+                  2
+                ]
+              }
+            ]
+          },
+          "state_hash": "7f49ca3f32aac27f4a66173ef989bdc4d702208a3eed7131b437fd9e615581b6",
+          "stratum": "mixed"
+        },
+        "model": {
+          "role": "replication",
+          "id": "gpt-4.1-mini-2025-04-14",
+          "snapshot_frozen": true,
+          "temperature": 0,
+          "max_input_tokens": 10000,
+          "max_output_tokens": 256,
+          "input_usd_per_million": 0.4,
+          "cached_input_usd_per_million": 0.1,
+          "output_usd_per_million": 1.6,
+          "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4.1-mini"
+        },
+        "language": "EN",
+        "arm": "original",
+        "policy": "P0",
+        "request": {
+          "messages": [
+            {
+              "role": "system",
+              "content": "You control two robots in fully observed Level-Based Foraging. Recommend one next pickup allocation that follows the supplied policy and makes at least one feasible pickup. A robot can target one box or be unassigned. Assigned capacities combine only when robots collect the same box together. Return exactly {\"targets\":{agent_id:box_id_or_null,...}} using every registered agent ID and only unfinished box IDs. Return JSON only, without explanation or additional fields. Navigation and pickup synchronization are handled by a fixed executor. Do not recommend primitive moves or a full episode plan."
+            },
+            {
+              "role": "user",
+              "content": "{\"objective\":\"Make at least one feasible pickup while obeying the policy.\",\"policy\":\"Select at least one box for a feasible pickup. For each selected box, the combined lifting capacity of the assigned robots must be at least its weight. Each robot may be assigned to at most one box; a robot may be unassigned.\",\"state\":{\"agents\":[{\"direction\":0.0,\"id\":\"A\",\"level\":1.4,\"position\":[3,3]},{\"direction\":0.0,\"id\":\"B\",\"level\":0.8,\"position\":[5,1]}],\"obstacles\":[],\"shape\":[8,8],\"tasks\":[{\"completed\":false,\"id\":\"b0\",\"level\":0.4,\"position\":[1,6]},{\"completed\":false,\"id\":\"b1\",\"level\":0.6,\"position\":[6,4]},{\"completed\":false,\"id\":\"b2\",\"level\":1.6,\"position\":[2,2]}]}}"
+            }
+          ]
+        },
+        "slot_id": "b6f422fa2334fac8c70fed1a70558effa2cdf47d49637e779b719a2dc1a3b8bc"
+      },
+      {
+        "world": {
+          "family_id": "development-011",
+          "generation_seed": 20261104,
+          "good_set_hashes": {
+            "F": "c90e3429b3370e0dcad343c8a78fe44ccb7030d72ce18596431269d94c9d4e7e",
+            "R": "b64b63e7c3f6d642d9778287a0800a917af6e775d77c005f4a2e332998e8e61a"
+          },
+          "identity_hash": "a9d65ca48a9a7552cb459f191e08f9de91fccdcc2b3f5f767a15e093bd1e6650",
+          "simulator_seed": 20261115,
+          "split": "development",
+          "state": {
+            "agents": [
+              {
+                "direction": 0.0,
+                "id": "A",
+                "level": 1.4,
+                "position": [
+                  3,
+                  3
+                ]
+              },
+              {
+                "direction": 0.0,
+                "id": "B",
+                "level": 0.8,
+                "position": [
+                  5,
+                  1
+                ]
+              }
+            ],
+            "obstacles": [],
+            "shape": [
+              8,
+              8
+            ],
+            "tasks": [
+              {
+                "completed": false,
+                "id": "b0",
+                "level": 0.4,
+                "position": [
+                  1,
+                  6
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b1",
+                "level": 0.6,
+                "position": [
+                  6,
+                  4
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b2",
+                "level": 1.6,
+                "position": [
+                  2,
+                  2
+                ]
+              }
+            ]
+          },
+          "state_hash": "7f49ca3f32aac27f4a66173ef989bdc4d702208a3eed7131b437fd9e615581b6",
+          "stratum": "mixed"
+        },
+        "model": {
+          "role": "replication",
+          "id": "gpt-4.1-mini-2025-04-14",
+          "snapshot_frozen": true,
+          "temperature": 0,
+          "max_input_tokens": 10000,
+          "max_output_tokens": 256,
+          "input_usd_per_million": 0.4,
+          "cached_input_usd_per_million": 0.1,
+          "output_usd_per_million": 1.6,
+          "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4.1-mini"
+        },
+        "language": "EN",
+        "arm": "clarified",
+        "policy": "P0",
+        "request": {
+          "messages": [
+            {
+              "role": "system",
+              "content": "You control two robots in fully observed Level-Based Foraging. Recommend one next pickup allocation that follows the supplied policy and makes at least one feasible pickup. A robot can target one box or be unassigned. Assigned capacities combine only when robots collect the same box together. Return exactly {\"targets\":{agent_id:box_id_or_null,...}} using every registered agent ID and only unfinished box IDs. Return JSON only, without explanation or additional fields. Navigation and pickup synchronization are handled by a fixed executor. Do not recommend primitive moves or a full episode plan. Numeric field meanings: state.agents[].level is that robot's lifting capacity, and state.tasks[].level is that box's required lifting weight. For every selected box, sum the level values of only the robots assigned to that same box. This sum must be greater than or equal to the box's level. Robots assigned elsewhere or unassigned contribute nothing to that box. These physical rules apply under every supplied policy."
+            },
+            {
+              "role": "user",
+              "content": "{\"objective\":\"Make at least one feasible pickup while obeying the policy.\",\"policy\":\"Select at least one box for a feasible pickup. For each selected box, the combined lifting capacity of the assigned robots must be at least its weight. Each robot may be assigned to at most one box; a robot may be unassigned.\",\"state\":{\"agents\":[{\"direction\":0.0,\"id\":\"A\",\"level\":1.4,\"position\":[3,3]},{\"direction\":0.0,\"id\":\"B\",\"level\":0.8,\"position\":[5,1]}],\"obstacles\":[],\"shape\":[8,8],\"tasks\":[{\"completed\":false,\"id\":\"b0\",\"level\":0.4,\"position\":[1,6]},{\"completed\":false,\"id\":\"b1\",\"level\":0.6,\"position\":[6,4]},{\"completed\":false,\"id\":\"b2\",\"level\":1.6,\"position\":[2,2]}]}}"
+            }
+          ]
+        },
+        "slot_id": "289cb786d0320073d98e640745528d06e49ea452498908f2b887b09490592889"
+      },
+      {
+        "world": {
+          "family_id": "development-006",
+          "generation_seed": 20261104,
+          "good_set_hashes": {
+            "F": "c90e3429b3370e0dcad343c8a78fe44ccb7030d72ce18596431269d94c9d4e7e",
+            "R": "b64b63e7c3f6d642d9778287a0800a917af6e775d77c005f4a2e332998e8e61a"
+          },
+          "identity_hash": "73f8bff14d949e8a738ad9e192fb10c8d50b1b978fa06e10316af1dc9e5c3974",
+          "simulator_seed": 20261110,
+          "split": "development",
+          "state": {
+            "agents": [
+              {
+                "direction": 0.0,
+                "id": "A",
+                "level": 1.0,
+                "position": [
+                  6,
+                  3
+                ]
+              },
+              {
+                "direction": 0.0,
+                "id": "B",
+                "level": 1.0,
+                "position": [
+                  4,
+                  5
+                ]
+              }
+            ],
+            "obstacles": [],
+            "shape": [
+              8,
+              8
+            ],
+            "tasks": [
+              {
+                "completed": false,
+                "id": "b0",
+                "level": 0.4,
+                "position": [
+                  6,
+                  2
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b1",
+                "level": 0.6,
+                "position": [
+                  5,
+                  1
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b2",
+                "level": 1.2,
+                "position": [
+                  5,
+                  4
+                ]
+              }
+            ]
+          },
+          "state_hash": "a745feb6827c86c90634615ce1746b067c2870604c8591963b77334316b4a2fb",
+          "stratum": "mixed"
+        },
+        "model": {
+          "role": "primary",
+          "id": "gpt-4o-mini-2024-07-18",
+          "snapshot_frozen": true,
+          "temperature": 0,
+          "max_input_tokens": 10000,
+          "max_output_tokens": 256,
+          "input_usd_per_million": 0.15,
+          "cached_input_usd_per_million": 0.075,
+          "output_usd_per_million": 0.6,
+          "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4o-mini"
+        },
+        "language": "EN",
+        "arm": "clarified",
+        "policy": "P0",
+        "request": {
+          "messages": [
+            {
+              "role": "system",
+              "content": "You control two robots in fully observed Level-Based Foraging. Recommend one next pickup allocation that follows the supplied policy and makes at least one feasible pickup. A robot can target one box or be unassigned. Assigned capacities combine only when robots collect the same box together. Return exactly {\"targets\":{agent_id:box_id_or_null,...}} using every registered agent ID and only unfinished box IDs. Return JSON only, without explanation or additional fields. Navigation and pickup synchronization are handled by a fixed executor. Do not recommend primitive moves or a full episode plan. Numeric field meanings: state.agents[].level is that robot's lifting capacity, and state.tasks[].level is that box's required lifting weight. For every selected box, sum the level values of only the robots assigned to that same box. This sum must be greater than or equal to the box's level. Robots assigned elsewhere or unassigned contribute nothing to that box. These physical rules apply under every supplied policy."
+            },
+            {
+              "role": "user",
+              "content": "{\"objective\":\"Make at least one feasible pickup while obeying the policy.\",\"policy\":\"Select at least one box for a feasible pickup. For each selected box, the combined lifting capacity of the assigned robots must be at least its weight. Each robot may be assigned to at most one box; a robot may be unassigned.\",\"state\":{\"agents\":[{\"direction\":0.0,\"id\":\"A\",\"level\":1.0,\"position\":[6,3]},{\"direction\":0.0,\"id\":\"B\",\"level\":1.0,\"position\":[4,5]}],\"obstacles\":[],\"shape\":[8,8],\"tasks\":[{\"completed\":false,\"id\":\"b0\",\"level\":0.4,\"position\":[6,2]},{\"completed\":false,\"id\":\"b1\",\"level\":0.6,\"position\":[5,1]},{\"completed\":false,\"id\":\"b2\",\"level\":1.2,\"position\":[5,4]}]}}"
+            }
+          ]
+        },
+        "slot_id": "aeee3e575d411046e5cab8198ca237ae8e71752572ae50ec76075dd2968ab5b3"
+      },
+      {
+        "world": {
+          "family_id": "development-006",
+          "generation_seed": 20261104,
+          "good_set_hashes": {
+            "F": "c90e3429b3370e0dcad343c8a78fe44ccb7030d72ce18596431269d94c9d4e7e",
+            "R": "b64b63e7c3f6d642d9778287a0800a917af6e775d77c005f4a2e332998e8e61a"
+          },
+          "identity_hash": "73f8bff14d949e8a738ad9e192fb10c8d50b1b978fa06e10316af1dc9e5c3974",
+          "simulator_seed": 20261110,
+          "split": "development",
+          "state": {
+            "agents": [
+              {
+                "direction": 0.0,
+                "id": "A",
+                "level": 1.0,
+                "position": [
+                  6,
+                  3
+                ]
+              },
+              {
+                "direction": 0.0,
+                "id": "B",
+                "level": 1.0,
+                "position": [
+                  4,
+                  5
+                ]
+              }
+            ],
+            "obstacles": [],
+            "shape": [
+              8,
+              8
+            ],
+            "tasks": [
+              {
+                "completed": false,
+                "id": "b0",
+                "level": 0.4,
+                "position": [
+                  6,
+                  2
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b1",
+                "level": 0.6,
+                "position": [
+                  5,
+                  1
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b2",
+                "level": 1.2,
+                "position": [
+                  5,
+                  4
+                ]
+              }
+            ]
+          },
+          "state_hash": "a745feb6827c86c90634615ce1746b067c2870604c8591963b77334316b4a2fb",
+          "stratum": "mixed"
+        },
+        "model": {
+          "role": "primary",
+          "id": "gpt-4o-mini-2024-07-18",
+          "snapshot_frozen": true,
+          "temperature": 0,
+          "max_input_tokens": 10000,
+          "max_output_tokens": 256,
+          "input_usd_per_million": 0.15,
+          "cached_input_usd_per_million": 0.075,
+          "output_usd_per_million": 0.6,
+          "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4o-mini"
+        },
+        "language": "EN",
+        "arm": "original",
+        "policy": "P0",
+        "request": {
+          "messages": [
+            {
+              "role": "system",
+              "content": "You control two robots in fully observed Level-Based Foraging. Recommend one next pickup allocation that follows the supplied policy and makes at least one feasible pickup. A robot can target one box or be unassigned. Assigned capacities combine only when robots collect the same box together. Return exactly {\"targets\":{agent_id:box_id_or_null,...}} using every registered agent ID and only unfinished box IDs. Return JSON only, without explanation or additional fields. Navigation and pickup synchronization are handled by a fixed executor. Do not recommend primitive moves or a full episode plan."
+            },
+            {
+              "role": "user",
+              "content": "{\"objective\":\"Make at least one feasible pickup while obeying the policy.\",\"policy\":\"Select at least one box for a feasible pickup. For each selected box, the combined lifting capacity of the assigned robots must be at least its weight. Each robot may be assigned to at most one box; a robot may be unassigned.\",\"state\":{\"agents\":[{\"direction\":0.0,\"id\":\"A\",\"level\":1.0,\"position\":[6,3]},{\"direction\":0.0,\"id\":\"B\",\"level\":1.0,\"position\":[4,5]}],\"obstacles\":[],\"shape\":[8,8],\"tasks\":[{\"completed\":false,\"id\":\"b0\",\"level\":0.4,\"position\":[6,2]},{\"completed\":false,\"id\":\"b1\",\"level\":0.6,\"position\":[5,1]},{\"completed\":false,\"id\":\"b2\",\"level\":1.2,\"position\":[5,4]}]}}"
+            }
+          ]
+        },
+        "slot_id": "d84a4749f0599ec1ae4bff24d05ba6aa234af7cd15cb36b5962e8b0c35bd5762"
+      },
+      {
+        "world": {
+          "family_id": "development-008",
+          "generation_seed": 20261104,
+          "good_set_hashes": {
+            "F": "c90e3429b3370e0dcad343c8a78fe44ccb7030d72ce18596431269d94c9d4e7e",
+            "R": "b64b63e7c3f6d642d9778287a0800a917af6e775d77c005f4a2e332998e8e61a"
+          },
+          "identity_hash": "8ac1bc59239747b9b871f5ca7a1363e13b3f1769d7a9d0a094ec024d523a83ee",
+          "simulator_seed": 20261112,
+          "split": "development",
+          "state": {
+            "agents": [
+              {
+                "direction": 0.0,
+                "id": "A",
+                "level": 1.0,
+                "position": [
+                  1,
+                  3
+                ]
+              },
+              {
+                "direction": 0.0,
+                "id": "B",
+                "level": 0.8,
+                "position": [
+                  2,
+                  1
+                ]
+              }
+            ],
+            "obstacles": [],
+            "shape": [
+              8,
+              8
+            ],
+            "tasks": [
+              {
+                "completed": false,
+                "id": "b0",
+                "level": 0.4,
+                "position": [
+                  6,
+                  3
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b1",
+                "level": 0.6,
+                "position": [
+                  4,
+                  4
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b2",
+                "level": 1.2,
+                "position": [
+                  5,
+                  4
+                ]
+              }
+            ]
+          },
+          "state_hash": "06a296b448d3dc60d2835f28e2f54fc5219896955e2ce524067794d2802d118e",
+          "stratum": "mixed"
+        },
+        "model": {
+          "role": "replication",
+          "id": "gpt-4.1-mini-2025-04-14",
+          "snapshot_frozen": true,
+          "temperature": 0,
+          "max_input_tokens": 10000,
+          "max_output_tokens": 256,
+          "input_usd_per_million": 0.4,
+          "cached_input_usd_per_million": 0.1,
+          "output_usd_per_million": 1.6,
+          "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4.1-mini"
+        },
+        "language": "EN",
+        "arm": "clarified",
+        "policy": "P0",
+        "request": {
+          "messages": [
+            {
+              "role": "system",
+              "content": "You control two robots in fully observed Level-Based Foraging. Recommend one next pickup allocation that follows the supplied policy and makes at least one feasible pickup. A robot can target one box or be unassigned. Assigned capacities combine only when robots collect the same box together. Return exactly {\"targets\":{agent_id:box_id_or_null,...}} using every registered agent ID and only unfinished box IDs. Return JSON only, without explanation or additional fields. Navigation and pickup synchronization are handled by a fixed executor. Do not recommend primitive moves or a full episode plan. Numeric field meanings: state.agents[].level is that robot's lifting capacity, and state.tasks[].level is that box's required lifting weight. For every selected box, sum the level values of only the robots assigned to that same box. This sum must be greater than or equal to the box's level. Robots assigned elsewhere or unassigned contribute nothing to that box. These physical rules apply under every supplied policy."
+            },
+            {
+              "role": "user",
+              "content": "{\"objective\":\"Make at least one feasible pickup while obeying the policy.\",\"policy\":\"Select at least one box for a feasible pickup. For each selected box, the combined lifting capacity of the assigned robots must be at least its weight. Each robot may be assigned to at most one box; a robot may be unassigned.\",\"state\":{\"agents\":[{\"direction\":0.0,\"id\":\"A\",\"level\":1.0,\"position\":[1,3]},{\"direction\":0.0,\"id\":\"B\",\"level\":0.8,\"position\":[2,1]}],\"obstacles\":[],\"shape\":[8,8],\"tasks\":[{\"completed\":false,\"id\":\"b0\",\"level\":0.4,\"position\":[6,3]},{\"completed\":false,\"id\":\"b1\",\"level\":0.6,\"position\":[4,4]},{\"completed\":false,\"id\":\"b2\",\"level\":1.2,\"position\":[5,4]}]}}"
+            }
+          ]
+        },
+        "slot_id": "4267ed6f18746e621c903d127f9718ee61b74dc87deaa2a943a727434c65a574"
+      },
+      {
+        "world": {
+          "family_id": "development-008",
+          "generation_seed": 20261104,
+          "good_set_hashes": {
+            "F": "c90e3429b3370e0dcad343c8a78fe44ccb7030d72ce18596431269d94c9d4e7e",
+            "R": "b64b63e7c3f6d642d9778287a0800a917af6e775d77c005f4a2e332998e8e61a"
+          },
+          "identity_hash": "8ac1bc59239747b9b871f5ca7a1363e13b3f1769d7a9d0a094ec024d523a83ee",
+          "simulator_seed": 20261112,
+          "split": "development",
+          "state": {
+            "agents": [
+              {
+                "direction": 0.0,
+                "id": "A",
+                "level": 1.0,
+                "position": [
+                  1,
+                  3
+                ]
+              },
+              {
+                "direction": 0.0,
+                "id": "B",
+                "level": 0.8,
+                "position": [
+                  2,
+                  1
+                ]
+              }
+            ],
+            "obstacles": [],
+            "shape": [
+              8,
+              8
+            ],
+            "tasks": [
+              {
+                "completed": false,
+                "id": "b0",
+                "level": 0.4,
+                "position": [
+                  6,
+                  3
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b1",
+                "level": 0.6,
+                "position": [
+                  4,
+                  4
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b2",
+                "level": 1.2,
+                "position": [
+                  5,
+                  4
+                ]
+              }
+            ]
+          },
+          "state_hash": "06a296b448d3dc60d2835f28e2f54fc5219896955e2ce524067794d2802d118e",
+          "stratum": "mixed"
+        },
+        "model": {
+          "role": "replication",
+          "id": "gpt-4.1-mini-2025-04-14",
+          "snapshot_frozen": true,
+          "temperature": 0,
+          "max_input_tokens": 10000,
+          "max_output_tokens": 256,
+          "input_usd_per_million": 0.4,
+          "cached_input_usd_per_million": 0.1,
+          "output_usd_per_million": 1.6,
+          "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4.1-mini"
+        },
+        "language": "EN",
+        "arm": "original",
+        "policy": "P0",
+        "request": {
+          "messages": [
+            {
+              "role": "system",
+              "content": "You control two robots in fully observed Level-Based Foraging. Recommend one next pickup allocation that follows the supplied policy and makes at least one feasible pickup. A robot can target one box or be unassigned. Assigned capacities combine only when robots collect the same box together. Return exactly {\"targets\":{agent_id:box_id_or_null,...}} using every registered agent ID and only unfinished box IDs. Return JSON only, without explanation or additional fields. Navigation and pickup synchronization are handled by a fixed executor. Do not recommend primitive moves or a full episode plan."
+            },
+            {
+              "role": "user",
+              "content": "{\"objective\":\"Make at least one feasible pickup while obeying the policy.\",\"policy\":\"Select at least one box for a feasible pickup. For each selected box, the combined lifting capacity of the assigned robots must be at least its weight. Each robot may be assigned to at most one box; a robot may be unassigned.\",\"state\":{\"agents\":[{\"direction\":0.0,\"id\":\"A\",\"level\":1.0,\"position\":[1,3]},{\"direction\":0.0,\"id\":\"B\",\"level\":0.8,\"position\":[2,1]}],\"obstacles\":[],\"shape\":[8,8],\"tasks\":[{\"completed\":false,\"id\":\"b0\",\"level\":0.4,\"position\":[6,3]},{\"completed\":false,\"id\":\"b1\",\"level\":0.6,\"position\":[4,4]},{\"completed\":false,\"id\":\"b2\",\"level\":1.2,\"position\":[5,4]}]}}"
+            }
+          ]
+        },
+        "slot_id": "f45faf7136291211849967c9bf4c6352908853714c37d6700208f81fe1b1b979"
+      },
+      {
+        "world": {
+          "family_id": "development-008",
+          "generation_seed": 20261104,
+          "good_set_hashes": {
+            "F": "c90e3429b3370e0dcad343c8a78fe44ccb7030d72ce18596431269d94c9d4e7e",
+            "R": "b64b63e7c3f6d642d9778287a0800a917af6e775d77c005f4a2e332998e8e61a"
+          },
+          "identity_hash": "8ac1bc59239747b9b871f5ca7a1363e13b3f1769d7a9d0a094ec024d523a83ee",
+          "simulator_seed": 20261112,
+          "split": "development",
+          "state": {
+            "agents": [
+              {
+                "direction": 0.0,
+                "id": "A",
+                "level": 1.0,
+                "position": [
+                  1,
+                  3
+                ]
+              },
+              {
+                "direction": 0.0,
+                "id": "B",
+                "level": 0.8,
+                "position": [
+                  2,
+                  1
+                ]
+              }
+            ],
+            "obstacles": [],
+            "shape": [
+              8,
+              8
+            ],
+            "tasks": [
+              {
+                "completed": false,
+                "id": "b0",
+                "level": 0.4,
+                "position": [
+                  6,
+                  3
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b1",
+                "level": 0.6,
+                "position": [
+                  4,
+                  4
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b2",
+                "level": 1.2,
+                "position": [
+                  5,
+                  4
+                ]
+              }
+            ]
+          },
+          "state_hash": "06a296b448d3dc60d2835f28e2f54fc5219896955e2ce524067794d2802d118e",
+          "stratum": "mixed"
+        },
+        "model": {
+          "role": "primary",
+          "id": "gpt-4o-mini-2024-07-18",
+          "snapshot_frozen": true,
+          "temperature": 0,
+          "max_input_tokens": 10000,
+          "max_output_tokens": 256,
+          "input_usd_per_million": 0.15,
+          "cached_input_usd_per_million": 0.075,
+          "output_usd_per_million": 0.6,
+          "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4o-mini"
+        },
+        "language": "VI",
+        "arm": "original",
+        "policy": "P0",
+        "request": {
+          "messages": [
+            {
+              "role": "system",
+              "content": "You control two robots in fully observed Level-Based Foraging. Recommend one next pickup allocation that follows the supplied policy and makes at least one feasible pickup. A robot can target one box or be unassigned. Assigned capacities combine only when robots collect the same box together. Return exactly {\"targets\":{agent_id:box_id_or_null,...}} using every registered agent ID and only unfinished box IDs. Return JSON only, without explanation or additional fields. Navigation and pickup synchronization are handled by a fixed executor. Do not recommend primitive moves or a full episode plan."
+            },
+            {
+              "role": "user",
+              "content": "{\"objective\":\"Make at least one feasible pickup while obeying the policy.\",\"policy\":\"Hãy chọn ít nhất một thùng để có thể thu gom được. Với mỗi thùng được chọn, tổng sức nâng của các robot được phân công phải ít nhất bằng trọng lượng của thùng. Mỗi robot chỉ được phân công tối đa một thùng; có thể không phân công nhiệm vụ cho một robot.\",\"state\":{\"agents\":[{\"direction\":0.0,\"id\":\"A\",\"level\":1.0,\"position\":[1,3]},{\"direction\":0.0,\"id\":\"B\",\"level\":0.8,\"position\":[2,1]}],\"obstacles\":[],\"shape\":[8,8],\"tasks\":[{\"completed\":false,\"id\":\"b0\",\"level\":0.4,\"position\":[6,3]},{\"completed\":false,\"id\":\"b1\",\"level\":0.6,\"position\":[4,4]},{\"completed\":false,\"id\":\"b2\",\"level\":1.2,\"position\":[5,4]}]}}"
+            }
+          ]
+        },
+        "slot_id": "419f96a4c309937aedb32bf6cc0a184bf28e71678e0833b16d2b727ab106cf9f"
+      },
+      {
+        "world": {
+          "family_id": "development-008",
+          "generation_seed": 20261104,
+          "good_set_hashes": {
+            "F": "c90e3429b3370e0dcad343c8a78fe44ccb7030d72ce18596431269d94c9d4e7e",
+            "R": "b64b63e7c3f6d642d9778287a0800a917af6e775d77c005f4a2e332998e8e61a"
+          },
+          "identity_hash": "8ac1bc59239747b9b871f5ca7a1363e13b3f1769d7a9d0a094ec024d523a83ee",
+          "simulator_seed": 20261112,
+          "split": "development",
+          "state": {
+            "agents": [
+              {
+                "direction": 0.0,
+                "id": "A",
+                "level": 1.0,
+                "position": [
+                  1,
+                  3
+                ]
+              },
+              {
+                "direction": 0.0,
+                "id": "B",
+                "level": 0.8,
+                "position": [
+                  2,
+                  1
+                ]
+              }
+            ],
+            "obstacles": [],
+            "shape": [
+              8,
+              8
+            ],
+            "tasks": [
+              {
+                "completed": false,
+                "id": "b0",
+                "level": 0.4,
+                "position": [
+                  6,
+                  3
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b1",
+                "level": 0.6,
+                "position": [
+                  4,
+                  4
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b2",
+                "level": 1.2,
+                "position": [
+                  5,
+                  4
+                ]
+              }
+            ]
+          },
+          "state_hash": "06a296b448d3dc60d2835f28e2f54fc5219896955e2ce524067794d2802d118e",
+          "stratum": "mixed"
+        },
+        "model": {
+          "role": "primary",
+          "id": "gpt-4o-mini-2024-07-18",
+          "snapshot_frozen": true,
+          "temperature": 0,
+          "max_input_tokens": 10000,
+          "max_output_tokens": 256,
+          "input_usd_per_million": 0.15,
+          "cached_input_usd_per_million": 0.075,
+          "output_usd_per_million": 0.6,
+          "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4o-mini"
+        },
+        "language": "VI",
+        "arm": "clarified",
+        "policy": "P0",
+        "request": {
+          "messages": [
+            {
+              "role": "system",
+              "content": "You control two robots in fully observed Level-Based Foraging. Recommend one next pickup allocation that follows the supplied policy and makes at least one feasible pickup. A robot can target one box or be unassigned. Assigned capacities combine only when robots collect the same box together. Return exactly {\"targets\":{agent_id:box_id_or_null,...}} using every registered agent ID and only unfinished box IDs. Return JSON only, without explanation or additional fields. Navigation and pickup synchronization are handled by a fixed executor. Do not recommend primitive moves or a full episode plan. Numeric field meanings: state.agents[].level is that robot's lifting capacity, and state.tasks[].level is that box's required lifting weight. For every selected box, sum the level values of only the robots assigned to that same box. This sum must be greater than or equal to the box's level. Robots assigned elsewhere or unassigned contribute nothing to that box. These physical rules apply under every supplied policy."
+            },
+            {
+              "role": "user",
+              "content": "{\"objective\":\"Make at least one feasible pickup while obeying the policy.\",\"policy\":\"Hãy chọn ít nhất một thùng để có thể thu gom được. Với mỗi thùng được chọn, tổng sức nâng của các robot được phân công phải ít nhất bằng trọng lượng của thùng. Mỗi robot chỉ được phân công tối đa một thùng; có thể không phân công nhiệm vụ cho một robot.\",\"state\":{\"agents\":[{\"direction\":0.0,\"id\":\"A\",\"level\":1.0,\"position\":[1,3]},{\"direction\":0.0,\"id\":\"B\",\"level\":0.8,\"position\":[2,1]}],\"obstacles\":[],\"shape\":[8,8],\"tasks\":[{\"completed\":false,\"id\":\"b0\",\"level\":0.4,\"position\":[6,3]},{\"completed\":false,\"id\":\"b1\",\"level\":0.6,\"position\":[4,4]},{\"completed\":false,\"id\":\"b2\",\"level\":1.2,\"position\":[5,4]}]}}"
+            }
+          ]
+        },
+        "slot_id": "92e255f2ccd967686a139d0d7d1eb18fbe0531e38a684709ae5f986820e1cf1f"
+      },
+      {
+        "world": {
+          "family_id": "development-011",
+          "generation_seed": 20261104,
+          "good_set_hashes": {
+            "F": "c90e3429b3370e0dcad343c8a78fe44ccb7030d72ce18596431269d94c9d4e7e",
+            "R": "b64b63e7c3f6d642d9778287a0800a917af6e775d77c005f4a2e332998e8e61a"
+          },
+          "identity_hash": "a9d65ca48a9a7552cb459f191e08f9de91fccdcc2b3f5f767a15e093bd1e6650",
+          "simulator_seed": 20261115,
+          "split": "development",
+          "state": {
+            "agents": [
+              {
+                "direction": 0.0,
+                "id": "A",
+                "level": 1.4,
+                "position": [
+                  3,
+                  3
+                ]
+              },
+              {
+                "direction": 0.0,
+                "id": "B",
+                "level": 0.8,
+                "position": [
+                  5,
+                  1
+                ]
+              }
+            ],
+            "obstacles": [],
+            "shape": [
+              8,
+              8
+            ],
+            "tasks": [
+              {
+                "completed": false,
+                "id": "b0",
+                "level": 0.4,
+                "position": [
+                  1,
+                  6
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b1",
+                "level": 0.6,
+                "position": [
+                  6,
+                  4
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b2",
+                "level": 1.6,
+                "position": [
+                  2,
+                  2
+                ]
+              }
+            ]
+          },
+          "state_hash": "7f49ca3f32aac27f4a66173ef989bdc4d702208a3eed7131b437fd9e615581b6",
+          "stratum": "mixed"
+        },
+        "model": {
+          "role": "primary",
+          "id": "gpt-4o-mini-2024-07-18",
+          "snapshot_frozen": true,
+          "temperature": 0,
+          "max_input_tokens": 10000,
+          "max_output_tokens": 256,
+          "input_usd_per_million": 0.15,
+          "cached_input_usd_per_million": 0.075,
+          "output_usd_per_million": 0.6,
+          "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4o-mini"
+        },
+        "language": "VI",
+        "arm": "original",
+        "policy": "P0",
+        "request": {
+          "messages": [
+            {
+              "role": "system",
+              "content": "You control two robots in fully observed Level-Based Foraging. Recommend one next pickup allocation that follows the supplied policy and makes at least one feasible pickup. A robot can target one box or be unassigned. Assigned capacities combine only when robots collect the same box together. Return exactly {\"targets\":{agent_id:box_id_or_null,...}} using every registered agent ID and only unfinished box IDs. Return JSON only, without explanation or additional fields. Navigation and pickup synchronization are handled by a fixed executor. Do not recommend primitive moves or a full episode plan."
+            },
+            {
+              "role": "user",
+              "content": "{\"objective\":\"Make at least one feasible pickup while obeying the policy.\",\"policy\":\"Hãy chọn ít nhất một thùng để có thể thu gom được. Với mỗi thùng được chọn, tổng sức nâng của các robot được phân công phải ít nhất bằng trọng lượng của thùng. Mỗi robot chỉ được phân công tối đa một thùng; có thể không phân công nhiệm vụ cho một robot.\",\"state\":{\"agents\":[{\"direction\":0.0,\"id\":\"A\",\"level\":1.4,\"position\":[3,3]},{\"direction\":0.0,\"id\":\"B\",\"level\":0.8,\"position\":[5,1]}],\"obstacles\":[],\"shape\":[8,8],\"tasks\":[{\"completed\":false,\"id\":\"b0\",\"level\":0.4,\"position\":[1,6]},{\"completed\":false,\"id\":\"b1\",\"level\":0.6,\"position\":[6,4]},{\"completed\":false,\"id\":\"b2\",\"level\":1.6,\"position\":[2,2]}]}}"
+            }
+          ]
+        },
+        "slot_id": "50465e3b73172b50a86472f4db5efeba449d42fe38dd47b1a907a6616ccd5ad8"
+      },
+      {
+        "world": {
+          "family_id": "development-011",
+          "generation_seed": 20261104,
+          "good_set_hashes": {
+            "F": "c90e3429b3370e0dcad343c8a78fe44ccb7030d72ce18596431269d94c9d4e7e",
+            "R": "b64b63e7c3f6d642d9778287a0800a917af6e775d77c005f4a2e332998e8e61a"
+          },
+          "identity_hash": "a9d65ca48a9a7552cb459f191e08f9de91fccdcc2b3f5f767a15e093bd1e6650",
+          "simulator_seed": 20261115,
+          "split": "development",
+          "state": {
+            "agents": [
+              {
+                "direction": 0.0,
+                "id": "A",
+                "level": 1.4,
+                "position": [
+                  3,
+                  3
+                ]
+              },
+              {
+                "direction": 0.0,
+                "id": "B",
+                "level": 0.8,
+                "position": [
+                  5,
+                  1
+                ]
+              }
+            ],
+            "obstacles": [],
+            "shape": [
+              8,
+              8
+            ],
+            "tasks": [
+              {
+                "completed": false,
+                "id": "b0",
+                "level": 0.4,
+                "position": [
+                  1,
+                  6
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b1",
+                "level": 0.6,
+                "position": [
+                  6,
+                  4
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b2",
+                "level": 1.6,
+                "position": [
+                  2,
+                  2
+                ]
+              }
+            ]
+          },
+          "state_hash": "7f49ca3f32aac27f4a66173ef989bdc4d702208a3eed7131b437fd9e615581b6",
+          "stratum": "mixed"
+        },
+        "model": {
+          "role": "primary",
+          "id": "gpt-4o-mini-2024-07-18",
+          "snapshot_frozen": true,
+          "temperature": 0,
+          "max_input_tokens": 10000,
+          "max_output_tokens": 256,
+          "input_usd_per_million": 0.15,
+          "cached_input_usd_per_million": 0.075,
+          "output_usd_per_million": 0.6,
+          "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4o-mini"
+        },
+        "language": "VI",
+        "arm": "clarified",
+        "policy": "P0",
+        "request": {
+          "messages": [
+            {
+              "role": "system",
+              "content": "You control two robots in fully observed Level-Based Foraging. Recommend one next pickup allocation that follows the supplied policy and makes at least one feasible pickup. A robot can target one box or be unassigned. Assigned capacities combine only when robots collect the same box together. Return exactly {\"targets\":{agent_id:box_id_or_null,...}} using every registered agent ID and only unfinished box IDs. Return JSON only, without explanation or additional fields. Navigation and pickup synchronization are handled by a fixed executor. Do not recommend primitive moves or a full episode plan. Numeric field meanings: state.agents[].level is that robot's lifting capacity, and state.tasks[].level is that box's required lifting weight. For every selected box, sum the level values of only the robots assigned to that same box. This sum must be greater than or equal to the box's level. Robots assigned elsewhere or unassigned contribute nothing to that box. These physical rules apply under every supplied policy."
+            },
+            {
+              "role": "user",
+              "content": "{\"objective\":\"Make at least one feasible pickup while obeying the policy.\",\"policy\":\"Hãy chọn ít nhất một thùng để có thể thu gom được. Với mỗi thùng được chọn, tổng sức nâng của các robot được phân công phải ít nhất bằng trọng lượng của thùng. Mỗi robot chỉ được phân công tối đa một thùng; có thể không phân công nhiệm vụ cho một robot.\",\"state\":{\"agents\":[{\"direction\":0.0,\"id\":\"A\",\"level\":1.4,\"position\":[3,3]},{\"direction\":0.0,\"id\":\"B\",\"level\":0.8,\"position\":[5,1]}],\"obstacles\":[],\"shape\":[8,8],\"tasks\":[{\"completed\":false,\"id\":\"b0\",\"level\":0.4,\"position\":[1,6]},{\"completed\":false,\"id\":\"b1\",\"level\":0.6,\"position\":[6,4]},{\"completed\":false,\"id\":\"b2\",\"level\":1.6,\"position\":[2,2]}]}}"
+            }
+          ]
+        },
+        "slot_id": "12b99c1843c656186ad347c7f95e9f081fb4daa0f05d2b1155ed147d4114e84e"
+      },
+      {
+        "world": {
+          "family_id": "development-011",
+          "generation_seed": 20261104,
+          "good_set_hashes": {
+            "F": "c90e3429b3370e0dcad343c8a78fe44ccb7030d72ce18596431269d94c9d4e7e",
+            "R": "b64b63e7c3f6d642d9778287a0800a917af6e775d77c005f4a2e332998e8e61a"
+          },
+          "identity_hash": "a9d65ca48a9a7552cb459f191e08f9de91fccdcc2b3f5f767a15e093bd1e6650",
+          "simulator_seed": 20261115,
+          "split": "development",
+          "state": {
+            "agents": [
+              {
+                "direction": 0.0,
+                "id": "A",
+                "level": 1.4,
+                "position": [
+                  3,
+                  3
+                ]
+              },
+              {
+                "direction": 0.0,
+                "id": "B",
+                "level": 0.8,
+                "position": [
+                  5,
+                  1
+                ]
+              }
+            ],
+            "obstacles": [],
+            "shape": [
+              8,
+              8
+            ],
+            "tasks": [
+              {
+                "completed": false,
+                "id": "b0",
+                "level": 0.4,
+                "position": [
+                  1,
+                  6
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b1",
+                "level": 0.6,
+                "position": [
+                  6,
+                  4
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b2",
+                "level": 1.6,
+                "position": [
+                  2,
+                  2
+                ]
+              }
+            ]
+          },
+          "state_hash": "7f49ca3f32aac27f4a66173ef989bdc4d702208a3eed7131b437fd9e615581b6",
+          "stratum": "mixed"
+        },
+        "model": {
+          "role": "primary",
+          "id": "gpt-4o-mini-2024-07-18",
+          "snapshot_frozen": true,
+          "temperature": 0,
+          "max_input_tokens": 10000,
+          "max_output_tokens": 256,
+          "input_usd_per_million": 0.15,
+          "cached_input_usd_per_million": 0.075,
+          "output_usd_per_million": 0.6,
+          "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4o-mini"
+        },
+        "language": "EN",
+        "arm": "clarified",
+        "policy": "P0",
+        "request": {
+          "messages": [
+            {
+              "role": "system",
+              "content": "You control two robots in fully observed Level-Based Foraging. Recommend one next pickup allocation that follows the supplied policy and makes at least one feasible pickup. A robot can target one box or be unassigned. Assigned capacities combine only when robots collect the same box together. Return exactly {\"targets\":{agent_id:box_id_or_null,...}} using every registered agent ID and only unfinished box IDs. Return JSON only, without explanation or additional fields. Navigation and pickup synchronization are handled by a fixed executor. Do not recommend primitive moves or a full episode plan. Numeric field meanings: state.agents[].level is that robot's lifting capacity, and state.tasks[].level is that box's required lifting weight. For every selected box, sum the level values of only the robots assigned to that same box. This sum must be greater than or equal to the box's level. Robots assigned elsewhere or unassigned contribute nothing to that box. These physical rules apply under every supplied policy."
+            },
+            {
+              "role": "user",
+              "content": "{\"objective\":\"Make at least one feasible pickup while obeying the policy.\",\"policy\":\"Select at least one box for a feasible pickup. For each selected box, the combined lifting capacity of the assigned robots must be at least its weight. Each robot may be assigned to at most one box; a robot may be unassigned.\",\"state\":{\"agents\":[{\"direction\":0.0,\"id\":\"A\",\"level\":1.4,\"position\":[3,3]},{\"direction\":0.0,\"id\":\"B\",\"level\":0.8,\"position\":[5,1]}],\"obstacles\":[],\"shape\":[8,8],\"tasks\":[{\"completed\":false,\"id\":\"b0\",\"level\":0.4,\"position\":[1,6]},{\"completed\":false,\"id\":\"b1\",\"level\":0.6,\"position\":[6,4]},{\"completed\":false,\"id\":\"b2\",\"level\":1.6,\"position\":[2,2]}]}}"
+            }
+          ]
+        },
+        "slot_id": "6101331d2c020bdc1f44346b9b968702c337329fb5ce72b7d9e4872e4473b3ec"
+      },
+      {
+        "world": {
+          "family_id": "development-011",
+          "generation_seed": 20261104,
+          "good_set_hashes": {
+            "F": "c90e3429b3370e0dcad343c8a78fe44ccb7030d72ce18596431269d94c9d4e7e",
+            "R": "b64b63e7c3f6d642d9778287a0800a917af6e775d77c005f4a2e332998e8e61a"
+          },
+          "identity_hash": "a9d65ca48a9a7552cb459f191e08f9de91fccdcc2b3f5f767a15e093bd1e6650",
+          "simulator_seed": 20261115,
+          "split": "development",
+          "state": {
+            "agents": [
+              {
+                "direction": 0.0,
+                "id": "A",
+                "level": 1.4,
+                "position": [
+                  3,
+                  3
+                ]
+              },
+              {
+                "direction": 0.0,
+                "id": "B",
+                "level": 0.8,
+                "position": [
+                  5,
+                  1
+                ]
+              }
+            ],
+            "obstacles": [],
+            "shape": [
+              8,
+              8
+            ],
+            "tasks": [
+              {
+                "completed": false,
+                "id": "b0",
+                "level": 0.4,
+                "position": [
+                  1,
+                  6
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b1",
+                "level": 0.6,
+                "position": [
+                  6,
+                  4
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b2",
+                "level": 1.6,
+                "position": [
+                  2,
+                  2
+                ]
+              }
+            ]
+          },
+          "state_hash": "7f49ca3f32aac27f4a66173ef989bdc4d702208a3eed7131b437fd9e615581b6",
+          "stratum": "mixed"
+        },
+        "model": {
+          "role": "primary",
+          "id": "gpt-4o-mini-2024-07-18",
+          "snapshot_frozen": true,
+          "temperature": 0,
+          "max_input_tokens": 10000,
+          "max_output_tokens": 256,
+          "input_usd_per_million": 0.15,
+          "cached_input_usd_per_million": 0.075,
+          "output_usd_per_million": 0.6,
+          "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4o-mini"
+        },
+        "language": "EN",
+        "arm": "original",
+        "policy": "P0",
+        "request": {
+          "messages": [
+            {
+              "role": "system",
+              "content": "You control two robots in fully observed Level-Based Foraging. Recommend one next pickup allocation that follows the supplied policy and makes at least one feasible pickup. A robot can target one box or be unassigned. Assigned capacities combine only when robots collect the same box together. Return exactly {\"targets\":{agent_id:box_id_or_null,...}} using every registered agent ID and only unfinished box IDs. Return JSON only, without explanation or additional fields. Navigation and pickup synchronization are handled by a fixed executor. Do not recommend primitive moves or a full episode plan."
+            },
+            {
+              "role": "user",
+              "content": "{\"objective\":\"Make at least one feasible pickup while obeying the policy.\",\"policy\":\"Select at least one box for a feasible pickup. For each selected box, the combined lifting capacity of the assigned robots must be at least its weight. Each robot may be assigned to at most one box; a robot may be unassigned.\",\"state\":{\"agents\":[{\"direction\":0.0,\"id\":\"A\",\"level\":1.4,\"position\":[3,3]},{\"direction\":0.0,\"id\":\"B\",\"level\":0.8,\"position\":[5,1]}],\"obstacles\":[],\"shape\":[8,8],\"tasks\":[{\"completed\":false,\"id\":\"b0\",\"level\":0.4,\"position\":[1,6]},{\"completed\":false,\"id\":\"b1\",\"level\":0.6,\"position\":[6,4]},{\"completed\":false,\"id\":\"b2\",\"level\":1.6,\"position\":[2,2]}]}}"
+            }
+          ]
+        },
+        "slot_id": "0b25ee645a660e0932631ba6d72860e20c19a89eaa79cadbfec892abfdead197"
+      },
+      {
+        "world": {
+          "family_id": "development-008",
+          "generation_seed": 20261104,
+          "good_set_hashes": {
+            "F": "c90e3429b3370e0dcad343c8a78fe44ccb7030d72ce18596431269d94c9d4e7e",
+            "R": "b64b63e7c3f6d642d9778287a0800a917af6e775d77c005f4a2e332998e8e61a"
+          },
+          "identity_hash": "8ac1bc59239747b9b871f5ca7a1363e13b3f1769d7a9d0a094ec024d523a83ee",
+          "simulator_seed": 20261112,
+          "split": "development",
+          "state": {
+            "agents": [
+              {
+                "direction": 0.0,
+                "id": "A",
+                "level": 1.0,
+                "position": [
+                  1,
+                  3
+                ]
+              },
+              {
+                "direction": 0.0,
+                "id": "B",
+                "level": 0.8,
+                "position": [
+                  2,
+                  1
+                ]
+              }
+            ],
+            "obstacles": [],
+            "shape": [
+              8,
+              8
+            ],
+            "tasks": [
+              {
+                "completed": false,
+                "id": "b0",
+                "level": 0.4,
+                "position": [
+                  6,
+                  3
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b1",
+                "level": 0.6,
+                "position": [
+                  4,
+                  4
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b2",
+                "level": 1.2,
+                "position": [
+                  5,
+                  4
+                ]
+              }
+            ]
+          },
+          "state_hash": "06a296b448d3dc60d2835f28e2f54fc5219896955e2ce524067794d2802d118e",
+          "stratum": "mixed"
+        },
+        "model": {
+          "role": "replication",
+          "id": "gpt-4.1-mini-2025-04-14",
+          "snapshot_frozen": true,
+          "temperature": 0,
+          "max_input_tokens": 10000,
+          "max_output_tokens": 256,
+          "input_usd_per_million": 0.4,
+          "cached_input_usd_per_million": 0.1,
+          "output_usd_per_million": 1.6,
+          "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4.1-mini"
+        },
+        "language": "VI",
+        "arm": "original",
+        "policy": "P0",
+        "request": {
+          "messages": [
+            {
+              "role": "system",
+              "content": "You control two robots in fully observed Level-Based Foraging. Recommend one next pickup allocation that follows the supplied policy and makes at least one feasible pickup. A robot can target one box or be unassigned. Assigned capacities combine only when robots collect the same box together. Return exactly {\"targets\":{agent_id:box_id_or_null,...}} using every registered agent ID and only unfinished box IDs. Return JSON only, without explanation or additional fields. Navigation and pickup synchronization are handled by a fixed executor. Do not recommend primitive moves or a full episode plan."
+            },
+            {
+              "role": "user",
+              "content": "{\"objective\":\"Make at least one feasible pickup while obeying the policy.\",\"policy\":\"Hãy chọn ít nhất một thùng để có thể thu gom được. Với mỗi thùng được chọn, tổng sức nâng của các robot được phân công phải ít nhất bằng trọng lượng của thùng. Mỗi robot chỉ được phân công tối đa một thùng; có thể không phân công nhiệm vụ cho một robot.\",\"state\":{\"agents\":[{\"direction\":0.0,\"id\":\"A\",\"level\":1.0,\"position\":[1,3]},{\"direction\":0.0,\"id\":\"B\",\"level\":0.8,\"position\":[2,1]}],\"obstacles\":[],\"shape\":[8,8],\"tasks\":[{\"completed\":false,\"id\":\"b0\",\"level\":0.4,\"position\":[6,3]},{\"completed\":false,\"id\":\"b1\",\"level\":0.6,\"position\":[4,4]},{\"completed\":false,\"id\":\"b2\",\"level\":1.2,\"position\":[5,4]}]}}"
+            }
+          ]
+        },
+        "slot_id": "be9f640bc1c09cb25cd76d1d6bbb7bea2c59323641bbf2ec1f9687100666eafe"
+      },
+      {
+        "world": {
+          "family_id": "development-008",
+          "generation_seed": 20261104,
+          "good_set_hashes": {
+            "F": "c90e3429b3370e0dcad343c8a78fe44ccb7030d72ce18596431269d94c9d4e7e",
+            "R": "b64b63e7c3f6d642d9778287a0800a917af6e775d77c005f4a2e332998e8e61a"
+          },
+          "identity_hash": "8ac1bc59239747b9b871f5ca7a1363e13b3f1769d7a9d0a094ec024d523a83ee",
+          "simulator_seed": 20261112,
+          "split": "development",
+          "state": {
+            "agents": [
+              {
+                "direction": 0.0,
+                "id": "A",
+                "level": 1.0,
+                "position": [
+                  1,
+                  3
+                ]
+              },
+              {
+                "direction": 0.0,
+                "id": "B",
+                "level": 0.8,
+                "position": [
+                  2,
+                  1
+                ]
+              }
+            ],
+            "obstacles": [],
+            "shape": [
+              8,
+              8
+            ],
+            "tasks": [
+              {
+                "completed": false,
+                "id": "b0",
+                "level": 0.4,
+                "position": [
+                  6,
+                  3
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b1",
+                "level": 0.6,
+                "position": [
+                  4,
+                  4
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b2",
+                "level": 1.2,
+                "position": [
+                  5,
+                  4
+                ]
+              }
+            ]
+          },
+          "state_hash": "06a296b448d3dc60d2835f28e2f54fc5219896955e2ce524067794d2802d118e",
+          "stratum": "mixed"
+        },
+        "model": {
+          "role": "replication",
+          "id": "gpt-4.1-mini-2025-04-14",
+          "snapshot_frozen": true,
+          "temperature": 0,
+          "max_input_tokens": 10000,
+          "max_output_tokens": 256,
+          "input_usd_per_million": 0.4,
+          "cached_input_usd_per_million": 0.1,
+          "output_usd_per_million": 1.6,
+          "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4.1-mini"
+        },
+        "language": "VI",
+        "arm": "clarified",
+        "policy": "P0",
+        "request": {
+          "messages": [
+            {
+              "role": "system",
+              "content": "You control two robots in fully observed Level-Based Foraging. Recommend one next pickup allocation that follows the supplied policy and makes at least one feasible pickup. A robot can target one box or be unassigned. Assigned capacities combine only when robots collect the same box together. Return exactly {\"targets\":{agent_id:box_id_or_null,...}} using every registered agent ID and only unfinished box IDs. Return JSON only, without explanation or additional fields. Navigation and pickup synchronization are handled by a fixed executor. Do not recommend primitive moves or a full episode plan. Numeric field meanings: state.agents[].level is that robot's lifting capacity, and state.tasks[].level is that box's required lifting weight. For every selected box, sum the level values of only the robots assigned to that same box. This sum must be greater than or equal to the box's level. Robots assigned elsewhere or unassigned contribute nothing to that box. These physical rules apply under every supplied policy."
+            },
+            {
+              "role": "user",
+              "content": "{\"objective\":\"Make at least one feasible pickup while obeying the policy.\",\"policy\":\"Hãy chọn ít nhất một thùng để có thể thu gom được. Với mỗi thùng được chọn, tổng sức nâng của các robot được phân công phải ít nhất bằng trọng lượng của thùng. Mỗi robot chỉ được phân công tối đa một thùng; có thể không phân công nhiệm vụ cho một robot.\",\"state\":{\"agents\":[{\"direction\":0.0,\"id\":\"A\",\"level\":1.0,\"position\":[1,3]},{\"direction\":0.0,\"id\":\"B\",\"level\":0.8,\"position\":[2,1]}],\"obstacles\":[],\"shape\":[8,8],\"tasks\":[{\"completed\":false,\"id\":\"b0\",\"level\":0.4,\"position\":[6,3]},{\"completed\":false,\"id\":\"b1\",\"level\":0.6,\"position\":[4,4]},{\"completed\":false,\"id\":\"b2\",\"level\":1.2,\"position\":[5,4]}]}}"
+            }
+          ]
+        },
+        "slot_id": "c1cb9ee5adc69ae12a3a943c0533a777b344ee1650715ff31fcc9d56b4de1700"
+      },
+      {
+        "world": {
+          "family_id": "development-008",
+          "generation_seed": 20261104,
+          "good_set_hashes": {
+            "F": "c90e3429b3370e0dcad343c8a78fe44ccb7030d72ce18596431269d94c9d4e7e",
+            "R": "b64b63e7c3f6d642d9778287a0800a917af6e775d77c005f4a2e332998e8e61a"
+          },
+          "identity_hash": "8ac1bc59239747b9b871f5ca7a1363e13b3f1769d7a9d0a094ec024d523a83ee",
+          "simulator_seed": 20261112,
+          "split": "development",
+          "state": {
+            "agents": [
+              {
+                "direction": 0.0,
+                "id": "A",
+                "level": 1.0,
+                "position": [
+                  1,
+                  3
+                ]
+              },
+              {
+                "direction": 0.0,
+                "id": "B",
+                "level": 0.8,
+                "position": [
+                  2,
+                  1
+                ]
+              }
+            ],
+            "obstacles": [],
+            "shape": [
+              8,
+              8
+            ],
+            "tasks": [
+              {
+                "completed": false,
+                "id": "b0",
+                "level": 0.4,
+                "position": [
+                  6,
+                  3
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b1",
+                "level": 0.6,
+                "position": [
+                  4,
+                  4
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b2",
+                "level": 1.2,
+                "position": [
+                  5,
+                  4
+                ]
+              }
+            ]
+          },
+          "state_hash": "06a296b448d3dc60d2835f28e2f54fc5219896955e2ce524067794d2802d118e",
+          "stratum": "mixed"
+        },
+        "model": {
+          "role": "primary",
+          "id": "gpt-4o-mini-2024-07-18",
+          "snapshot_frozen": true,
+          "temperature": 0,
+          "max_input_tokens": 10000,
+          "max_output_tokens": 256,
+          "input_usd_per_million": 0.15,
+          "cached_input_usd_per_million": 0.075,
+          "output_usd_per_million": 0.6,
+          "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4o-mini"
+        },
+        "language": "EN",
+        "arm": "original",
+        "policy": "P0",
+        "request": {
+          "messages": [
+            {
+              "role": "system",
+              "content": "You control two robots in fully observed Level-Based Foraging. Recommend one next pickup allocation that follows the supplied policy and makes at least one feasible pickup. A robot can target one box or be unassigned. Assigned capacities combine only when robots collect the same box together. Return exactly {\"targets\":{agent_id:box_id_or_null,...}} using every registered agent ID and only unfinished box IDs. Return JSON only, without explanation or additional fields. Navigation and pickup synchronization are handled by a fixed executor. Do not recommend primitive moves or a full episode plan."
+            },
+            {
+              "role": "user",
+              "content": "{\"objective\":\"Make at least one feasible pickup while obeying the policy.\",\"policy\":\"Select at least one box for a feasible pickup. For each selected box, the combined lifting capacity of the assigned robots must be at least its weight. Each robot may be assigned to at most one box; a robot may be unassigned.\",\"state\":{\"agents\":[{\"direction\":0.0,\"id\":\"A\",\"level\":1.0,\"position\":[1,3]},{\"direction\":0.0,\"id\":\"B\",\"level\":0.8,\"position\":[2,1]}],\"obstacles\":[],\"shape\":[8,8],\"tasks\":[{\"completed\":false,\"id\":\"b0\",\"level\":0.4,\"position\":[6,3]},{\"completed\":false,\"id\":\"b1\",\"level\":0.6,\"position\":[4,4]},{\"completed\":false,\"id\":\"b2\",\"level\":1.2,\"position\":[5,4]}]}}"
+            }
+          ]
+        },
+        "slot_id": "9351a46aa9f14ba25b81426468ee7621007d0e3f948b81a365b0e678ec7e4e32"
+      },
+      {
+        "world": {
+          "family_id": "development-008",
+          "generation_seed": 20261104,
+          "good_set_hashes": {
+            "F": "c90e3429b3370e0dcad343c8a78fe44ccb7030d72ce18596431269d94c9d4e7e",
+            "R": "b64b63e7c3f6d642d9778287a0800a917af6e775d77c005f4a2e332998e8e61a"
+          },
+          "identity_hash": "8ac1bc59239747b9b871f5ca7a1363e13b3f1769d7a9d0a094ec024d523a83ee",
+          "simulator_seed": 20261112,
+          "split": "development",
+          "state": {
+            "agents": [
+              {
+                "direction": 0.0,
+                "id": "A",
+                "level": 1.0,
+                "position": [
+                  1,
+                  3
+                ]
+              },
+              {
+                "direction": 0.0,
+                "id": "B",
+                "level": 0.8,
+                "position": [
+                  2,
+                  1
+                ]
+              }
+            ],
+            "obstacles": [],
+            "shape": [
+              8,
+              8
+            ],
+            "tasks": [
+              {
+                "completed": false,
+                "id": "b0",
+                "level": 0.4,
+                "position": [
+                  6,
+                  3
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b1",
+                "level": 0.6,
+                "position": [
+                  4,
+                  4
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b2",
+                "level": 1.2,
+                "position": [
+                  5,
+                  4
+                ]
+              }
+            ]
+          },
+          "state_hash": "06a296b448d3dc60d2835f28e2f54fc5219896955e2ce524067794d2802d118e",
+          "stratum": "mixed"
+        },
+        "model": {
+          "role": "primary",
+          "id": "gpt-4o-mini-2024-07-18",
+          "snapshot_frozen": true,
+          "temperature": 0,
+          "max_input_tokens": 10000,
+          "max_output_tokens": 256,
+          "input_usd_per_million": 0.15,
+          "cached_input_usd_per_million": 0.075,
+          "output_usd_per_million": 0.6,
+          "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4o-mini"
+        },
+        "language": "EN",
+        "arm": "clarified",
+        "policy": "P0",
+        "request": {
+          "messages": [
+            {
+              "role": "system",
+              "content": "You control two robots in fully observed Level-Based Foraging. Recommend one next pickup allocation that follows the supplied policy and makes at least one feasible pickup. A robot can target one box or be unassigned. Assigned capacities combine only when robots collect the same box together. Return exactly {\"targets\":{agent_id:box_id_or_null,...}} using every registered agent ID and only unfinished box IDs. Return JSON only, without explanation or additional fields. Navigation and pickup synchronization are handled by a fixed executor. Do not recommend primitive moves or a full episode plan. Numeric field meanings: state.agents[].level is that robot's lifting capacity, and state.tasks[].level is that box's required lifting weight. For every selected box, sum the level values of only the robots assigned to that same box. This sum must be greater than or equal to the box's level. Robots assigned elsewhere or unassigned contribute nothing to that box. These physical rules apply under every supplied policy."
+            },
+            {
+              "role": "user",
+              "content": "{\"objective\":\"Make at least one feasible pickup while obeying the policy.\",\"policy\":\"Select at least one box for a feasible pickup. For each selected box, the combined lifting capacity of the assigned robots must be at least its weight. Each robot may be assigned to at most one box; a robot may be unassigned.\",\"state\":{\"agents\":[{\"direction\":0.0,\"id\":\"A\",\"level\":1.0,\"position\":[1,3]},{\"direction\":0.0,\"id\":\"B\",\"level\":0.8,\"position\":[2,1]}],\"obstacles\":[],\"shape\":[8,8],\"tasks\":[{\"completed\":false,\"id\":\"b0\",\"level\":0.4,\"position\":[6,3]},{\"completed\":false,\"id\":\"b1\",\"level\":0.6,\"position\":[4,4]},{\"completed\":false,\"id\":\"b2\",\"level\":1.2,\"position\":[5,4]}]}}"
+            }
+          ]
+        },
+        "slot_id": "0cae7e21ba9cd3abae0b570ae65d7ffb3f142dd6fdb033c00455b271c7bf95a3"
+      },
+      {
+        "world": {
+          "family_id": "development-006",
+          "generation_seed": 20261104,
+          "good_set_hashes": {
+            "F": "c90e3429b3370e0dcad343c8a78fe44ccb7030d72ce18596431269d94c9d4e7e",
+            "R": "b64b63e7c3f6d642d9778287a0800a917af6e775d77c005f4a2e332998e8e61a"
+          },
+          "identity_hash": "73f8bff14d949e8a738ad9e192fb10c8d50b1b978fa06e10316af1dc9e5c3974",
+          "simulator_seed": 20261110,
+          "split": "development",
+          "state": {
+            "agents": [
+              {
+                "direction": 0.0,
+                "id": "A",
+                "level": 1.0,
+                "position": [
+                  6,
+                  3
+                ]
+              },
+              {
+                "direction": 0.0,
+                "id": "B",
+                "level": 1.0,
+                "position": [
+                  4,
+                  5
+                ]
+              }
+            ],
+            "obstacles": [],
+            "shape": [
+              8,
+              8
+            ],
+            "tasks": [
+              {
+                "completed": false,
+                "id": "b0",
+                "level": 0.4,
+                "position": [
+                  6,
+                  2
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b1",
+                "level": 0.6,
+                "position": [
+                  5,
+                  1
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b2",
+                "level": 1.2,
+                "position": [
+                  5,
+                  4
+                ]
+              }
+            ]
+          },
+          "state_hash": "a745feb6827c86c90634615ce1746b067c2870604c8591963b77334316b4a2fb",
+          "stratum": "mixed"
+        },
+        "model": {
+          "role": "replication",
+          "id": "gpt-4.1-mini-2025-04-14",
+          "snapshot_frozen": true,
+          "temperature": 0,
+          "max_input_tokens": 10000,
+          "max_output_tokens": 256,
+          "input_usd_per_million": 0.4,
+          "cached_input_usd_per_million": 0.1,
+          "output_usd_per_million": 1.6,
+          "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4.1-mini"
+        },
+        "language": "EN",
+        "arm": "clarified",
+        "policy": "P0",
+        "request": {
+          "messages": [
+            {
+              "role": "system",
+              "content": "You control two robots in fully observed Level-Based Foraging. Recommend one next pickup allocation that follows the supplied policy and makes at least one feasible pickup. A robot can target one box or be unassigned. Assigned capacities combine only when robots collect the same box together. Return exactly {\"targets\":{agent_id:box_id_or_null,...}} using every registered agent ID and only unfinished box IDs. Return JSON only, without explanation or additional fields. Navigation and pickup synchronization are handled by a fixed executor. Do not recommend primitive moves or a full episode plan. Numeric field meanings: state.agents[].level is that robot's lifting capacity, and state.tasks[].level is that box's required lifting weight. For every selected box, sum the level values of only the robots assigned to that same box. This sum must be greater than or equal to the box's level. Robots assigned elsewhere or unassigned contribute nothing to that box. These physical rules apply under every supplied policy."
+            },
+            {
+              "role": "user",
+              "content": "{\"objective\":\"Make at least one feasible pickup while obeying the policy.\",\"policy\":\"Select at least one box for a feasible pickup. For each selected box, the combined lifting capacity of the assigned robots must be at least its weight. Each robot may be assigned to at most one box; a robot may be unassigned.\",\"state\":{\"agents\":[{\"direction\":0.0,\"id\":\"A\",\"level\":1.0,\"position\":[6,3]},{\"direction\":0.0,\"id\":\"B\",\"level\":1.0,\"position\":[4,5]}],\"obstacles\":[],\"shape\":[8,8],\"tasks\":[{\"completed\":false,\"id\":\"b0\",\"level\":0.4,\"position\":[6,2]},{\"completed\":false,\"id\":\"b1\",\"level\":0.6,\"position\":[5,1]},{\"completed\":false,\"id\":\"b2\",\"level\":1.2,\"position\":[5,4]}]}}"
+            }
+          ]
+        },
+        "slot_id": "1883bfb7392c9a7b242a7a9e93d839d3f6f14bbd4b2a4e41bce9217dada8f5d9"
+      },
+      {
+        "world": {
+          "family_id": "development-006",
+          "generation_seed": 20261104,
+          "good_set_hashes": {
+            "F": "c90e3429b3370e0dcad343c8a78fe44ccb7030d72ce18596431269d94c9d4e7e",
+            "R": "b64b63e7c3f6d642d9778287a0800a917af6e775d77c005f4a2e332998e8e61a"
+          },
+          "identity_hash": "73f8bff14d949e8a738ad9e192fb10c8d50b1b978fa06e10316af1dc9e5c3974",
+          "simulator_seed": 20261110,
+          "split": "development",
+          "state": {
+            "agents": [
+              {
+                "direction": 0.0,
+                "id": "A",
+                "level": 1.0,
+                "position": [
+                  6,
+                  3
+                ]
+              },
+              {
+                "direction": 0.0,
+                "id": "B",
+                "level": 1.0,
+                "position": [
+                  4,
+                  5
+                ]
+              }
+            ],
+            "obstacles": [],
+            "shape": [
+              8,
+              8
+            ],
+            "tasks": [
+              {
+                "completed": false,
+                "id": "b0",
+                "level": 0.4,
+                "position": [
+                  6,
+                  2
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b1",
+                "level": 0.6,
+                "position": [
+                  5,
+                  1
+                ]
+              },
+              {
+                "completed": false,
+                "id": "b2",
+                "level": 1.2,
+                "position": [
+                  5,
+                  4
+                ]
+              }
+            ]
+          },
+          "state_hash": "a745feb6827c86c90634615ce1746b067c2870604c8591963b77334316b4a2fb",
+          "stratum": "mixed"
+        },
+        "model": {
+          "role": "replication",
+          "id": "gpt-4.1-mini-2025-04-14",
+          "snapshot_frozen": true,
+          "temperature": 0,
+          "max_input_tokens": 10000,
+          "max_output_tokens": 256,
+          "input_usd_per_million": 0.4,
+          "cached_input_usd_per_million": 0.1,
+          "output_usd_per_million": 1.6,
+          "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4.1-mini"
+        },
+        "language": "EN",
+        "arm": "original",
+        "policy": "P0",
+        "request": {
+          "messages": [
+            {
+              "role": "system",
+              "content": "You control two robots in fully observed Level-Based Foraging. Recommend one next pickup allocation that follows the supplied policy and makes at least one feasible pickup. A robot can target one box or be unassigned. Assigned capacities combine only when robots collect the same box together. Return exactly {\"targets\":{agent_id:box_id_or_null,...}} using every registered agent ID and only unfinished box IDs. Return JSON only, without explanation or additional fields. Navigation and pickup synchronization are handled by a fixed executor. Do not recommend primitive moves or a full episode plan."
+            },
+            {
+              "role": "user",
+              "content": "{\"objective\":\"Make at least one feasible pickup while obeying the policy.\",\"policy\":\"Select at least one box for a feasible pickup. For each selected box, the combined lifting capacity of the assigned robots must be at least its weight. Each robot may be assigned to at most one box; a robot may be unassigned.\",\"state\":{\"agents\":[{\"direction\":0.0,\"id\":\"A\",\"level\":1.0,\"position\":[6,3]},{\"direction\":0.0,\"id\":\"B\",\"level\":1.0,\"position\":[4,5]}],\"obstacles\":[],\"shape\":[8,8],\"tasks\":[{\"completed\":false,\"id\":\"b0\",\"level\":0.4,\"position\":[6,2]},{\"completed\":false,\"id\":\"b1\",\"level\":0.6,\"position\":[5,1]},{\"completed\":false,\"id\":\"b2\",\"level\":1.2,\"position\":[5,4]}]}}"
+            }
+          ]
+        },
+        "slot_id": "a0dc563a67538d3dc5333d1cbaadf17cc4df8e744d986c8f609d80b656f41915"
+      }
+    ],
+    "held_out_E1_authorized": false,
+    "formal_gate_passed": false,
+    "decision_rule": "Descriptive matched results only. Do not tune/select another prompt variant; any subsequent formal gate uses all 12 development worlds and unchanged thresholds."
+  },
+  "live_spending_authorized": false
+}

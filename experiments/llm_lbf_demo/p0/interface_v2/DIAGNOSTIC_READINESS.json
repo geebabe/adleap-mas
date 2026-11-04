@@ -1,0 +1,15 @@
+{
+  "status": "OFFLINE_VERIFIED_AWAITING_DIAGNOSTIC_SPENDING_AUTHORIZATION",
+  "protocol_hash": "cff1f7eb9e83a5109e2067434273d0916b9b2a45df6266ef2e6eb71a15761234",
+  "unit_tests_passed": 47,
+  "new_real_calls": 0,
+  "old_gate_passed": false,
+  "held_out_E1_authorized": false,
+  "max_requests": 24,
+  "automatic_retries": 0,
+  "hard_cap_usd": 0.1,
+  "worst_case_reservation_usd": "0.0727584",
+  "model_improvement": "UNVERIFIED",
+  "original_v1_binding_preserved": true,
+  "historical_files_hash_verified": 525
+}

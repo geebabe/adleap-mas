@@ -1,0 +1,32 @@
+{
+  "version": "e1-policies-1",
+  "human_semantic_approval": "awaiting_human_review",
+  "languages": {
+    "EN": {
+      "R": [
+        "For every box you select next, assign both robots to that box. Do not select a box for just one robot.",
+        "The next pickup must use the two robots together on one box. Individual pickup assignments are forbidden."
+      ],
+      "F": [
+        "For every box you select next, assign exactly one robot to that box. Do not select the same box for both robots.",
+        "The next pickup assignments must be individual. Assigning the two robots together to one box is forbidden."
+      ],
+      "P0": [
+        "Select at least one box for a feasible pickup. For each selected box, the combined lifting capacity of the assigned robots must be at least its weight. Each robot may be assigned to at most one box; a robot may be unassigned."
+      ]
+    },
+    "VI": {
+      "R": [
+        "Với mỗi thùng được chọn tiếp theo, hãy phân công cả hai robot cùng thu gom thùng đó. Không được phân công chỉ một robot cho một thùng.",
+        "Lần thu gom tiếp theo phải do hai robot cùng thực hiện trên một thùng. Không được phân công thu gom riêng lẻ."
+      ],
+      "F": [
+        "Với mỗi thùng được chọn tiếp theo, hãy phân công đúng một robot thu gom thùng đó. Không được phân công cả hai robot cho cùng một thùng.",
+        "Các phân công thu gom tiếp theo phải là phân công riêng lẻ. Không được phân công hai robot cùng thu gom một thùng."
+      ],
+      "P0": [
+        "Hãy chọn ít nhất một thùng để có thể thu gom được. Với mỗi thùng được chọn, tổng sức nâng của các robot được phân công phải ít nhất bằng trọng lượng của thùng. Mỗi robot chỉ được phân công tối đa một thùng; có thể không phân công nhiệm vụ cho một robot."
+      ]
+    }
+  }
+}

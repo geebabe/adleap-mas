@@ -1,0 +1,117 @@
+{
+  "kind": "formal_P0_gate",
+  "infrastructure_validation": false,
+  "formal_gate_eligible": true,
+  "complete": true,
+  "held_out_E1_authorized": true,
+  "thresholds": {
+    "parseability": 0.98,
+    "physical_validity": 0.95,
+    "progressive_goodness": 0.8
+  },
+  "conditions": [
+    {
+      "model_role": "primary",
+      "model_snapshot": "gpt-4o-mini-2024-07-18",
+      "language": "EN",
+      "scheduled_calls": 36,
+      "completed_calls": 36,
+      "provider_attempts": 36,
+      "parseability": 1.0,
+      "capacity_validity": 1.0,
+      "geometric_validity": 1.0,
+      "physical_validity": 1.0,
+      "progressive_goodness": 1.0,
+      "infrastructure_failed_attempts": 0,
+      "exhausted_infrastructure_slots": 0,
+      "observed_usage_cost_usd": 0.002427,
+      "attempts_with_unknown_cost": 0,
+      "reserved_upper_bound_usd": 0.059529599999999995,
+      "cost_is_invoiced": false,
+      "compatibility_observed": true,
+      "statuses": {
+        "GOOD": 36
+      },
+      "passed": true
+    },
+    {
+      "model_role": "primary",
+      "model_snapshot": "gpt-4o-mini-2024-07-18",
+      "language": "VI",
+      "scheduled_calls": 36,
+      "completed_calls": 36,
+      "provider_attempts": 36,
+      "parseability": 1.0,
+      "capacity_validity": 1.0,
+      "geometric_validity": 1.0,
+      "physical_validity": 1.0,
+      "progressive_goodness": 1.0,
+      "infrastructure_failed_attempts": 0,
+      "exhausted_infrastructure_slots": 0,
+      "observed_usage_cost_usd": 0.0025164000000000002,
+      "attempts_with_unknown_cost": 0,
+      "reserved_upper_bound_usd": 0.059529599999999995,
+      "cost_is_invoiced": false,
+      "compatibility_observed": true,
+      "statuses": {
+        "GOOD": 36
+      },
+      "passed": true
+    },
+    {
+      "model_role": "replication",
+      "model_snapshot": "gpt-4.1-mini-2025-04-14",
+      "language": "EN",
+      "scheduled_calls": 36,
+      "completed_calls": 36,
+      "provider_attempts": 36,
+      "parseability": 1.0,
+      "capacity_validity": 0.9722222222222222,
+      "geometric_validity": 1.0,
+      "physical_validity": 0.9722222222222222,
+      "progressive_goodness": 0.9722222222222222,
+      "infrastructure_failed_attempts": 0,
+      "exhausted_infrastructure_slots": 0,
+      "observed_usage_cost_usd": 0.0064752,
+      "attempts_with_unknown_cost": 0,
+      "reserved_upper_bound_usd": 0.15874560000000001,
+      "cost_is_invoiced": false,
+      "compatibility_observed": true,
+      "statuses": {
+        "GOOD": 35,
+        "PHYSICS": 1
+      },
+      "passed": true
+    },
+    {
+      "model_role": "replication",
+      "model_snapshot": "gpt-4.1-mini-2025-04-14",
+      "language": "VI",
+      "scheduled_calls": 36,
+      "completed_calls": 36,
+      "provider_attempts": 36,
+      "parseability": 1.0,
+      "capacity_validity": 1.0,
+      "geometric_validity": 1.0,
+      "physical_validity": 1.0,
+      "progressive_goodness": 1.0,
+      "infrastructure_failed_attempts": 0,
+      "exhausted_infrastructure_slots": 0,
+      "observed_usage_cost_usd": 0.0067152,
+      "attempts_with_unknown_cost": 0,
+      "reserved_upper_bound_usd": 0.15874560000000001,
+      "cost_is_invoiced": false,
+      "compatibility_observed": true,
+      "statuses": {
+        "GOOD": 36
+      },
+      "passed": true
+    }
+  ],
+  "total_observed_usage_cost_usd": 0.018133800000000002,
+  "cost_note": "Observed token usage at frozen prices; not an invoice. Unknown failed-call charges are not zero.",
+  "executor_version": "e1-motion-2",
+  "config_hash": "253d330051b637fec9bc33574d5ec7012eb9dca230ecc02cc515cf35e0cfbe7a",
+  "gate_binding": "c829f850ede4b18aa6c9227e942688135064a2f085f8e536bc6e7e893b892e9e",
+  "manifest_hash": "273d3f15000247bdde3d9e0776204da599fdaa2fdeb3e09033e0dfbd57a3a955"
+}

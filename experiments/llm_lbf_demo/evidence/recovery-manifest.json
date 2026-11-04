@@ -1,0 +1,66 @@
+{
+  "docs/emails.txt": {
+    "sha256": "01bdf523c24939af3f30ddf69ad55eab2dbb63d57bef286108520d20826ad499",
+    "bytes": 8274
+  },
+  "docs/SUPERVISOR_REPORT.md": {
+    "sha256": "5b572ffa4a75abbc382c412675b612753fbcbb342f4d463c6bf0f84c7090c1f0",
+    "bytes": 12252
+  },
+  "src/reasoning/levelbased/llm.py": {
+    "sha256": "c8e12237c3954038a848fdf50cb16a30f97901156da06bf04d4c86d47712bddd",
+    "bytes": 14893
+  },
+  "src/reasoning/levelbased/llm_multiagent.py": {
+    "sha256": "869d3bcd24a1797f00cb1ba7948deceee57544660dba8f5d3b5cc3082e82b86a",
+    "bytes": 17386
+  },
+  "examples/levelforaging_llm.py": {
+    "sha256": "9a6d5b11532963be7d301fe5f4993f43e9308978ab76544cbbe01e700a7ca5b1",
+    "bytes": 9369
+  },
+  "examples/levelforaging_multiagent_llm.py": {
+    "sha256": "8691fc199c2aa5611f5b9defd4b64e21b4e11b3ec6822efd3665218ca7802b0a",
+    "bytes": 8285
+  },
+  "examples/run_benchmark.py": {
+    "sha256": "949be5f4c176fd41dd33c1ca9335e5394fd11ac261b401c9ceb284af446d711a",
+    "bytes": 4114
+  },
+  "examples/run_multiagent_benchmark.py": {
+    "sha256": "70b0d2ec58194550c3ce03e92524d0c410ebc8090476f05b1ca5a0d0b2449141",
+    "bytes": 3705
+  },
+  "results/preliminary_benchmark.csv": {
+    "sha256": "c9ba913f472d195def3915a9305aaae93b6343d0bc0812651ee6dba1c83f2796",
+    "bytes": 441
+  },
+  "results/preliminary_benchmark.md": {
+    "sha256": "dc995e1b88f935946947a5393b48405db96b2851eec93167099698d5d47be648",
+    "bytes": 1091
+  },
+  "results/multiagent_preliminary_benchmark.csv": {
+    "sha256": "1c32707251b126fb75c6ef8cbd3243e02ec10063c2010bdbd8e8b3a4937b46a0",
+    "bytes": 387
+  },
+  "results/multiagent_preliminary_benchmark.md": {
+    "sha256": "a63cf50aabfdd57d706ec722152edf08a968d28b851389d3808a956712ba4562",
+    "bytes": 946
+  },
+  "docs/adleap-mas.pdf": {
+    "sha256": "61fcdd14b4088e10f6b15cce9021b81760fe253c6d0ddb4070e684b6e24ad1de",
+    "bytes": 1263349
+  },
+  "tmp/render_cutout.png": {
+    "sha256": "e041ac55a489e74f5e81f6f6c74076dd3705137f862494d22ed07c75c78e6b9f",
+    "bytes": 14367
+  },
+  "tmp/render_overlay.png": {
+    "sha256": "606f8e83c3bc2915b15b3885d6a445ea1913387f7f23535ab4e407fbd626b924",
+    "bytes": 14243
+  },
+  "tmp/actual_env_render.png": {
+    "sha256": "28359106d6074dcb668d1c99b919c4b1cbd1f39bba6314017400bc62c30d7508",
+    "bytes": 16369
+  }
+}

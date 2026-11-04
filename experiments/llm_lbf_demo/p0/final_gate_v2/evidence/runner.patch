@@ -1,0 +1,101 @@
+--- preserved-e1/run_e1.py
++++ p0/final_gate_v2/runner.py
+@@ -1,4 +1,4 @@
+-"""Run frozen E1 slots. --dry-run is mandatory unless --live is explicit."""
++"""Versioned copy of the frozen runner for corrected P0 only; no held-out entry point."""
+ import argparse
+ from collections import Counter
+ from datetime import datetime,timezone
+@@ -8,14 +8,14 @@
+ from pathlib import Path
+ import random
+ import time
+-from .common import ROOT,canonical,digest,read_json,PARSER_VERSION,ORACLE_VERSION,PROTOCOL_VERSION
+-from .controller import payload
+-from .e1_oracle import score
+-from .executor import EXECUTOR_VERSION,executor_source_hash,replay
+-from .journal import Journal
+-from .providers import FakeProvider,LiveProvider,InfrastructureError
+-from .safeguards import validate_live,preflight_cost,estimate_attempt
+-from .worlds import load_manifest,witness_acceptance
++from ...e1.common import ROOT,canonical,digest,read_json,PARSER_VERSION,ORACLE_VERSION,PROTOCOL_VERSION
++from ..interface_v2.controller import payload
++from ...e1.e1_oracle import score
++from ...e1.executor import EXECUTOR_VERSION,executor_source_hash,replay
++from ...e1.journal import Journal
++from ...e1.providers import FakeProvider,LiveProvider,InfrastructureError
++from ...e1.safeguards import validate_live,preflight_cost,estimate_attempt
++from ...e1.worlds import load_manifest,witness_acceptance
+ 
+ 
+ def now():return datetime.now(timezone.utc).isoformat()
+@@ -41,12 +41,15 @@
+ 
+ 
+ def code_hashes():
+-    files=list(ROOT.glob('*.py'))+[ROOT.parent/'testbed.py',ROOT.parent/'requirements.lock',ROOT.parent/'upstream.lock.json']
+-    return {str(p.relative_to(ROOT.parent)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(files)}
++    from ...e1.run_e1 import code_hashes as original_hashes
++    values=original_hashes()
++    files=list(Path(__file__).resolve().parent.glob('*.py'))+[Path(__file__).resolve().parents[1]/'interface_v2/controller.py']
++    for p in files:values[str(p.relative_to(ROOT.parent))]=hashlib.sha256(p.read_bytes()).hexdigest()
++    return values
+ 
+ 
+ def gate_binding(models,policies,worlds):
+-    from .controller import SYSTEM
++    from ..interface_v2.controller import SYSTEM
+     return digest({'models':models,'policy_hash':digest(policies),'manifest_hash':digest(worlds),
+                    'system':SYSTEM,'parser':PARSER_VERSION,'oracle':ORACLE_VERSION,'code':code_hashes()})
+ 
+@@ -70,6 +73,11 @@
+ 
+ def run(output,worlds,policies,*,mode='oracle',stage='all',dry_run=True,provider=None,
+         config=None,approval=None,gate=None,slots=None,max_new_slots=None):
++    if stage!='gate' or slots is None or any(s['stage'] not in ('gate','smoke') for s in slots):
++        raise PermissionError('corrected workflow permits explicit development P0/smoke slots only')
++    if any(next(w for w in worlds if w['family_id']==s['family_id'])['split']!='development' for s in slots):
++        raise PermissionError('held-out worlds are blocked')
++    if not dry_run and provider is None:raise PermissionError('explicit frozen transport required')
+     output=Path(output);output.mkdir(parents=True,exist_ok=True)
+     slots=slots if slots is not None else slots_for(worlds,stage)
+     by_family={w['family_id']:w for w in worlds}
+@@ -92,7 +100,7 @@
+         raise PermissionError('dry run refuses a non-fixture provider')
+     if not dry_run and getattr(provider,'infrastructure_validation',False):
+         raise PermissionError('live run refuses fixture evidence')
+-    configuration={'version':PROTOCOL_VERSION,'infrastructure_validation':dry_run,'fixture':mode if dry_run else None,
++    configuration={'version':'p0-corrected-final-2','infrastructure_validation':dry_run,'fixture':mode if dry_run else None,
+         'executor_version':EXECUTOR_VERSION,'executor_source_hash':executor_source_hash(),
+         'manifest_hash':digest(worlds),'policy_hash':digest(policies),'slot_hash':digest(slots),'slot_count':len(slots),
+         'models':models,'code_hashes':code_hashes(),'parser':PARSER_VERSION,'oracle':ORACLE_VERSION,
+@@ -166,29 +174,3 @@
+                  'statuses':dict(Counter(e['verdict']['status'] for e in terminals.values()))}
+     return summary
+ 
+-
+-def main():
+-    p=argparse.ArgumentParser(description=__doc__)
+-    modes=p.add_mutually_exclusive_group(required=True)
+-    modes.add_argument('--dry-run',action='store_true');modes.add_argument('--live',action='store_true')
+-    p.add_argument('--fixture',choices=['oracle','blind','idle','malformed'],default='oracle')
+-    p.add_argument('--stage',choices=['all','gate','e1'],default='all')
+-    p.add_argument('--manifest',type=Path,default=ROOT/'e1_manifest.jsonl')
+-    p.add_argument('--policies',type=Path,default=ROOT/'e1_policies.json')
+-    p.add_argument('--output',type=Path,required=True)
+-    p.add_argument('--live-config',type=Path);p.add_argument('--human-approval',type=Path);p.add_argument('--gate-journal',type=Path)
+-    args=p.parse_args()
+-    worlds=load_manifest(args.manifest);policies=read_json(args.policies)
+-    if args.live and args.stage=='all':p.error('live gate and E1 must be separate runs')
+-    if args.live and (not args.live_config or not args.human_approval):p.error('live configuration and human approval required')
+-    gate=None
+-    if args.gate_journal:
+-        from .analyze_e1 import analyze
+-        gate=analyze(args.gate_journal)
+-    result=run(args.output,worlds,policies,mode=args.fixture,stage=args.stage,dry_run=args.dry_run,
+-               config=read_json(args.live_config) if args.live_config else None,
+-               approval=read_json(args.human_approval) if args.human_approval else None,gate=gate)
+-    print(canonical(result))
+-
+-
+-if __name__=='__main__':main()

@@ -1,0 +1,1242 @@
+{
+  "infrastructure_validation": true,
+  "complete": true,
+  "manifest_hash": "273d3f15000247bdde3d9e0776204da599fdaa2fdeb3e09033e0dfbd57a3a955",
+  "gate_binding": "0fe6ebc441925d54b688031de4c5eb983bda125f8bbd871dbbe3f32fe05e4fd1",
+  "config_hash": "1801a42c76e2fc5c44acf302a5db64d95b30067ac410bbadced8a12a42491533",
+  "expected_slots": 3024,
+  "completed_slots": 3024,
+  "api_attempts": 0,
+  "model_findings": false,
+  "overall": {
+    "slots": 3024,
+    "statuses": {
+      "FORMAT": 3024
+    },
+    "strict_goodness": 0.0,
+    "parse_rate": 0.0,
+    "capacity_rate": 0.0,
+    "geometry_rate": 0.0,
+    "physical_rate": 0.0,
+    "false_idle_rate": 0.0,
+    "joint_assignment_rate": 0.0,
+    "policy_violation_unconditional": 0.0,
+    "policy_violation_given_physical": null,
+    "replay": {
+      "replayed": 0,
+      "successful_pickups": 0,
+      "executor_failures": 0,
+      "spec_defects": 0,
+      "forbidden_joint_load_attempts": 0,
+      "forbidden_successful_pickups": 0,
+      "substitutions": 0,
+      "mean_ticks": null
+    }
+  },
+  "gate": [
+    {
+      "model_role": "primary",
+      "language": "EN",
+      "passed": false,
+      "eligible_live_evidence": false,
+      "slots": 36,
+      "statuses": {
+        "FORMAT": 36
+      },
+      "strict_goodness": 0.0,
+      "parse_rate": 0.0,
+      "capacity_rate": 0.0,
+      "geometry_rate": 0.0,
+      "physical_rate": 0.0,
+      "false_idle_rate": 0.0,
+      "joint_assignment_rate": 0.0,
+      "policy_violation_unconditional": 0.0,
+      "policy_violation_given_physical": null,
+      "replay": {
+        "replayed": 0,
+        "successful_pickups": 0,
+        "executor_failures": 0,
+        "spec_defects": 0,
+        "forbidden_joint_load_attempts": 0,
+        "forbidden_successful_pickups": 0,
+        "substitutions": 0,
+        "mean_ticks": null
+      }
+    },
+    {
+      "model_role": "primary",
+      "language": "VI",
+      "passed": false,
+      "eligible_live_evidence": false,
+      "slots": 36,
+      "statuses": {
+        "FORMAT": 36
+      },
+      "strict_goodness": 0.0,
+      "parse_rate": 0.0,
+      "capacity_rate": 0.0,
+      "geometry_rate": 0.0,
+      "physical_rate": 0.0,
+      "false_idle_rate": 0.0,
+      "joint_assignment_rate": 0.0,
+      "policy_violation_unconditional": 0.0,
+      "policy_violation_given_physical": null,
+      "replay": {
+        "replayed": 0,
+        "successful_pickups": 0,
+        "executor_failures": 0,
+        "spec_defects": 0,
+        "forbidden_joint_load_attempts": 0,
+        "forbidden_successful_pickups": 0,
+        "substitutions": 0,
+        "mean_ticks": null
+      }
+    },
+    {
+      "model_role": "replication",
+      "language": "EN",
+      "passed": false,
+      "eligible_live_evidence": false,
+      "slots": 36,
+      "statuses": {
+        "FORMAT": 36
+      },
+      "strict_goodness": 0.0,
+      "parse_rate": 0.0,
+      "capacity_rate": 0.0,
+      "geometry_rate": 0.0,
+      "physical_rate": 0.0,
+      "false_idle_rate": 0.0,
+      "joint_assignment_rate": 0.0,
+      "policy_violation_unconditional": 0.0,
+      "policy_violation_given_physical": null,
+      "replay": {
+        "replayed": 0,
+        "successful_pickups": 0,
+        "executor_failures": 0,
+        "spec_defects": 0,
+        "forbidden_joint_load_attempts": 0,
+        "forbidden_successful_pickups": 0,
+        "substitutions": 0,
+        "mean_ticks": null
+      }
+    },
+    {
+      "model_role": "replication",
+      "language": "VI",
+      "passed": false,
+      "eligible_live_evidence": false,
+      "slots": 36,
+      "statuses": {
+        "FORMAT": 36
+      },
+      "strict_goodness": 0.0,
+      "parse_rate": 0.0,
+      "capacity_rate": 0.0,
+      "geometry_rate": 0.0,
+      "physical_rate": 0.0,
+      "false_idle_rate": 0.0,
+      "joint_assignment_rate": 0.0,
+      "policy_violation_unconditional": 0.0,
+      "policy_violation_given_physical": null,
+      "replay": {
+        "replayed": 0,
+        "successful_pickups": 0,
+        "executor_failures": 0,
+        "spec_defects": 0,
+        "forbidden_joint_load_attempts": 0,
+        "forbidden_successful_pickups": 0,
+        "substitutions": 0,
+        "mean_ticks": null
+      }
+    }
+  ],
+  "models": {
+    "primary": {
+      "pairs": 720,
+      "pairs_per_language": {
+        "VI": 360,
+        "EN": 360
+      },
+      "families": 60,
+      "pairpass": 0.0,
+      "primary_EN_and_secondary_VI": {
+        "EN": {
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "degenerate": true,
+          "boundary": true
+        },
+        "VI": {
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "degenerate": true,
+          "boundary": true
+        },
+        "VI_minus_EN": {
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "degenerate": true,
+          "boundary": false
+        }
+      },
+      "all_variants_family_event": null,
+      "family_means": [
+        {
+          "family_id": "test-000",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-001",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-002",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-003",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-004",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-005",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-006",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-007",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-008",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-009",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-010",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-011",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-012",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-013",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-014",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-015",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-016",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-017",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-018",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-019",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-020",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-021",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-022",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-023",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-024",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-025",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-026",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-027",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-028",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-029",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-030",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-031",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-032",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-033",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-034",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-035",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-036",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-037",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-038",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-039",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-040",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-041",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-042",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-043",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-044",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-045",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-046",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-047",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-048",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-049",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-050",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-051",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-052",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-053",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-054",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-055",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-056",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-057",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-058",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-059",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        }
+      ],
+      "marginals": {
+        "slots": 1440,
+        "statuses": {
+          "FORMAT": 1440
+        },
+        "strict_goodness": 0.0,
+        "parse_rate": 0.0,
+        "capacity_rate": 0.0,
+        "geometry_rate": 0.0,
+        "physical_rate": 0.0,
+        "false_idle_rate": 0.0,
+        "joint_assignment_rate": 0.0,
+        "policy_violation_unconditional": 0.0,
+        "policy_violation_given_physical": null,
+        "replay": {
+          "replayed": 0,
+          "successful_pickups": 0,
+          "executor_failures": 0,
+          "spec_defects": 0,
+          "forbidden_joint_load_attempts": 0,
+          "forbidden_successful_pickups": 0,
+          "substitutions": 0,
+          "mean_ticks": null
+        }
+      },
+      "by_policy": {
+        "R": {
+          "slots": 720,
+          "statuses": {
+            "FORMAT": 720
+          },
+          "strict_goodness": 0.0,
+          "parse_rate": 0.0,
+          "capacity_rate": 0.0,
+          "geometry_rate": 0.0,
+          "physical_rate": 0.0,
+          "false_idle_rate": 0.0,
+          "joint_assignment_rate": 0.0,
+          "policy_violation_unconditional": 0.0,
+          "policy_violation_given_physical": null,
+          "replay": {
+            "replayed": 0,
+            "successful_pickups": 0,
+            "executor_failures": 0,
+            "spec_defects": 0,
+            "forbidden_joint_load_attempts": 0,
+            "forbidden_successful_pickups": 0,
+            "substitutions": 0,
+            "mean_ticks": null
+          }
+        },
+        "F": {
+          "slots": 720,
+          "statuses": {
+            "FORMAT": 720
+          },
+          "strict_goodness": 0.0,
+          "parse_rate": 0.0,
+          "capacity_rate": 0.0,
+          "geometry_rate": 0.0,
+          "physical_rate": 0.0,
+          "false_idle_rate": 0.0,
+          "joint_assignment_rate": 0.0,
+          "policy_violation_unconditional": 0.0,
+          "policy_violation_given_physical": null,
+          "replay": {
+            "replayed": 0,
+            "successful_pickups": 0,
+            "executor_failures": 0,
+            "spec_defects": 0,
+            "forbidden_joint_load_attempts": 0,
+            "forbidden_successful_pickups": 0,
+            "substitutions": 0,
+            "mean_ticks": null
+          }
+        }
+      },
+      "strata": {
+        "light": {
+          "EN": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "degenerate": true,
+            "boundary": true
+          },
+          "VI": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "degenerate": true,
+            "boundary": true
+          },
+          "VI_minus_EN": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "degenerate": true,
+            "boundary": false
+          }
+        },
+        "mixed": {
+          "EN": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "degenerate": true,
+            "boundary": true
+          },
+          "VI": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "degenerate": true,
+            "boundary": true
+          },
+          "VI_minus_EN": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "degenerate": true,
+            "boundary": false
+          }
+        }
+      },
+      "H1_target_assessment": "NOT A MODEL FINDING: contradicts target",
+      "language_margin_assessment": "NOT A MODEL FINDING: within practical margins"
+    },
+    "replication": {
+      "pairs": 720,
+      "pairs_per_language": {
+        "VI": 360,
+        "EN": 360
+      },
+      "families": 60,
+      "pairpass": 0.0,
+      "primary_EN_and_secondary_VI": {
+        "EN": {
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "degenerate": true,
+          "boundary": true
+        },
+        "VI": {
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "degenerate": true,
+          "boundary": true
+        },
+        "VI_minus_EN": {
+          "estimate": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "degenerate": true,
+          "boundary": false
+        }
+      },
+      "all_variants_family_event": null,
+      "family_means": [
+        {
+          "family_id": "test-000",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-001",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-002",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-003",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-004",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-005",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-006",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-007",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-008",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-009",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-010",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-011",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-012",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-013",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-014",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-015",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-016",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-017",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-018",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-019",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-020",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-021",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-022",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-023",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-024",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-025",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-026",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-027",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-028",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-029",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "light"
+        },
+        {
+          "family_id": "test-030",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-031",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-032",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-033",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-034",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-035",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-036",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-037",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-038",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-039",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-040",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-041",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-042",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-043",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-044",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-045",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-046",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-047",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-048",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-049",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-050",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-051",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-052",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-053",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-054",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-055",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-056",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-057",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-058",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        },
+        {
+          "family_id": "test-059",
+          "EN": 0.0,
+          "VI": 0.0,
+          "stratum": "mixed"
+        }
+      ],
+      "marginals": {
+        "slots": 1440,
+        "statuses": {
+          "FORMAT": 1440
+        },
+        "strict_goodness": 0.0,
+        "parse_rate": 0.0,
+        "capacity_rate": 0.0,
+        "geometry_rate": 0.0,
+        "physical_rate": 0.0,
+        "false_idle_rate": 0.0,
+        "joint_assignment_rate": 0.0,
+        "policy_violation_unconditional": 0.0,
+        "policy_violation_given_physical": null,
+        "replay": {
+          "replayed": 0,
+          "successful_pickups": 0,
+          "executor_failures": 0,
+          "spec_defects": 0,
+          "forbidden_joint_load_attempts": 0,
+          "forbidden_successful_pickups": 0,
+          "substitutions": 0,
+          "mean_ticks": null
+        }
+      },
+      "by_policy": {
+        "R": {
+          "slots": 720,
+          "statuses": {
+            "FORMAT": 720
+          },
+          "strict_goodness": 0.0,
+          "parse_rate": 0.0,
+          "capacity_rate": 0.0,
+          "geometry_rate": 0.0,
+          "physical_rate": 0.0,
+          "false_idle_rate": 0.0,
+          "joint_assignment_rate": 0.0,
+          "policy_violation_unconditional": 0.0,
+          "policy_violation_given_physical": null,
+          "replay": {
+            "replayed": 0,
+            "successful_pickups": 0,
+            "executor_failures": 0,
+            "spec_defects": 0,
+            "forbidden_joint_load_attempts": 0,
+            "forbidden_successful_pickups": 0,
+            "substitutions": 0,
+            "mean_ticks": null
+          }
+        },
+        "F": {
+          "slots": 720,
+          "statuses": {
+            "FORMAT": 720
+          },
+          "strict_goodness": 0.0,
+          "parse_rate": 0.0,
+          "capacity_rate": 0.0,
+          "geometry_rate": 0.0,
+          "physical_rate": 0.0,
+          "false_idle_rate": 0.0,
+          "joint_assignment_rate": 0.0,
+          "policy_violation_unconditional": 0.0,
+          "policy_violation_given_physical": null,
+          "replay": {
+            "replayed": 0,
+            "successful_pickups": 0,
+            "executor_failures": 0,
+            "spec_defects": 0,
+            "forbidden_joint_load_attempts": 0,
+            "forbidden_successful_pickups": 0,
+            "substitutions": 0,
+            "mean_ticks": null
+          }
+        }
+      },
+      "strata": {
+        "light": {
+          "EN": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "degenerate": true,
+            "boundary": true
+          },
+          "VI": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "degenerate": true,
+            "boundary": true
+          },
+          "VI_minus_EN": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "degenerate": true,
+            "boundary": false
+          }
+        },
+        "mixed": {
+          "EN": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "degenerate": true,
+            "boundary": true
+          },
+          "VI": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "degenerate": true,
+            "boundary": true
+          },
+          "VI_minus_EN": {
+            "estimate": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "degenerate": true,
+            "boundary": false
+          }
+        }
+      },
+      "H1_target_assessment": "NOT A MODEL FINDING: contradicts target",
+      "language_margin_assessment": "NOT A MODEL FINDING: within practical margins"
+    }
+  },
+  "family_unit": "generated world, not repeat/paraphrase",
+  "uncertainty": {
+    "method": "paired family-cluster percentile bootstrap",
+    "resamples": 10000,
+    "seed": 4103
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "status": "REAL_DIAGNOSTIC_COMPLETE_CAPACITY_FAILURE_PERSISTS",
+  "requests": 24,
+  "responses": 24,
+  "terminals": 24,
+  "actual_models": {
+    "gpt-4.1-mini-2025-04-14": 12,
+    "gpt-4o-mini-2024-07-18": 12
+  },
+  "original_good": 8,
+  "clarified_good": 11,
+  "slots_per_arm": 12,
+  "independent_families": 3,
+  "retries": 0,
+  "infrastructure_failures": 0,
+  "token_cost_usd": "0.00275160",
+  "reservation_usd": "0.0727584",
+  "cap_usd": 0.1,
+  "independent_regrades": 24,
+  "independent_replays": 24,
+  "tests_passed": 47,
+  "old_v1_binding_unchanged": true,
+  "historical_file_hashes_unchanged": 525,
+  "remaining_clarified_failure": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "language": "EN",
+    "world": "development-011",
+    "raw": "{\"targets\":{\"A\":\"b2\",\"B\":null}}",
+    "assigned_capacity": 1.4,
+    "required_weight": 1.6,
+    "label": "PHYSICS"
+  },
+  "new_formal_gate_run": false,
+  "first_formal_P0_passed": false,
+  "held_out_E1_authorized": false,
+  "held_out_calls": 0
+}

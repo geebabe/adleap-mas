@@ -1,0 +1,242 @@
+{
+  "worlds": [
+    {
+      "world": "development-000",
+      "split": "development",
+      "state_hash": "c41e9d9c87a852a0e4fc8c1ca0e66adc594efd4088f8c95885a84365f970fb0e",
+      "capacities": {
+        "A": 1.0,
+        "B": 1.4
+      },
+      "remaining_box_weights": {
+        "b0": 0.4,
+        "b1": 0.6,
+        "b2": 0.8
+      },
+      "branch": "solo_required",
+      "jointly_only_feasible_box_ids": [],
+      "eligible": true,
+      "good_allocation_count": 12
+    },
+    {
+      "world": "development-001",
+      "split": "development",
+      "state_hash": "0cc10903417ae4b3f2114005f70e34ec25a9b330ee20bfdd64c32ee1524c5a7b",
+      "capacities": {
+        "A": 0.8,
+        "B": 1.4
+      },
+      "remaining_box_weights": {
+        "b0": 0.4,
+        "b1": 0.6,
+        "b2": 0.6
+      },
+      "branch": "solo_required",
+      "jointly_only_feasible_box_ids": [],
+      "eligible": true,
+      "good_allocation_count": 12
+    },
+    {
+      "world": "development-002",
+      "split": "development",
+      "state_hash": "ee606fedad8efca0fdce5ce9edd39ebc83fe505fd32c59a6af9a20d341d71bbd",
+      "capacities": {
+        "A": 1.2,
+        "B": 1.2
+      },
+      "remaining_box_weights": {
+        "b0": 0.4,
+        "b1": 0.6,
+        "b2": 0.9
+      },
+      "branch": "solo_required",
+      "jointly_only_feasible_box_ids": [],
+      "eligible": true,
+      "good_allocation_count": 12
+    },
+    {
+      "world": "development-003",
+      "split": "development",
+      "state_hash": "0f38178ce4c6302cea378d8e69d1938e0de5d6bcb136fad581a0b408b160c90e",
+      "capacities": {
+        "A": 1.4,
+        "B": 1.4
+      },
+      "remaining_box_weights": {
+        "b0": 0.4,
+        "b1": 0.6,
+        "b2": 1.0
+      },
+      "branch": "solo_required",
+      "jointly_only_feasible_box_ids": [],
+      "eligible": true,
+      "good_allocation_count": 12
+    },
+    {
+      "world": "development-004",
+      "split": "development",
+      "state_hash": "926fa949242581a63888aea8b3da70685fe25246e08f63ef75bf587b8d11a1f1",
+      "capacities": {
+        "A": 1.4,
+        "B": 1.0
+      },
+      "remaining_box_weights": {
+        "b0": 0.4,
+        "b1": 0.6,
+        "b2": 0.8
+      },
+      "branch": "solo_required",
+      "jointly_only_feasible_box_ids": [],
+      "eligible": true,
+      "good_allocation_count": 12
+    },
+    {
+      "world": "development-005",
+      "split": "development",
+      "state_hash": "d6785c4af8c3a1fc2e82543e2ab439e722071b7b1497d75d2fecf54159aa4340",
+      "capacities": {
+        "A": 1.4,
+        "B": 0.8
+      },
+      "remaining_box_weights": {
+        "b0": 0.4,
+        "b1": 0.6,
+        "b2": 0.6
+      },
+      "branch": "solo_required",
+      "jointly_only_feasible_box_ids": [],
+      "eligible": true,
+      "good_allocation_count": 12
+    },
+    {
+      "world": "development-006",
+      "split": "development",
+      "state_hash": "a745feb6827c86c90634615ce1746b067c2870604c8591963b77334316b4a2fb",
+      "capacities": {
+        "A": 1.0,
+        "B": 1.0
+      },
+      "remaining_box_weights": {
+        "b0": 0.4,
+        "b1": 0.6,
+        "b2": 1.2
+      },
+      "branch": "joint_required",
+      "jointly_only_feasible_box_ids": [
+        "b2"
+      ],
+      "eligible": true,
+      "good_allocation_count": 1
+    },
+    {
+      "world": "development-007",
+      "split": "development",
+      "state_hash": "512c43ce04666aa2f9e80fbafdb701c2cb6f86166168e96258b604e34633028b",
+      "capacities": {
+        "A": 1.2,
+        "B": 1.4
+      },
+      "remaining_box_weights": {
+        "b0": 0.4,
+        "b1": 0.6,
+        "b2": 1.6
+      },
+      "branch": "joint_required",
+      "jointly_only_feasible_box_ids": [
+        "b2"
+      ],
+      "eligible": true,
+      "good_allocation_count": 1
+    },
+    {
+      "world": "development-008",
+      "split": "development",
+      "state_hash": "06a296b448d3dc60d2835f28e2f54fc5219896955e2ce524067794d2802d118e",
+      "capacities": {
+        "A": 1.0,
+        "B": 0.8
+      },
+      "remaining_box_weights": {
+        "b0": 0.4,
+        "b1": 0.6,
+        "b2": 1.2
+      },
+      "branch": "joint_required",
+      "jointly_only_feasible_box_ids": [
+        "b2"
+      ],
+      "eligible": true,
+      "good_allocation_count": 1
+    },
+    {
+      "world": "development-009",
+      "split": "development",
+      "state_hash": "e1f89a155d7296ee6ca3434cafe023540d898f9d83163494019c3d51398bf8ca",
+      "capacities": {
+        "A": 1.2,
+        "B": 1.2
+      },
+      "remaining_box_weights": {
+        "b0": 0.4,
+        "b1": 0.6,
+        "b2": 1.4
+      },
+      "branch": "joint_required",
+      "jointly_only_feasible_box_ids": [
+        "b2"
+      ],
+      "eligible": true,
+      "good_allocation_count": 1
+    },
+    {
+      "world": "development-010",
+      "split": "development",
+      "state_hash": "6c96fd5094e54f43c4760157434f5a902db161ce4e81389403324b3bdd1a777b",
+      "capacities": {
+        "A": 0.8,
+        "B": 1.2
+      },
+      "remaining_box_weights": {
+        "b0": 0.4,
+        "b1": 0.6,
+        "b2": 1.4
+      },
+      "branch": "joint_required",
+      "jointly_only_feasible_box_ids": [
+        "b2"
+      ],
+      "eligible": true,
+      "good_allocation_count": 1
+    },
+    {
+      "world": "development-011",
+      "split": "development",
+      "state_hash": "7f49ca3f32aac27f4a66173ef989bdc4d702208a3eed7131b437fd9e615581b6",
+      "capacities": {
+        "A": 1.4,
+        "B": 0.8
+      },
+      "remaining_box_weights": {
+        "b0": 0.4,
+        "b1": 0.6,
+        "b2": 1.6
+      },
+      "branch": "joint_required",
+      "jointly_only_feasible_box_ids": [
+        "b2"
+      ],
+      "eligible": true,
+      "good_allocation_count": 1
+    }
+  ],
+  "eligible_worlds": 12,
+  "independent_worlds_by_branch": {
+    "solo_required": 6,
+    "joint_required": 6
+  },
+  "missing_branches": [],
+  "ineligible_worlds": [],
+  "worlds_changed_or_generated": 0,
+  "held_out_worlds_used": 0,
+  "confound": "joint_required coincides with mixed worlds; solo_required with light worlds. No causal complexity isolation."
+}

@@ -1,0 +1,12 @@
+{
+  "approved": false,
+  "approved_by": null,
+  "approved_at": null,
+  "proposal_hash": "ccc8c0699ca4078106fc7398dede3deb7c6e7fe374402b6e398ba2ab03bcc4bb",
+  "phases": [],
+  "max_usd": {
+    "smoke": 0.05,
+    "gate": 1.5
+  },
+  "note": "Populate only after explicit live spending authorization. Smoke and formal gate are separate phases."
+}

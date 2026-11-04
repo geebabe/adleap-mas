@@ -1,0 +1,74 @@
+{
+  "status": "REAL_DEVELOPMENT_AND_P0_ARTIFACTS_VERIFIED",
+  "new_provider_requests": 256,
+  "VI": {
+    "requests": 108,
+    "regraded": 108,
+    "replayed": 108,
+    "observed_token_cost_usd": "0.00590340"
+  },
+  "phases": {
+    "smoke": {
+      "requests": 4,
+      "slots": 4,
+      "actual_snapshots": {
+        "gpt-4o-mini-2024-07-18": 2,
+        "gpt-4.1-mini-2025-04-14": 2
+      },
+      "usage": {
+        "prompt_tokens": 1306,
+        "completion_tokens": 48,
+        "cached_input_tokens": 0
+      },
+      "observed_token_cost_usd": "0.00041195",
+      "reserved_upper_bound_usd": "0.0121264000000000008",
+      "unknown_cost_attempts": 0,
+      "infrastructure_failed_attempts": 0,
+      "independently_regraded": 4,
+      "independently_replayed": 4,
+      "policy_only_language_pairs_verified": 2,
+      "report_complete": true
+    },
+    "gate": {
+      "requests": 144,
+      "slots": 144,
+      "actual_snapshots": {
+        "gpt-4.1-mini-2025-04-14": 72,
+        "gpt-4o-mini-2024-07-18": 72
+      },
+      "usage": {
+        "prompt_tokens": 47016,
+        "completion_tokens": 1751,
+        "cached_input_tokens": 0
+      },
+      "observed_token_cost_usd": "0.01486100",
+      "reserved_upper_bound_usd": "0.4365504000000000288",
+      "unknown_cost_attempts": 0,
+      "infrastructure_failed_attempts": 0,
+      "independently_regraded": 144,
+      "independently_replayed": 137,
+      "policy_only_language_pairs_verified": 72,
+      "report_complete": true
+    }
+  },
+  "observed_total_token_cost_usd": "0.02117635",
+  "durable_reservations_total_usd": "0.6272656000000000296",
+  "authorized_total_cap_usd": 2.55,
+  "cost_is_invoice": false,
+  "frozen_config_sha256": "fda3e1522e788ed3df20e62b2fd0d6d7a71a64a8b073c05d95b05d677126946b",
+  "executor_version": "e1-motion-2",
+  "executor_sha256": "c2cfbd0e9971c1fda23723b0220173c307d534880201b96c072006373dd531cc",
+  "existing_864_witnesses": {
+    "covered": 864,
+    "successes": 864,
+    "failures": [],
+    "accepted": true
+  },
+  "formal_P0_passed": false,
+  "held_out_model_requests": 0,
+  "held_out_spending_authorized": false,
+  "formal_E1_complete": false,
+  "full_episode_extension_implemented": false,
+  "replays_do_not_change_recommendation_labels": true,
+  "no_prompt_model_or_threshold_changes": true
+}

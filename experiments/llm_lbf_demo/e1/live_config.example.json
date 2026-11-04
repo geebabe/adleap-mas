@@ -1,0 +1,8 @@
+{
+  "explicit_live_approval": false,
+  "dollar_ceiling": 0,
+  "models": [
+    {"role":"primary","id":"REPLACE_WITH_EXACT_PRIMARY_SNAPSHOT","snapshot_frozen":false,"temperature":0,"max_input_tokens":10000,"max_output_tokens":256,"input_usd_per_million":null,"output_usd_per_million":null},
+    {"role":"replication","id":"REPLACE_WITH_EXACT_REPLICATION_SNAPSHOT","snapshot_frozen":false,"temperature":0,"max_input_tokens":10000,"max_output_tokens":256,"input_usd_per_million":null,"output_usd_per_million":null}
+  ]
+}
